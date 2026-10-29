@@ -39,8 +39,8 @@ const b64d=b64=>{const s=atob(String(b64).replace(/\s/g,""));const b=new Uint8Ar
 // ---------- backends ----------
 const useGas=()=>!!CFG.gasUrl;
 const enabled=()=>useGas()||!!cfg().token;
-async function gasGet(){const r=await fetch(CFG.gasUrl+(CFG.gasUrl.includes("?")?"&":"?")+"t="+Date.now(),{cache:"no-store"});if(!r.ok)throw httpErr(r.status,"Google save spot error "+r.status);const j=await r.json();if(j.ok===false)throw httpErr(500,j.error||"Google save spot error");return{sha:j.rev||0,data:j.data||{keys:{}}};}
-async function gasPut(data,rev){const r=await fetch(CFG.gasUrl,{method:"POST",body:JSON.stringify({baseRev:rev,data})});if(!r.ok)throw httpErr(r.status,"Google save spot error "+r.status);const j=await r.json();if(j.conflict)throw httpErr(409,"conflict");if(j.ok===false)throw httpErr(500,j.error||"save failed");return j.rev;}
+async function gasGet(){const r=await fetch(CFG.gasUrl+(CFG.gasUrl.includes("?")?"&":"?")+"t="+Date.now(),{cache:"no-store"});if(!r.ok)throw httpErr(r.status,"Google save spot error "+r.status);const txt=await r.text();let j;try{j=JSON.parse(txt)}catch(e){throw httpErr(502,"Google returned a page instead of data. Open the ☁️ Sync page and click “Test save spot”.")}if(j.ok===false)throw httpErr(500,j.error||"Google save spot error");return{sha:j.rev||0,data:j.data||{keys:{}}};}
+async function gasPut(data,rev){const r=await fetch(CFG.gasUrl,{method:"POST",body:JSON.stringify({baseRev:rev,data})});if(!r.ok)throw httpErr(r.status,"Google save spot error "+r.status);const txt=await r.text();let j;try{j=JSON.parse(txt)}catch(e){throw httpErr(502,"Google returned a page instead of data when saving. Open the ☁️ Sync page and click “Test save spot”.")}if(j.conflict)throw httpErr(409,"conflict");if(j.ok===false)throw httpErr(500,j.error||"save failed");if(typeof j.rev!=="number"||j.rev<=rev)throw httpErr(502,"Google answered but didn't save. The deployment may be an old version: in Apps Script, Deploy → Manage deployments → ✏️ → Version: New version → Deploy.");return j.rev;}
 // ---------- GitHub contents API ----------
 function api(path,opt){const c=cfg();return fetch("https://api.github.com"+path,Object.assign({cache:"no-store"},opt||{},{headers:Object.assign({"Accept":"application/vnd.github+json","Authorization":"Bearer "+c.token,"X-GitHub-Api-Version":"2022-11-28"},(opt&&opt.headers)||{})}));}
 const fileUrl=()=>`/repos/${CFG.owner}/${CFG.repo}/contents/${CFG.path}`;
@@ -74,7 +74,7 @@ async function syncNow(opts){opts=opts||{};const c=cfg();if(!enabled()){setState
         else{ if(!re){merged=lv;mt=lt||(lv?Date.now():0);}
               else if(!c.lastSync&&lv&&rv&&!lt){merged=sizeOf(lv)>=sizeOf(rv)?lv:rv;mt=Date.now();}   // first connect: keep the copy with more progress
               else if(lt>rt){merged=lv;mt=lt;} else {merged=rv;mt=rt;} }
-        if(stable(merged)!==stable(lv)&&!(merged==null&&lraw==null)){applying=true;try{if(merged==null)_rm.call(localStorage,key);else LSset(key,JSON.stringify(merged));}finally{applying=false}changedLocal=true;}
+        if(stable(merged)!==stable(lv)&&!(merged==null&&lraw==null)){applying=true;try{if(lraw!=null)LSset("jw_prev:"+key,JSON.stringify({ts:Date.now(),raw:lraw}));if(merged==null)_rm.call(localStorage,key);else LSset(key,JSON.stringify(merged));}finally{applying=false}changedLocal=true;}
         m.updatedAt[key]=mt;if(merged!=null||re)out.keys[key]={updatedAt:mt,value:stripSecrets(key,merged)};}
       saveMeta(m);
       const same=stable(out.keys)===stable(rem.data.keys||{});
@@ -85,7 +85,7 @@ async function syncNow(opts){opts=opts||{};const c=cfg();if(!enabled()){setState
     return{changed:changedLocal};
   }catch(e){lastErr=explain(e);setState(navigator.onLine===false||/^Offline/.test(lastErr)?"offline":"error");return{changed:false,error:lastErr};}
   finally{busy=false;if(again){again=false;schedule(300);}}}
-function explain(e){const st=e&&e.status;if(useGas()&&st)return"The Google save spot answered with an error ("+st+"). Check the Apps Script deployment (Who has access: Anyone).";if(st===401)return"GitHub rejected the token (expired or wrong). Reconnect on the Sync page.";if(st===403)return"The token isn't allowed to write to the data repo. Recreate it with Contents: Read and write.";if(st===404)return e.message;if(/Failed to fetch|NetworkError|Load failed/i.test(String(e&&e.message)))return"Offline. Your progress is safe on this device and will sync when you're back online.";return"Sync problem: "+String(e&&e.message||e).slice(0,160);}
+function explain(e){const st=e&&e.status;if(useGas()&&st)return(st===502?e.message:"The Google save spot answered with an error ("+st+"). Open the ☁️ Sync page and click “Test save spot”.");if(st===401)return"GitHub rejected the token (expired or wrong). Reconnect on the Sync page.";if(st===403)return"The token isn't allowed to write to the data repo. Recreate it with Contents: Read and write.";if(st===404)return e.message;if(/Failed to fetch|NetworkError|Load failed/i.test(String(e&&e.message)))return"Offline. Your progress is safe on this device and will sync when you're back online.";return"Sync problem: "+String(e&&e.message||e).slice(0,160);}
 function schedule(ms){if(!enabled())return;clearTimeout(pushTimer);setState("pending");pushTimer=setTimeout(()=>syncNow(),ms==null?1500:ms);}
 
 // ---------- status chip ----------
@@ -104,7 +104,21 @@ function mountChip(){if(chip||!document.body||document.body.dataset.nochip)retur
 (function(){const m=(location.hash||"").match(/jwsync=([^&]+)/);if(m){const c=cfg();c.token=decodeURIComponent(m[1]);delete c.lastSync;saveCfg(c);history.replaceState(null,"",location.pathname+location.search);}})();
 
 // ---------- public API for the Sync page ----------
-window.JWSync={CFG,enabled,useGas,cfg,saveCfg,syncNow,state:()=>state,lastErr:()=>lastErr,setupLink:()=>BASE+"sync.html#jwsync="+encodeURIComponent(cfg().token||""),
+const VERSION="2026-10-29d";
+async function diagnose(){const out={version:VERSION,backend:useGas()?"google":"github",url:CFG.gasUrl};
+  if(!useGas())return out;
+  try{const r=await fetch(CFG.gasUrl+(CFG.gasUrl.includes("?")?"&":"?")+"t="+Date.now(),{cache:"no-store"});out.getStatus=r.status;const txt=await r.text();out.getBody=txt.slice(0,400);
+    let j=null;try{j=JSON.parse(txt)}catch(e){}
+    if(!j){out.verdict=/sign in|signin|accounts\.google/i.test(txt)?"Google asked for a sign-in: set the deployment's “Who has access” to “Anyone” (not “Anyone with Google account”), then Deploy → Manage deployments → ✏️ → New version → Deploy.":/authoriz/i.test(txt)?"The script isn't authorized yet: open the script, pick doGet in the function menu, click ▶ Run and Allow; then Deploy → Manage deployments → ✏️ → New version → Deploy.":"Google returned a page instead of data. Copy the text below and send it to Claude.";return out;}
+    out.getOk=j.ok;out.rev=j.rev;
+    const r2=await syncNow();out.syncError=r2.error||null;
+    if(r2.error){out.verdict="Reading works, saving failed: "+r2.error;}
+    else{const v=await gasGet();const want=Object.keys(CFG.keys).filter(k=>LSget(k)!=null);const missing=want.filter(k=>!(v.data.keys||{})[k]);out.rev2=v.sha;
+      out.verdict=missing.length?("⚠️ Google didn't keep the data (missing: "+missing.join(", ")+"). In Apps Script: Deploy → Manage deployments → ✏️ → Version: New version → Deploy, then test again."):("✅ Save spot works: saved and read back OK (version "+v.sha+").");}
+  }catch(e){out.error=String(e&&e.message||e);out.verdict="The browser couldn't reach Google (blocked or offline). If you use an ad/tracker blocker or a work/school network filter, allow script.google.com and script.googleusercontent.com.";}
+  return out;}
+function restorePrev(){let n=0;for(const key of Object.keys(CFG.keys)){const b=jparse(LSget("jw_prev:"+key));if(b&&b.raw){applying=true;try{LSset(key,b.raw)}finally{applying=false}const m=meta();m.updatedAt[key]=Date.now();saveMeta(m);n++;}}schedule(200);return n;}
+window.JWSync={VERSION,diagnose,restorePrev,CFG,enabled,useGas,cfg,saveCfg,syncNow,state:()=>state,lastErr:()=>lastErr,setupLink:()=>BASE+"sync.html#jwsync="+encodeURIComponent(cfg().token||""),
   connect:async token=>{const c=cfg();c.token=token.trim();delete c.lastSync;saveCfg(c);const r=await syncNow();if(r.error){return r;}return{ok:true};},
   disconnect:()=>{const c=cfg();delete c.token;delete c.lastSync;saveCfg(c);setState("off");}};
 

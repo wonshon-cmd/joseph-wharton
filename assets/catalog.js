@@ -21,6 +21,7 @@ window.CATALOG = {
           status: "Final exam: Sat, Oct 31 (15 MC × 2 + 8 short answers × 9)",
           progressKey: "mktg6110_site_v1",          // localStorage key of the practice app (for progress on cards)
           progressTotals: { mc: 88, sa: 30 },
+          progressKey2: "mktg6110_prep_v1",         // study guide app (MC quiz / essays / drills)
           items: [
             { icon: "🎯", title: "Practice & Records", href: "practice/", desc: "10 exam topics, 88 MC + 30 short answers with instant grading (and optional Claude grading). Every answer syncs online to all your devices, with your full history on My Records.", primary: true },
             { icon: "📘", title: "Full Study Guide", href: "study-guide/", desc: "Visual summary of every lecture, 152 MC, 29 essays, math drills, mock exam, weak spots, glossary, company examples." },

@@ -7,9 +7,11 @@ function progress(c){ if(!c.progressKey)return null; let s; try{s=JSON.parse(loc
   for(const k in (s.mc||{})){const h=s.mc[k];if(h.length){mcSeen++;if(h[h.length-1].ok)mcOk++;last=Math.max(last,h[h.length-1].ts);}}
   for(const k in (s.sa||{})){s.sa[k].forEach(e=>{sa++;saSum+=(e.ai!=null?e.ai:e.auto);last=Math.max(last,e.ts);});}
   if(!mcSeen&&!sa)return null; return {mcSeen,mcOk,sa,saAvg:sa?saSum/sa:0,last};}
-function progHTML(c){const p=progress(c);if(!p)return `<p class="sub" style="font-size:14px;margin:6px 0 0">No practice yet.</p>`;
+function prog2(c){if(!c.progressKey2)return null;let s;try{s=JSON.parse(localStorage.getItem(c.progressKey2));}catch(e){}if(!s||!s.topics)return null;let n=0,ok=0;for(const k in s.topics){n+=s.topics[k].n||0;ok+=s.topics[k].c||0;}if(!n)return null;return{n,ok,es:Object.keys(s.essays||{}).length};}
+function g2(c){const q=prog2(c);return q?`<p class="sub" style="font-size:14px;margin:4px 0 0">📘 Study Guide: ${q.n} answers · ${Math.round(q.ok/q.n*100)}% right${q.es?' · '+q.es+' essays':''}</p>`:'';}
+function progHTML(c){const p=progress(c);if(!p)return (prog2(c)?'':`<p class="sub" style="font-size:14px;margin:6px 0 0">No practice yet.</p>`)+g2(c);
   const T=c.progressTotals||{};const pct=T.mc?Math.round(p.mcSeen/T.mc*100):0;
-  return `<div class="bar"><div style="width:${pct}%"></div></div><p class="sub" style="font-size:14px;margin:0">MC tried ${p.mcSeen}${T.mc?'/'+T.mc:''} · ${p.mcSeen?Math.round(p.mcOk/p.mcSeen*100):0}% right · ${p.sa} essay${p.sa===1?'':'s'}${p.sa?' (avg '+p.saAvg.toFixed(1)+'/9)':''}<br>Last studied ${new Date(p.last).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</p>`;}
+  return `<div class="bar"><div style="width:${pct}%"></div></div><p class="sub" style="font-size:14px;margin:0">🎯 Practice: MC tried ${p.mcSeen}${T.mc?'/'+T.mc:''} · ${p.mcSeen?Math.round(p.mcOk/p.mcSeen*100):0}% right · ${p.sa} essay${p.sa===1?'':'s'}${p.sa?' (avg '+p.saAvg.toFixed(1)+'/9)':''}<br>Last studied ${new Date(p.last).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</p>`+g2(c);}
 const crumbs=[`<a href="${ROOT}">${esc(C.owner)}</a>`];
 if(PAGE==="home"){
   document.title=C.owner;

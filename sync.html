@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Cloud Sync · Joseph Wharton</title><link rel="stylesheet" href="assets/hub.css">
-<script src="assets/sync.js"></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Cloud Sync · Joseph Wharton</title><link rel="stylesheet" href="assets/hub.css?v=20261029d">
+<script src="assets/sync.js?v=20261029d"></script>
 <style>.st{font-size:18px;font-weight:800}.ok{color:#006200}.bad{color:#b42b2a}input[type=password],input[type=text]{width:100%;font:inherit;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line)}
 .btn{border:0;border-radius:10px;padding:10px 16px;font:700 15px/1 inherit;font-family:inherit;cursor:pointer;background:var(--navy);color:#fff;margin:6px 6px 0 0}.btn.sec{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
 ol li{margin:6px 0}code{background:#eef0f4;padding:1px 5px;border-radius:4px}</style></head>
@@ -9,11 +9,12 @@ ol li{margin:6px 0}code{background:#eef0f4;padding:1px 5px;border-radius:4px}</s
 <h1>☁️ Cloud Sync</h1>
 <p class="sub">Your practice records (every answer, essay, score, and draft) are saved online, so they're the same on your laptop, phone, and any computer. They go to <b>one file in your Google Drive</b> through your own Google “save spot”, the same approach as the Pivot or Perish board.</p>
 
-<div class="card"><div>This device: <span id="st" class="st">…</span></div><p id="detail" class="sub" style="margin:4px 0 0"></p>
-<div id="connected" style="display:none"><button class="btn" id="now">Sync now</button><button class="btn sec" id="copy">Copy setup link for my other devices</button><button class="btn sec" id="disc">Disconnect this device</button>
+<div class="card"><div>This device: <span id="st" class="st">…</span></div><p id="detail" class="sub" style="margin:4px 0 0"></p><p class="sub" style="font-size:12px;margin:2px 0 0">Sync engine version <span id="ver"></span></p>
+<div id="connected" style="display:none"><button class="btn" id="now">Sync now</button><button class="btn sec" id="diag">🩺 Test save spot</button><button class="btn sec" id="restore">↩︎ Restore previous progress on this device</button><button class="btn sec" id="copy">Copy setup link for my other devices</button><button class="btn sec" id="disc">Disconnect this device</button>
 <p class="sub" style="font-size:14px;margin-top:10px"><label><input type="checkbox" id="synckey"> Also sync my Anthropic API key (for Claude grading) to my private data repo, so I only enter it once.</label></p>
 <p class="sub" style="font-size:14px">The setup link contains your access token. Send it only to yourself (e.g., text or AirDrop it to your own phone, or email it to yourself) and open it there once.</p></div></div>
 
+<div class="card" id="diagout" style="display:none"></div>
 <div class="card" id="gasinfo" style="display:none"><h2 style="margin-top:0">✅ Automatic on every device</h2><p>This site saves to your Google Drive save spot. Just open the site on any device and your records are there. No sign-in or setup per device.</p><p class="sub" style="font-size:14px">File in your Google Drive: <code>joseph-wharton-progress.json</code> (plus one dated backup per day). Your Anthropic API key is never saved there; add it in each device's Settings.</p></div>
 <div class="card" id="gassetup" style="display:none"><h2 style="margin-top:0">Turn on the Google save spot (one time, about 3 minutes)</h2>
 <ol><li>Go to <a href="https://script.google.com/home/projects/create" target="_blank" rel="noopener">script.google.com → New project</a> (signed in to the Google account you want to use). Name it <b>Joseph Wharton save spot</b>.</li>
@@ -40,7 +41,7 @@ ol li{margin:6px 0}code{background:#eef0f4;padding:1px 5px;border-radius:4px}</s
 </details></div></details>
 </main>
 <script>
-const $=id=>document.getElementById(id);const J=window.JWSync;$("rn").textContent=J.CFG.repo;
+const $=id=>document.getElementById(id);const J=window.JWSync;document.getElementById("ver").textContent=J.VERSION;$("rn").textContent=J.CFG.repo;
 function render(){const c=J.cfg();const g=J.useGas();const on=J.enabled();$("gasinfo").style.display=g?"block":"none";$("gassetup").style.display=g?"none":"block";$("ghwrap").style.display=g?"none":"block";$("connected").style.display=on?"block":"none";$("setup").style.display=(on&&!g)?"none":"block";$("copy").style.display=g?"none":"";$("disc").style.display=g?"none":"";$("synckey").parentElement.parentElement.style.display=g?"none":"";
   const s=J.state();const map={off:["Not connected (saved on this device only)","bad"],syncing:["Syncing…",""],pending:["Saving…",""],ok:["✅ Synced"+(c.lastSync?" · "+new Date(c.lastSync).toLocaleString():""),"ok"],offline:["📴 Offline. Will sync when back online",""],error:["⚠️ Not syncing","bad"]};
   const m=map[on?s:"off"]||[s,""];$("st").textContent=m[0];$("st").className="st "+m[1];$("detail").textContent=J.lastErr()||(g?"Google Drive save spot":(on?"Repo: "+J.CFG.owner+"/"+J.CFG.repo+" → "+J.CFG.path:""));$("synckey").checked=!!c.syncKey;}
@@ -49,6 +50,9 @@ $("now").onclick=async()=>{await J.syncNow();render();};
 $("disc").onclick=()=>{if(confirm("Disconnect this device? Your records stay online and on this device; new changes here just won't sync until you reconnect.")){J.disconnect();render();}};
 $("copy").onclick=async()=>{const l=J.setupLink();try{await navigator.clipboard.writeText(l);alert("Setup link copied. Send it only to yourself and open it once on your other device.");}catch(e){prompt("Copy this link and open it on your other device:",l);}};
 $("synckey").onchange=async e=>{const c=J.cfg();c.syncKey=e.target.checked;J.saveCfg(c);await J.syncNow();render();};
+$("diag").onclick=async()=>{const d=$("diagout");d.style.display="block";d.innerHTML="Testing…";const r=await J.diagnose();
+  d.innerHTML="<b>Result:</b> "+(r.verdict||"")+"<p class='sub' style='font-size:13px;white-space:pre-wrap;word-break:break-all'>sync version "+r.version+" · backend "+r.backend+(r.getStatus?" · GET "+r.getStatus:"")+(r.error?" · "+r.error:"")+(r.getBody?"\n"+r.getBody.replace(/</g,"&lt;"):"")+"</p>";render();};
+$("restore").onclick=()=>{if(confirm("Put back the progress this device had before the last sync changed it?")){const n=J.restorePrev();alert(n?"Restored. Reloading.":"No earlier copy found on this device; nothing was replaced by sync here.");if(n)location.reload();}};
 setInterval(render,1000);render();
 </script>
 </body></html>
