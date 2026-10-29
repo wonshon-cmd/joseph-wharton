@@ -110,7 +110,8 @@ svg text{font-family:inherit}
 
 .tab.active,.page.active{display:block}
 </style>
-<style>@media print{.jw-back{display:none!important}}</style></head>
+<style>@media print{.jw-back{display:none!important}}</style><script src="../../../assets/sync.js"></script>
+</head>
 <body>
 <a href="../" style="position:fixed;left:10px;bottom:10px;z-index:999;background:#011f5b;color:#fff;font:700 13px/1 -apple-system,Segoe UI,Arial,sans-serif;padding:8px 12px;border-radius:999px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.25)" class="noprint jw-back">← MKTG 6110 home</a>
 <nav class="top"><div class="inner">
@@ -151,7 +152,7 @@ svg text{font-family:inherit}
       <li><b>Short-answer practice</b>: write your answer and it is <b>graded automatically</b> (instant auto-grade, plus Claude TA grading if you add an API key in ⚙️ Settings)</li>
     </ol>
   </div>
-  <div class="callout key"><b class="lbl">💾 Everything is saved</b>Every MC answer, essay draft, and graded essay is saved automatically in this browser. See your full history on <a href="#" onclick="show('records');return false">📊 My Records</a>, where you can also download it as a backup or move it to another device.</div>
+  <div class="callout key"><b class="lbl">💾 Everything is saved</b>Every MC answer, essay draft, and graded essay is saved automatically and synced to the cloud (☁️ bottom-right) so it's on every device. See your full history on <a href="#" onclick="show('records');return false">📊 My Records</a>, where you can also download it as a backup or move it to another device.</div>
   <h3>Your progress</h3>
   <div id="prog"></div>
   <div class="grid2" id="tcards"></div>
@@ -1352,9 +1353,9 @@ function renderRecords(){const s=ld();const R=document.getElementById("recArea")
   R.innerHTML=`<div class="grid3"><div class="card"><div class="sub">MC questions tried</div><div style="font-size:30px;font-weight:800">${mcTot} / 88</div><div class="sub">${mcTries} total attempts</div></div>
    <div class="card"><div class="sub">MC right on latest try</div><div style="font-size:30px;font-weight:800">${mcTot?Math.round(mcOk/mcTot*100):0}%</div></div>
    <div class="card"><div class="sub">Essays submitted</div><div style="font-size:30px;font-weight:800">${saAll.length}</div><div class="sub">${saAll.length?'avg '+(saAll.reduce((a,e)=>a+(e.ai!=null?e.ai:e.auto),0)/saAll.length).toFixed(1)+' / 9':''}</div></div></div>
-  <div class="card"><b>Save or move your records</b><p class="sub">Your records are saved automatically in this browser. To keep a backup or switch devices (e.g., laptop → phone), download them here and load the file on the other device.</p>
+  <div class="card"><b>Your records are saved online</b><p class="sub">With ☁️ cloud sync on (button at the bottom-right), every answer saves to your private GitHub data repo and shows up on all your devices. You can also download a backup file anytime.</p>
    <button class="btn" onclick="exportRec()">⬇️ Download my progress</button><label class="btn sec" style="display:inline-block">⬆️ Load progress file<input type="file" accept=".json" style="display:none" onchange="importRec(this)"></label>
-   <button class="btn sec" onclick="if(confirm('Delete ALL your records on this browser? (Download a backup first!)')){const st=ld();localStorage.setItem(LS,JSON.stringify({mc:{},sa:{},drafts:{},settings:st.settings}));renderRecords();renderHome();}">🗑 Reset records</button></div>
+   <button class="btn sec" onclick="if(confirm('Delete ALL your MKTG 6110 practice records, on every synced device? (Download a backup first!)')){const st=ld();localStorage.setItem(LS,JSON.stringify({mc:{},sa:{},drafts:{},settings:st.settings,resetAt:Date.now()}));renderRecords();renderHome();}">🗑 Reset records</button></div>
   <h3>❌ MC questions you got wrong last time (${wrong.length})</h3>${wrong.length?wrong.map(w=>`<div class="card"><div class="qnum">${esc(DATA[w.t].name.toUpperCase())} · tried ${w.h.length}×</div><div class="q">${esc(w.m.q)}</div><p><b>Your answer:</b> ${esc(w.m.o[w.h[w.h.length-1].choice])}<br><b>Correct:</b> ${esc(w.m.o[w.m.a])}</p><div class="callout ex">🗣 ${esc(w.m.e)}</div><button class="btn sec" style="padding:6px 10px;font-size:13px" onclick="show('${w.t}')">Practice this topic →</button></div>`).join(""):'<p class="sub">None. Nice!</p>'}
   <h3>✍️ Your essays (newest first)</h3>${saAll.length?saAll.map(e=>{const [t,i]=e.k.split(":");const s2=DATA[t].sa[+i];const sc=e.ai!=null?e.ai:e.auto;
     return `<details class="card"><summary style="cursor:pointer"><span class="pill ${sc>=7?'ok':sc>=5?'mid':'bad'}">${sc}/9 ${e.ai!=null?'Claude':'auto'}</span> <b>${esc(DATA[t].name)}</b> · ${fmtT(e.ts)}<br><span class="sub">${esc(s2.q.slice(0,140))}…</span></summary>
@@ -1373,7 +1374,7 @@ function renderSettings(){const st=ld().settings;const S=document.getElementById
   S.innerHTML=`<div class="card"><h3 style="margin-top:0">🤖 Claude grading (optional)</h3>
   <p>Every short answer is <b>always</b> auto-graded instantly for free. If you add your own <b>Anthropic API key</b>, Claude also grades each answer like a TA: a score out of 9, a verdict for each rubric point, and specific tips to reach 9/9.</p>
   <ol><li>Go to <b>console.anthropic.com</b> → sign in → <b>API Keys</b> → <b>Create Key</b>. Add a few dollars of credit under Billing.</li><li>Paste the key below and click Save.</li></ol>
-  <p class="sub">Your key is stored <b>only in this browser</b> on this device and is sent only to Anthropic's API (api.anthropic.com) when you submit an answer. It is never added to the website or the progress file. Each graded answer costs roughly 1–3 cents. Use a key you can delete later, and don't save it on a shared computer.</p>
+  <p class="sub">Your key is stored on this device and is sent only to Anthropic's API (api.anthropic.com) when you submit an answer. It is never added to the website. It syncs to your private data repo only if you tick “Also sync my Anthropic key” on the ☁️ Sync page. Each graded answer costs roughly 1–3 cents. Use a key you can delete later, and don't save it on a shared computer.</p>
   <input type="password" id="keyIn" placeholder="sk-ant-…" value="${st.apiKey?'••••••••••••••••':''}" style="width:100%;max-width:460px;font:inherit;padding:10px;border-radius:10px;border:1.5px solid #e4e2dc">
   <div style="margin-top:8px"><button class="btn" id="keySave">Save key</button><button class="btn sec" id="keyTest" ${st.apiKey?'':'disabled'}>Test key</button><button class="btn sec" id="keyDel" ${st.apiKey?'':'disabled'}>Remove key</button></div>
   <p id="keyMsg" class="sub">${st.apiKey?'✅ A key is saved. Claude grading is ON.':'No key saved: auto-grade only.'}</p></div>`;

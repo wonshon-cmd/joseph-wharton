@@ -22,7 +22,7 @@ window.CATALOG = {
           progressKey: "mktg6110_site_v1",          // localStorage key of the practice app (for progress on cards)
           progressTotals: { mc: 88, sa: 30 },
           items: [
-            { icon: "🎯", title: "Practice & Records", href: "practice/", desc: "10 exam topics, 88 MC + 30 short answers with instant grading (and optional Claude grading). Every answer is saved, with your full history on My Records.", primary: true },
+            { icon: "🎯", title: "Practice & Records", href: "practice/", desc: "10 exam topics, 88 MC + 30 short answers with instant grading (and optional Claude grading). Every answer syncs online to all your devices, with your full history on My Records.", primary: true },
             { icon: "📘", title: "Full Study Guide", href: "study-guide/", desc: "Visual summary of every lecture, 152 MC, 29 essays, math drills, mock exam, weak spots, glossary, company examples." },
             { icon: "📄", title: "MAX Cheat Sheet", href: "cheat-sheets/max.html", desc: "Current version: 2 pages, all topics + graphics + abbreviation key.", extra: [{ label: "PDF", href: "cheat-sheets/max.pdf" }] },
             { icon: "📝", title: "Cheat Sheet (with space)", href: "cheat-sheets/with-space.html", desc: "Earlier version with company examples and room for handwritten notes.", extra: [{ label: "PDF", href: "cheat-sheets/with-space.pdf" }] },

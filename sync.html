@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Cloud Sync · Joseph Wharton</title><link rel="stylesheet" href="assets/hub.css">
+<script src="assets/sync.js"></script>
+<style>.st{font-size:18px;font-weight:800}.ok{color:#006200}.bad{color:#b42b2a}input[type=password],input[type=text]{width:100%;font:inherit;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line)}
+.btn{border:0;border-radius:10px;padding:10px 16px;font:700 15px/1 inherit;font-family:inherit;cursor:pointer;background:var(--navy);color:#fff;margin:6px 6px 0 0}.btn.sec{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+ol li{margin:6px 0}code{background:#eef0f4;padding:1px 5px;border-radius:4px}</style></head>
+<body data-nochip="1">
+<header class="top"><div class="in"><a class="logo" href="./">Joseph <span>Wharton</span></a><nav class="crumbs"><a href="./">Joseph Wharton</a> › Cloud Sync</nav></div></header>
+<main>
+<h1>☁️ Cloud Sync</h1>
+<p class="sub">Your practice records (every answer, essay, score, and draft) are saved to <b>one private file in your own GitHub account</b>, so they're the same on your laptop, phone, and any computer. Nobody else can see them.</p>
+
+<div class="card"><div>This device: <span id="st" class="st">…</span></div><p id="detail" class="sub" style="margin:4px 0 0"></p>
+<div id="connected" style="display:none"><button class="btn" id="now">Sync now</button><button class="btn sec" id="copy">Copy setup link for my other devices</button><button class="btn sec" id="disc">Disconnect this device</button>
+<p class="sub" style="font-size:14px;margin-top:10px"><label><input type="checkbox" id="synckey"> Also sync my Anthropic API key (for Claude grading) to my private data repo, so I only enter it once.</label></p>
+<p class="sub" style="font-size:14px">The setup link contains your access token. Send it only to yourself (e.g., text or AirDrop it to your own phone, or email it to yourself) and open it there once.</p></div></div>
+
+<div class="card" id="setup"><h2 style="margin-top:0">Connect this device</h2>
+<p><b>Already set up on another device?</b> Open the “setup link” from that device here, or paste the same token below.</p>
+<input type="password" id="tok" placeholder="github_pat_…" autocomplete="off"><button class="btn" id="go">Connect</button><p id="msg" class="sub"></p>
+<details><summary style="cursor:pointer;font-weight:800">First time? One-time setup (about 3 minutes)</summary>
+<ol>
+<li><b>Create the private data repo.</b> Go to <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>. Name it <code id="rn">joseph-wharton-data</code>, choose <b>Private</b>, tick <b>Add a README file</b>, then click <b>Create repository</b>.</li>
+<li><b>Create an access token for it.</b> Go to <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (Fine-grained token):
+  <ul><li>Token name: <code>Joseph Wharton sync</code>. Expiration: as long as you like (e.g., 1 year).</li>
+  <li>Repository access: <b>Only select repositories</b> → <code>joseph-wharton-data</code>.</li>
+  <li>Permissions → Repository permissions → <b>Contents: Read and write</b>. (Metadata: Read-only is added automatically.)</li>
+  <li>Click <b>Generate token</b> and copy it (starts with <code>github_pat_</code>).</li></ul></li>
+<li><b>Paste it above and click Connect.</b> Your existing progress on this device is uploaded right away.</li>
+<li><b>Other devices:</b> click “Copy setup link…” and open that link once on your phone or other computer. Done: they're all synced.</li>
+</ol>
+<p class="sub" style="font-size:14px">The token can only touch <code>joseph-wharton-data</code>, nothing else in your account. It's stored on each device you connect. To revoke it anytime, delete it at github.com/settings/personal-access-tokens.</p>
+</details></div>
+</main>
+<script>
+const $=id=>document.getElementById(id);const J=window.JWSync;$("rn").textContent=J.CFG.repo;
+function render(){const c=J.cfg();const on=!!c.token;$("connected").style.display=on?"block":"none";$("setup").style.display=on?"none":"block";
+  const s=J.state();const map={off:["Not connected (saved on this device only)","bad"],syncing:["Syncing…",""],pending:["Saving…",""],ok:["✅ Synced"+(c.lastSync?" · "+new Date(c.lastSync).toLocaleString():""),"ok"],offline:["📴 Offline. Will sync when back online",""],error:["⚠️ Not syncing","bad"]};
+  const m=map[on?s:"off"]||[s,""];$("st").textContent=m[0];$("st").className="st "+m[1];$("detail").textContent=J.lastErr()||(on?"Repo: "+J.CFG.owner+"/"+J.CFG.repo+" → "+J.CFG.path:"");$("synckey").checked=!!c.syncKey;}
+$("go").onclick=async()=>{const t=$("tok").value.trim();if(!t){$("msg").textContent="Paste your token first.";return;}$("msg").textContent="Connecting…";const r=await J.connect(t);$("msg").textContent=r.error?("❌ "+r.error):"";render();};
+$("now").onclick=async()=>{await J.syncNow();render();};
+$("disc").onclick=()=>{if(confirm("Disconnect this device? Your records stay online and on this device; new changes here just won't sync until you reconnect.")){J.disconnect();render();}};
+$("copy").onclick=async()=>{const l=J.setupLink();try{await navigator.clipboard.writeText(l);alert("Setup link copied. Send it only to yourself and open it once on your other device.");}catch(e){prompt("Copy this link and open it on your other device:",l);}};
+$("synckey").onchange=async e=>{const c=J.cfg();c.syncKey=e.target.checked;J.saveCfg(c);await J.syncNow();render();};
+setInterval(render,1000);render();
+</script>
+</body></html>

@@ -8,9 +8,11 @@ My Wharton coursework, study tools, and saved practice records, all in one websi
 
 ```
 index.html                      ← Joseph Wharton home (all terms + "jump back in" progress)
+sync.html                       ← ☁️ cloud sync setup / status for this device
 assets/
   catalog.js                    ← THE file to edit when adding terms / courses / links
   hub.css, hub.js               ← shared look + page rendering
+  sync.js                       ← cloud sync engine (records → private data repo)
 term-3/
   index.html                    ← Term 3 (lists its courses)
   mktg-6110/
@@ -28,6 +30,12 @@ term-3/
 3. For a new term, copy `term-3/index.html` into `term-4/` and change `data-term`.
 4. Add the course (and term) to `assets/catalog.js`, which drives every page.
 
-## Your records
+## Your records (cloud sync)
 
-Practice answers, essays, and scores are saved in the browser (per device). Use **My Records → Download my progress** to back up or move them, and **Load progress file** on the other device. Optional Claude grading uses your own Anthropic API key, which is stored only in your browser and never in this repo.
+Every practice answer, essay, score, and draft syncs to **one private file** (`progress.json`) in the private repo **`wonshon-cmd/joseph-wharton-data`**, so it's the same on every device.
+
+- Set up once at **`sync.html`** (☁️ button bottom-right on every page): create the private repo + a fine-grained token (Contents: Read & write on that repo only), paste it, click Connect.
+- Other devices: use **"Copy setup link"** on the Sync page and open it once on the new device.
+- Works offline; changes sync when back online. Histories from different devices are merged, never overwritten.
+- Engine: `assets/sync.js`. It syncs the localStorage keys listed in its `CFG.keys` (add new apps' keys there).
+- Your Anthropic API key (optional Claude grading) is never stored in this public repo; it only syncs to the private data repo if you tick that option.
