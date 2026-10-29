@@ -1,0 +1,26 @@
+:root{color-scheme:light;--navy:#011f5b;--red:#990000;--bg:#f5f4f0;--ink:#1a1a1a;--ink2:#55534e;--line:#e3e1da}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--navy)}
+header.top{background:var(--navy);color:#fff}
+header.top .in{max-width:1000px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header.top .logo{font-weight:800;font-size:19px;letter-spacing:.02em;color:#fff;text-decoration:none}
+header.top .logo span{color:#ffd29c}
+.crumbs{font-size:14px;opacity:.9}.crumbs a{color:#fff;text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.6)}
+main{max-width:1000px;margin:0 auto;padding:26px 20px 80px}
+h1{font-size:34px;line-height:1.15;margin:4px 0 6px}
+h2{font-size:22px;margin:30px 0 10px}
+.sub{color:var(--ink2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;text-decoration:none;color:inherit;display:block;transition:transform .12s,box-shadow .12s}
+a.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.07)}
+.card h3{margin:2px 0 4px;font-size:20px}
+.tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:6px;color:#fff;background:var(--navy)}
+.pill{display:inline-block;font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px;background:#eef2f9;color:var(--navy);margin:2px 4px 2px 0}
+.bar{height:8px;background:#ecebe6;border-radius:99px;overflow:hidden;margin:8px 0 4px}.bar>div{height:100%;background:#008300}
+.primary{border:2px solid var(--navy)}
+.extra{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+.extra a{font-size:13px;font-weight:700;text-decoration:none;background:#f1efe9;border:1px solid var(--line);border-radius:8px;padding:3px 9px;color:var(--ink)}
+.extra a:hover{background:#e7e4dc}
+.empty{border:2px dashed var(--line);background:transparent;color:var(--ink2)}
+footer{max-width:1000px;margin:0 auto;padding:0 20px 40px;color:var(--ink2);font-size:14px}

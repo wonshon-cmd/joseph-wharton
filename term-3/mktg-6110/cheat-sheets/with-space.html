@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta name="robots" content="noindex,nofollow"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MKTG 6110 Cheat Sheet</title>
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f6f5f2; --card:#ffffff; --ink:#1a1a1a; --ink2:#52514e; --ink3:#86857f; --line:#e4e2dc;
+  --blue:#2a78d6; --orange:#eb6834; --aqua:#1baf7a; --yellow:#eda100; --magenta:#d55181; --green:#008300; --violet:#6250d6; --red:#e34948;
+  --blue-bg:#eaf2fc; --orange-bg:#fdf0ea; --aqua-bg:#e7f7f0; --yellow-bg:#fdf5e1; --magenta-bg:#fbeef3; --green-bg:#e8f4e8; --violet-bg:#efedfb; --red-bg:#fcecec;
+  --c-stp:var(--blue); --c-journey:var(--aqua); --c-clv:var(--green); --c-math:var(--orange); --c-brand:var(--violet); --c-gtm:var(--magenta); --c-cases:var(--yellow);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+.module{scroll-margin-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+nav.top{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(0,0,0,.04)}
+nav.top .inner{max-width:1100px;margin:0 auto;display:flex;gap:4px;flex-wrap:wrap;padding:8px 14px;align-items:center}
+nav.top .brand{font-weight:800;margin-right:6px;font-size:15px}
+nav.top button{border:0;background:transparent;font:600 14px/1 inherit;font-family:inherit;padding:9px 9px;border-radius:8px;cursor:pointer;color:var(--ink2)}
+nav.top button:hover{background:var(--bg)}
+nav.top button.active{background:var(--ink);color:#fff}
+main{max-width:1000px;margin:0 auto;padding:24px 18px 120px}
+.tab{display:none}.tab.active{display:block}
+h1{font-size:34px;line-height:1.2;margin:8px 0 6px}
+h2{font-size:28px;line-height:1.25;margin:0}
+h3{font-size:21px;margin:28px 0 8px}
+h4{font-size:18px;margin:18px 0 6px}
+p{margin:8px 0}
+.sub{color:var(--ink2);font-size:17px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:760px){.grid2,.grid3,.grid4{grid-template-columns:1fr}body{font-size:17px}}
+.module{border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--line);margin:34px 0}
+.module>header{padding:18px 22px;color:#fff}
+.module>header .kicker{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
+.module>.body{padding:6px 22px 22px}
+.callout{border-left:5px solid;border-radius:10px;padding:12px 16px;margin:14px 0}
+.callout b.lbl{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.key{border-color:var(--blue);background:var(--blue-bg)} .key b.lbl{color:#1c5cab}
+.trap{border-color:var(--red);background:var(--red-bg)} .trap b.lbl{color:#b42b2a}
+.ex{border-color:var(--aqua);background:var(--aqua-bg)} .ex b.lbl{color:#0d7a53}
+.essay{border-color:var(--violet);background:var(--violet-bg)} .essay b.lbl{color:#4a3aa7}
+.formula{font-family:"SF Mono",Menlo,Consolas,monospace;background:#1f2430;color:#f3f1ea;border-radius:10px;padding:12px 16px;margin:10px 0;font-size:16px;overflow-x:auto;white-space:pre-wrap}
+.formula .c{color:#9ec5f4}
+.chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:14px;font-weight:600;margin:2px 3px 2px 0;background:var(--bg);border:1px solid var(--line)}
+.box{border-radius:12px;padding:14px 16px;border:2px solid}
+.box h4{margin:0 0 4px}
+table{border-collapse:collapse;width:100%;font-size:16px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#faf9f6;font-weight:700}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.hl td{background:var(--yellow-bg);font-weight:700}
+.toc a{display:inline-block;margin:4px 6px 4px 0;padding:8px 14px;border-radius:10px;text-decoration:none;color:#fff;font-weight:700;font-size:15px}
+svg text{font-family:inherit}
+.figcap{font-size:14px;color:var(--ink2);margin-top:4px}
+.tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:6px;color:#fff;vertical-align:middle}
+/* bars */
+.hbar{display:grid;grid-template-columns:170px 1fr 70px;align-items:center;gap:10px;margin:6px 0;font-size:15px}
+.hbar .track{background:#f0eee9;border-radius:4px;height:22px;position:relative}
+.hbar .fill{height:22px;border-radius:0 4px 4px 0}
+.hbar .v{font-variant-numeric:tabular-nums;color:var(--ink2);text-align:right}
+/* quiz */
+.btn{border:0;border-radius:10px;padding:12px 18px;font:700 16px/1 inherit;font-family:inherit;cursor:pointer;background:var(--ink);color:#fff;margin:4px 6px 4px 0}
+.btn.sec{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.btn.sm{padding:8px 12px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:default}
+.opt{display:block;width:100%;text-align:left;border:2px solid var(--line);background:#fff;border-radius:12px;padding:14px 16px;margin:10px 0;font:inherit;cursor:pointer;color:var(--ink)}
+.opt:hover{border-color:var(--ink3)}
+.opt.right{border-color:var(--green);background:var(--green-bg)}
+.opt.wrong{border-color:var(--red);background:var(--red-bg)}
+.opt:disabled{cursor:default}
+.qmeta{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--ink2);margin-bottom:6px}
+.qtext{font-size:20px;font-weight:600;line-height:1.45}
+.progress{height:8px;background:#ebe9e3;border-radius:99px;overflow:hidden;margin:6px 0 14px}
+.progress>div{height:100%;background:var(--ink)}
+textarea{width:100%;min-height:170px;font:inherit;font-size:17px;padding:12px;border-radius:10px;border:1.5px solid var(--line)}
+input[type=number],input[type=text],select{font:inherit;font-size:17px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line)}
+.rub label{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:8px;margin:4px 0;background:#faf9f6;cursor:pointer}
+.rub input{margin-top:6px;transform:scale(1.25)}
+.big{font-size:44px;font-weight:800;line-height:1}
+.pill{display:inline-block;padding:4px 12px;border-radius:999px;font-weight:700;font-size:14px}
+.ok{background:var(--green-bg);color:#006200}.bad{background:var(--red-bg);color:#b42b2a}.mid{background:var(--yellow-bg);color:#8a5d00}
+.topicpick label{display:inline-flex;align-items:center;gap:6px;margin:4px 12px 4px 0;font-size:16px}
+.hide{display:none}
+.mono{font-family:"SF Mono",Menlo,Consolas,monospace}
+/* plain english + glossary */
+.plain{border-color:#6250d6;background:#f6f4ff}.plain b.lbl{color:#4a3aa7}
+details.terms{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:10px 0;background:#fcfcfa;font-size:16px}
+details.terms summary{cursor:pointer;font-weight:700;font-size:15px}
+.tchip{display:inline-block;background:var(--violet-bg);color:#4a3aa7;border-radius:6px;padding:1px 7px;margin:2px 2px;font-size:13px}
+.tdef{padding:6px 0;border-top:1px dashed var(--line)}
+.glcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.glk{font-size:20px;font-weight:800}.glfull{color:#4a3aa7;font-weight:700;font-size:15px}.glcard p{margin:6px 0;font-size:16px}
+.glex{color:var(--ink2);font-size:15px!important}
+.gl{border-bottom:2px dotted #6250d6;cursor:help}
+#glpop{position:fixed;z-index:100;display:none;background:#fff;border:2px solid #6250d6;border-radius:12px;padding:12px 14px;box-shadow:0 8px 30px rgba(0,0,0,.18);font-size:15px;line-height:1.45}
+#glpop p{margin:6px 0}
+/* cheat sheet (screen) */
+.sec p.eg{margin:3px 7px 5px;padding:3px 7px;background:#f4f2ec;border-left:3px solid var(--c);border-radius:4px;font-size:.93em;color:#2b2b2b}
+.cs2 .pg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin:16px 0}
+.pgtitle{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:3px solid #1a1a1a;padding-bottom:4px;margin-bottom:10px;font-size:17px}
+.pgtitle span{font-size:13px;color:var(--ink2)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.sec{border:1.5px solid var(--c);border-radius:8px;margin-bottom:10px;overflow:hidden;font-size:14.5px;line-height:1.42;break-inside:avoid}
+.sec h5{margin:0;background:var(--c);color:#fff;padding:4px 9px;font-size:13.5px;letter-spacing:.04em}
+.sec ul,.sec ol{margin:5px 6px 6px 0;padding-left:22px}.sec li{margin:2px 0}
+.sec p{margin:4px 9px}.sec .small{font-size:12.5px;color:var(--ink2)}
+.sec .t{font-size:13.5px;margin:6px 8px;width:calc(100% - 16px)}
+.sec .t td,.sec .t th{padding:2px 6px;border-bottom:1px solid #ebe9e3}
+.sec .t.f td:first-child{font-weight:700;white-space:nowrap;width:38%}
+.fx{font-family:"SF Mono",Menlo,Consolas,monospace;background:#1f2430;color:#fff;margin:6px 8px;padding:5px 8px;border-radius:6px;font-weight:700;text-align:center}
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px;font-weight:700;font-size:13px}
+.flow span{border:1.5px solid var(--c);border-radius:6px;padding:2px 10px;text-align:center;line-height:1.15}
+.grid3x td,.grid3x th,.km td,.km th{text-align:center}
+.grid3x td.g{background:#cfe8cf;font-weight:700}.grid3x td.r{background:#f6cccc;font-weight:700}
+.km td{background:#fbeef3}
+@media print{
+  nav.top,.noprint,#glpop{display:none!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff}
+  main{max-width:none;padding:0;margin:0}
+  .tab{display:none!important} #cheat{display:block!important}
+  @page{size:letter;margin:0.32in}
+  .cs2 .pg{border:none;border-radius:0;padding:0;margin:0;break-after:page;page-break-after:always}
+  .cs2 .pg:last-child{break-after:auto;page-break-after:auto}
+  .pgtitle{font-size:14px;margin-bottom:6px;padding-bottom:2px}.pgtitle span{font-size:10px}
+  .cols{gap:8px}
+  .sec{font-size:var(--pf,8.1px);line-height:1.3;margin-bottom:6px;border-radius:5px}
+  .sec h5{font-size:8.9px;padding:2px 7px}
+  .sec .t{font-size:calc(var(--pf,8.1px) - .4px);margin:3px 6px;width:calc(100% - 12px)}
+  .sec .t td,.sec .t th{padding:1px 4px}
+  .sec ul,.sec ol{margin:3px 4px 4px 0;padding-left:16px}.sec li{margin:1px 0}
+  .sec p{margin:2px 7px}.sec .small{font-size:9.5px}
+  .fx{margin:3px 6px;padding:3px 6px;font-size:11px}.flow{margin:3px;font-size:10.5px}
+}
+</style><style>#cheat{display:block!important}</style><style>@media print{.jw-back{display:none!important}}</style></head><body>
+<a href="../" style="position:fixed;left:10px;bottom:10px;z-index:999;background:#011f5b;color:#fff;font:700 13px/1 -apple-system,Segoe UI,Arial,sans-serif;padding:8px 12px;border-radius:999px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.25)" class="noprint jw-back">← MKTG 6110 home</a><main>
+<!-- ===================== CHEAT SHEET ===================== -->
+<section id="cheat" class="tab active">
+  <h1 class="noprint">Two-Page Cheat Sheet</h1>
+  <p class="sub noprint">Ordered by priority: <b>page 1 = the sample-question topics</b>, <b>page 2 = what she stressed in class</b>, then everything else. Print with Ctrl/Cmd + P (exactly 2 pages). A ready-made PDF was also sent in chat.</p>
+  <button class="btn noprint" onclick="window.print()">🖨 Print / Save as PDF</button>
+
+  <div class="cs2">
+  <!-- ================= PAGE 1 ================= -->
+  <div class="pg">
+    <div class="pgtitle"><b>MKTG 6110 Final: Cheat Sheet (1/2)</b><span>★ SAMPLE-QUESTION TOPICS · 15 MC × 2 + 8 essays × 9</span></div>
+    <div class="cols">
+      <div class="col">
+        <div class="sec" style="--c:#d55181"><h5>① KAHN MATRIX ★ sample MC</h5>
+          <table class="t km"><tr><th></th><th>Product</th><th>Experience</th></tr><tr><th>Add pleasure</th><td><b>BRAND</b></td><td><b>EXPERIENTIAL</b></td></tr><tr><th>Remove pain</th><td><b>LOW PRICE</b></td><td><b>FRICTIONLESS</b></td></tr></table>
+          <ul>
+            <li><b>Survive</b> = fair value (customers' minimum) in ALL 4 (RadioShack failed)</li>
+            <li><b>Lead</b> = best in 1 → <b>leverage</b> into a 2nd; just “good enough” in the other 2 (don't overspend)</li>
+            <li>The bar rises: a leader's edge becomes the new minimum (2-day delivery)</li>
+            <li><b>Amazon: best Frictionless → leveraged to Low Price</b>, fair value Brand & Exp. · Walmart LP→F (Jet.com) · Warby/Zara B+LP · Costco/TJX LP+E (treasure hunt) · Luxury B+E · Sephora E+F</li>
+            <li>Mid-tier dept stores (Macy's = Getchells) = “stuck in the middle”</li>
+          </ul><p class="eg">▸ <b>e.g.</b> <b>Brand</b>: Nordstrom, Best Buy, Kroger, LV, Hermès, Lululemon, Zara, Warby Parker, Glossier · <b>Experiential</b>: Sephora, Apple Store, Eataly, Whole Foods, Trader Joe's, Stitch Fix, Duane Reade · <b>Low Price</b>: Walmart (EDLP), Costco, T.J.Maxx, Burlington · <b>Frictionless</b>: Amazon · Failed: RadioShack · Sim: Cadabra=Amazon, PriceMart=Walmart, AIM=Target, BestCo=Costco, Zephara=Sephora, KT Benny=JCPenney</p></div>
+
+        <div class="sec" style="--c:#2a78d6"><h5>② GOOD SEGMENTATION ★ sample MC</h5>
+          <ul>
+            <li><b>Homogeneous WITHIN + different BETWEEN</b> in response to marketing → east/west answer = “<b>it depends</b>”. Trap: “heterogeneity <i>within</i>” is backwards.</li>
+            <li>Also: identifiable, reachable, big enough, <b>actionable</b>. “Serving the average buyer serves no one.” Firms <b>uncover</b> segments.</li>
+            <li>Variables: geo · demo · psychographic · attitudinal (<b>benefits</b>) · behavioral (usage, CLV)</li>
+            <li>Benefits are best but invisible → use visible correlates. Gender: stereotyping, alienates, people don't fit boxes, unfair.</li>
+            <li><b>Quidel</b>: Hopefuls $9.49, pregnancy aisle, ovulation ext. vs Fearfuls $6.99, birth-control aisle, STD tests</li>
+          </ul><p class="eg">▸ <b>e.g.</b> Quidel (Hopefuls/Fearfuls) · Pivot or Perish 6 segments (Seg 1 online low-price → Cadabra; Seg 3 brand/experience → Zephara) · Lululemon: suburban women 30–40s → men, global · gender profiling critique</p></div>
+
+        <div class="sec" style="--c:#6250d6"><h5>③ BRAND ARCHITECTURE ★ sample MC</h5>
+          <table class="t"><tr><th>Type</th><th>Example</th><th>Key trade-off</th></tr>
+            <tr><td><b>House of Brands</b></td><td>P&G, pharma, LVMH</td><td><b>risk contained</b>, own segments · most costly</td></tr>
+            <tr><td>Endorsed</td><td>Loft by Ann Taylor → Loft</td><td>parent credibility · spillover risk</td></tr>
+            <tr><td>Sub-brand</td><td>Amazon Prime, AWS</td><td>keeps parent name · can dilute</td></tr>
+            <tr><td><b>Branded House</b></td><td>Virgin</td><td><b>cheapest</b> · one failure hits all</td></tr></table>
+          <ul><li><b>Protect brands from a risky division → House of Brands.</b> Pharma: “if one drug harms people…”</li>
+          <li>LVMH synergies: back office, ads, real estate, talent · Toyota → <b>Lexus</b> · Amazon = hybrid · Goals: strong brands, synergy, clarity, leverage</li></ul><p class="eg">▸ <b>e.g.</b> P&G (Tide, Pampers, Gillette, Crest) · Unilever · pharma · LVMH (LV, Dior) · Loft by Ann Taylor · Amazon (Basics / Prime, AWS, Alexa / Audible / Zappos, Whole Foods, Twitch, Ring) · Virgin (airline, mobile, money) · Toyota→Lexus · Kia</p></div>
+      </div>
+
+      <div class="col">
+        <div class="sec" style="--c:#4a3aa7"><h5>④ EXTENSIONS & LUXURY ★ sample essay</h5>
+          <ul>
+            <li>Why extend: ① cheaper (leverage equity) ② <b>move the brand</b> (Mountain Man → young drinkers)</li>
+            <li><b>Two-way test</b>: brand adds value to the extension AND the extension adds value back. Never extend a weak brand or weaken the original → otherwise use a <b>new brand</b>.</li>
+            <li><b>Horizontal</b> (new category, same price: Clorox wipes, Lulu men) vs <b>vertical</b> (BMW; going down hurts the top; Toyota→Lexus; Kia)</li>
+            <li><b>Luxury</b>: does it reinforce or dilute prestige/scarcity? Too accessible → loses <b>cachet → loses the premium</b>. Pierre Cardin ✘ vs Hermès/Gucci ✔. Long-term equity &gt; short-term revenue.</li>
+            <li>Stay fresh: Schweppes heritage · Pepsi music · Porsche gaming · LV × Supreme · silver bullet</li>
+          </ul><p class="eg">▸ <b>e.g.</b> Clorox → wipes · Starbucks → bottled Frappuccino, ice cream · Lululemon women → men · BMW 760Li $160k vs 128i $31.5k · Mountain Man light beer · Pierre Cardin ✘ · Hermès, Gucci ✔ · Schweppes · Pepsi · Porsche · LV × Supreme · Amazon luxury (doubtful)</p></div>
+
+        <div class="sec" style="--c:#008300"><h5>⑤ SUBSCRIPTION PERKS ★ sample essay</h5>
+          <ul>
+            <li>Unintended: ① <b>margin erosion</b> ② <b>trained to expect discounts</b> ③ deal-seekers → <b>low incremental value</b> ④ <b>cannibalize full-price sales</b></li>
+            <li>CLV = m·r/(1.1−r): $100 @ 80% = $267; perks → $75 @ 85% = <b>$255 (worse)</b>; need ~86% retention to break even</li>
+            <li>Kahn: loyal = less price-sensitive → “<b>I raise price</b>” (American Airlines). Subscriptions = 3-part tariff.</li>
+            <li>Fix: tiers, non-price perks, measure incrementality. Costco ~92% renewal → 5.1×</li>
+          </ul><p class="eg">▸ <b>e.g.</b> Amazon Prime · Costco (92.2% US/Can renewal, $1.33B fees/qtr) · American Airlines miles (“3 peanuts”) · Netflix · newspapers · Dropbox/AI freemium · Dollar Diaper Club</p></div>
+
+        <div class="sec" style="--c:#1c5cab"><h5>⑥ MASS vs TWO SEGMENTS ★ sample essay (25% each)</h5>
+          <ul>
+            <li>Mass: <b>cheaper, efficient media</b>, less tailored · Segments: <b>more relevant</b>, costlier, complex</li>
+            <li>Depends on: <b>cost of differentiation</b> (check ROI) · <b>competitive intensity</b> (high → segment) · <b>brand equity</b> (strong like Coke → mass OK)</li>
+            <li>Awareness-first (Coke, Bud; double jeopardy) vs passion-first niche (Lulu; cheaper with fragmented media)</li>
+            <li>Limited budget: concentrate on the best-fit segment first, prove ROI, then add</li>
+          </ul><p class="eg">▸ <b>e.g.</b> Coca-Cola, Budweiser (mass awareness) · Lululemon (niche → mass) · TV Guide (known, undifferentiated) · Quidel (2 segments) · Pringles (vague → kids/teens)</p></div>
+
+        <div class="sec" style="--c:#1a1a1a"><h5>✍ ESSAY RECIPE (9 pts)</h5>
+          <ol><li><b>Position</b> in sentence 1</li><li>The <b>trade-off</b> (short vs long term · cost vs relevance)</li><li>“<b>It depends on…</b>” (cost · competition · brand · customer)</li><li>A <b>course example</b></li><li><b>Recommend + risk</b>. Answer EVERY part asked.</li></ol></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2 ================= -->
+  <div class="pg">
+    <div class="pgtitle"><b>MKTG 6110 Final: Cheat Sheet (2/2)</b><span>🎤 STRESSED IN CLASS → then everything else</span></div>
+    <div class="cols">
+      <div class="col">
+        <div class="sec" style="--c:#6250d6"><h5>⑦ MEASURING BRANDS 🎤</h5>
+          <ul>
+            <li><b>Customer-based</b>: awareness (recognition, recall, top-of-mind, latency) → associations (<b>conjoint</b>) → emotion (neuromarketing) → loyalty (purchases). <b>Price premium</b> = branded − unbranded price.</li>
+            <li><b>BAV</b>: Differentiation (margins), Relevance (trial), Esteem (loyalty), Knowledge. Strength = D+R; Stature = E+K.</li>
+            <li><b>Opposite models</b>: awareness first (Coke, Bud) vs <b>passion first</b> (BAV, Lululemon). Known but undifferentiated = weak (TV Guide); niche may not scale.</li>
+            <li><b>Interbrand</b>: brand earnings, discounted; strong brand → low rate → high value. Used to justify spend to the CFO, in M&A, in lawsuits. Coke $68B → Apple #1.</li>
+          </ul><p class="eg">▸ <b>e.g.</b> Coke $68B → Apple $470.9B #1 · Nvidia +116% · Tesla −35% · perfume 95% vs utilities 0% · Lululemon (BAV) · TV Guide</p></div>
+
+        <div class="sec" style="--c:#e34948"><h5>⑧ PRICING BASICS 🎤</h5>
+          <div class="flow"><span>FLOOR<br><small>cost</small></span>— competition + company —<span>CEILING<br><small>EVC</small></span></div>
+          <ul>
+            <li><b>Pool pill</b>: EVC $20 + $200 = $220+, but real ≈ <b>$10–20</b> (<b>fairness</b>: $0.50 chlorine; <b>rivals</b> undercut)</li>
+            <li>Cost: markup (Costco 11%, Walmart 25%) or break-even (incl. fixed)</li>
+            <li><b>Fixed-heavy → LOWER price</b> (“cover the fixed”: 1,000 @ $7 = $1,500; 750 = $0) · <b>variable-heavy → RAISE</b> (omakase)</li>
+            <li>Competition: <b>can AND will</b> they match? Warby $95 vs Luxottica $300: no</li>
+          </ul><p class="eg">▸ <b>e.g.</b> Raju's pool pill · Warby $95 vs Luxottica $300 · Costco 11% / Walmart 25% · Jesse's omakase · BeWood</p></div>
+
+        <div class="sec" style="--c:#b42b2a"><h5>⑨ PRICE DISCRIMINATION 🎤</h5>
+          <ul>
+            <li><b>1st</b>: a price per person (haggling: cars, art, B2B; control the sales force)</li>
+            <li><b>2nd</b>: self-select/quantity: bulk · <b>2-part</b> (razor+blades, HP ink, Keurig) · <b>3-part</b> (subscriptions)</li>
+            <li><b>3rd</b>: by segment: <b>skim</b> (Apple, fashion) vs <b>penetration</b> (freemium, AI) · <b>EDLP</b> + price-match vs <b>high-low</b> (loss leaders, cherry-pickers) · random (coupons) vs periodic (early bird) · student ID · good/better/best</li>
+          </ul><p class="eg">▸ <b>e.g.</b> Used cars, art (1st) · razors, HP ink, Keurig, newspapers (2nd) · Apple, runway → T.J.Maxx, AI freemium, Walmart price-match, early bird, student ID, first class (3rd)</p></div>
+
+        <div class="sec" style="--c:#0d7a53"><h5>⑩ PLACE & CHANNELS 🎤</h5>
+          <ul>
+            <li><b>30–50%</b> of price in the channel; now the “favorite P” (differentiation). Breadth = # categories, depth = # choices.</li>
+            <li><b>Direct</b>: margin, control, <b>DATA</b> · hard to scale. <b>Indirect</b>: scale · <b>double marginalization</b>, channel conflict (car dealers; Tesla “not a car”)</li>
+            <li><b>Nike DTC</b> 2020 → HOKA/On/NB won → 2024 rebuild wholesale. Retail failures = stores + inventory + <b>debt</b>.</li>
+          </ul><p class="eg">▸ <b>e.g.</b> Nike DTC → lost to HOKA, On, New Balance · Tesla vs dealers · Amazon data · Sephora vs Macy's · Bonobos → Nordstrom · Kirkland · Apple, Lululemon</p></div>
+      </div>
+
+      <div class="col">
+        <div class="sec" style="--c:#008300"><h5>CLV (slides)</h5>
+          <div class="fx">CLV = m × r ÷ (1 + i − r) − AC</div>
+          <ul><li>Phone: AC $400; m $250; 1-yr BE 1.6M custs · 5 yrs $1,250 → churn $840 → discount <b>$664</b> (net $264)</li>
+          <li>Avon: avg $0.87B vs segments <b>$1.89B</b> → averages mislead · CAC ≤ CLV · 80/20</li></ul><p class="eg">▸ <b>e.g.</b> Mobile carrier · Avon-style seller · Costco · Diaper Club ($438) · Harrah's</p></div>
+
+        <div class="sec" style="--c:#eb6834"><h5>MARKETING MATH (slides)</h5>
+          <table class="t f">
+            <tr><td>Break-even</td><td>fixed cost ÷ unit contribution</td></tr>
+            <tr><td>Price cut</td><td>old vol × Δ contribution ÷ new contribution</td></tr>
+            <tr><td><b>BECR</b></td><td>new UC ÷ old UC (actual must be lower)</td></tr>
+            <tr><td><b>EVC</b></td><td>rival's life cost − switch − running cost + extra value</td></tr>
+            <tr><td>Segment value</td><td>pop × % seg × % buy × usage × UC</td></tr></table>
+          <ul><li><b>Acuvue</b>: per lens $2.00 vs One Day $0.40, but per patient $208 vs <b>$292</b> → denominator = constraint. Eye doctors earn less ($131 vs $208) → won't push. Fix: $0.54 → $0.29 each.</li>
+          <li>Margin analysis: <b>always</b> (reveals incentives)</li></ul><p class="eg">▸ <b>e.g.</b> Vistakon Acuvue/Surevue/1-Day · ZYX vs PQR · ABC service contract · Unilever Brazil · pool pill</p></div>
+
+        <div class="sec" style="--c:#2a78d6"><h5>STP, POSITIONING & FIRM (slides)</h5>
+          <ul>
+            <li>5Cs → STP → 4Ps. Positioning = <b>Target · POD · Frame of ref. · Reason to believe</b></li>
+            <li><b>Pringles</b>: trial 25% → 7% (no repeat) → repositioned as a fun snack for kids vs all snacks. <i>Make what you can sell.</i></li>
+            <li>Mktg creates, Ops delivers, Finance captures: Rolls-Royce ✔ vs Peloton ✘</li>
+          </ul><p class="eg">▸ <b>e.g.</b> Pringles → Kellogg's $2.7B · Apple Inc. (2007) · Rolls-Royce · Peloton · Lululemon 5Cs (tariffs, Mirror, Costco dupes)</p></div>
+
+        <div class="sec" style="--c:#1baf7a"><h5>JOURNEY, AI & SIMULATION (slides)</h5>
+          <ul>
+            <li>Journey = web; find the <b>drop-off</b>. SEO → GEO: “known ≠ found”; Share of Model. Digital twins ≈0.2 correlation (ideas, not forecasts).</li>
+            <li><b>Boycotts</b>: Nike +31% · Goya +22% · Bud Light −28% (identity clash, substitutable, shelf loss)</li>
+            <li>Sim: fair value 75% of leader · value = discounted cash flow · <b>ROIC &gt; WACC</b> · debt ↑ WACC ↑ value ↓ · lead 2 + parity 2</li>
+          </ul><p class="eg">▸ <b>e.g.</b> BOPAS · SmartEquip · Point11 · Columbia digital twins · Nike, Goya, Bud Light, Target, Tesla</p></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+</main></body></html>
