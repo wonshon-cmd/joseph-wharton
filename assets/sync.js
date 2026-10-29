@@ -11,7 +11,7 @@
 const CFG={
   // ⬇ Google Apps Script "save spot" (records saved in your Google Drive). Paste the /exec URL here.
   //   When set, EVERY device syncs automatically, no setup needed. (Same approach as the Pivot or Perish board.)
-  gasUrl:"",
+  gasUrl:"https://script.google.com/macros/s/AKfycbx1HaXM_vS0detYh_ylZQN8lxhqQ6maKiP2RekmvI7NhWjRicJtaQImCoUcPXvk2f5O/exec",
   // Alternative backend: private GitHub repo + per-device token (used only if gasUrl is empty).
   owner:"wonshon-cmd",repo:"joseph-wharton-data",path:"progress.json",branch:"main",
   // localStorage keys to sync, with how to merge them:

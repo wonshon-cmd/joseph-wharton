@@ -37,7 +37,7 @@ Every practice answer, essay, score, and draft syncs online, so it's the same on
 
 **Main method: Google save spot** (same approach as the Pivot or Perish "permanent board")
 - `google-apps-script/Code.gs` is a tiny Google Apps Script web app that stores everything in one file in Google Drive (`joseph-wharton-progress.json`, plus one dated backup per day).
-- Deploy it once (script.google.com → paste Code.gs → run `setup` → Deploy as Web app, *Execute as: Me*, *Who has access: Anyone*), then put the `/exec` URL in `CFG.gasUrl` at the top of `assets/sync.js`.
+- Deploy it once (script.google.com → paste Code.gs → run `setup` → Deploy as Web app, *Execute as: Me*, *Who has access: Anyone*), then put the `/exec` URL in `CFG.gasUrl` at the top of `assets/sync.js` (done: the save spot is live).
 - After that, every device syncs automatically, with no per-device setup. Status: ☁️ button bottom-right on every page → `sync.html`.
 - Works offline; changes sync when back online. Histories from different devices are merged, never overwritten.
 - The Anthropic API key (optional Claude grading) is never sent to the save spot.
