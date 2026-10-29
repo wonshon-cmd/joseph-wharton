@@ -7,14 +7,22 @@ ol li{margin:6px 0}code{background:#eef0f4;padding:1px 5px;border-radius:4px}</s
 <header class="top"><div class="in"><a class="logo" href="./">Joseph <span>Wharton</span></a><nav class="crumbs"><a href="./">Joseph Wharton</a> › Cloud Sync</nav></div></header>
 <main>
 <h1>☁️ Cloud Sync</h1>
-<p class="sub">Your practice records (every answer, essay, score, and draft) are saved to <b>one private file in your own GitHub account</b>, so they're the same on your laptop, phone, and any computer. Nobody else can see them.</p>
+<p class="sub">Your practice records (every answer, essay, score, and draft) are saved online, so they're the same on your laptop, phone, and any computer. They go to <b>one file in your Google Drive</b> through your own Google “save spot”, the same approach as the Pivot or Perish board.</p>
 
 <div class="card"><div>This device: <span id="st" class="st">…</span></div><p id="detail" class="sub" style="margin:4px 0 0"></p>
 <div id="connected" style="display:none"><button class="btn" id="now">Sync now</button><button class="btn sec" id="copy">Copy setup link for my other devices</button><button class="btn sec" id="disc">Disconnect this device</button>
 <p class="sub" style="font-size:14px;margin-top:10px"><label><input type="checkbox" id="synckey"> Also sync my Anthropic API key (for Claude grading) to my private data repo, so I only enter it once.</label></p>
 <p class="sub" style="font-size:14px">The setup link contains your access token. Send it only to yourself (e.g., text or AirDrop it to your own phone, or email it to yourself) and open it there once.</p></div></div>
 
-<div class="card" id="setup"><h2 style="margin-top:0">Connect this device</h2>
+<div class="card" id="gasinfo" style="display:none"><h2 style="margin-top:0">✅ Automatic on every device</h2><p>This site saves to your Google Drive save spot. Just open the site on any device and your records are there. No sign-in or setup per device.</p><p class="sub" style="font-size:14px">File in your Google Drive: <code>joseph-wharton-progress.json</code> (plus one dated backup per day). Your Anthropic API key is never saved there; add it in each device's Settings.</p></div>
+<div class="card" id="gassetup" style="display:none"><h2 style="margin-top:0">Turn on the Google save spot (one time, about 3 minutes)</h2>
+<ol><li>Go to <a href="https://script.google.com/home/projects/create" target="_blank" rel="noopener">script.google.com → New project</a> (signed in to the Google account you want to use). Name it <b>Joseph Wharton save spot</b>.</li>
+<li>Delete what's in <code>Code.gs</code> and paste in the code from <a href="https://github.com/wonshon-cmd/joseph-wharton/blob/main/google-apps-script/Code.gs" target="_blank" rel="noopener">google-apps-script/Code.gs</a>. Click 💾 Save.</li>
+<li>Choose the function <b>setup</b> in the toolbar and click <b>▶ Run</b>, then allow access (Advanced → Go to project → Allow). This creates the file in your Drive.</li>
+<li><b>Deploy → New deployment</b> → ⚙ type <b>Web app</b> → Execute as: <b>Me</b> · Who has access: <b>Anyone</b> → <b>Deploy</b>, then copy the <b>Web app URL</b> (ends in <code>/exec</code>).</li>
+<li>Send that URL to Claude and it gets built into the site. After that, every device syncs automatically.</li></ol></div>
+<details class="card" id="ghwrap"><summary style="cursor:pointer;font-weight:800">Advanced: use a private GitHub repo + token instead</summary>
+<div id="setup"><h2 style="margin-top:8px">Connect this device</h2>
 <p><b>Already set up on another device?</b> Open the “setup link” from that device here, or paste the same token below.</p>
 <input type="password" id="tok" placeholder="github_pat_…" autocomplete="off"><button class="btn" id="go">Connect</button><p id="msg" class="sub"></p>
 <details><summary style="cursor:pointer;font-weight:800">First time? One-time setup (about 3 minutes)</summary>
@@ -29,13 +37,13 @@ ol li{margin:6px 0}code{background:#eef0f4;padding:1px 5px;border-radius:4px}</s
 <li><b>Other devices:</b> click “Copy setup link…” and open that link once on your phone or other computer. Done: they're all synced.</li>
 </ol>
 <p class="sub" style="font-size:14px">The token can only touch <code>joseph-wharton-data</code>, nothing else in your account. It's stored on each device you connect. To revoke it anytime, delete it at github.com/settings/personal-access-tokens.</p>
-</details></div>
+</details></div></details>
 </main>
 <script>
 const $=id=>document.getElementById(id);const J=window.JWSync;$("rn").textContent=J.CFG.repo;
-function render(){const c=J.cfg();const on=!!c.token;$("connected").style.display=on?"block":"none";$("setup").style.display=on?"none":"block";
+function render(){const c=J.cfg();const g=J.useGas();const on=J.enabled();$("gasinfo").style.display=g?"block":"none";$("gassetup").style.display=g?"none":"block";$("ghwrap").style.display=g?"none":"block";$("connected").style.display=on?"block":"none";$("setup").style.display=(on&&!g)?"none":"block";$("copy").style.display=g?"none":"";$("disc").style.display=g?"none":"";$("synckey").parentElement.parentElement.style.display=g?"none":"";
   const s=J.state();const map={off:["Not connected (saved on this device only)","bad"],syncing:["Syncing…",""],pending:["Saving…",""],ok:["✅ Synced"+(c.lastSync?" · "+new Date(c.lastSync).toLocaleString():""),"ok"],offline:["📴 Offline. Will sync when back online",""],error:["⚠️ Not syncing","bad"]};
-  const m=map[on?s:"off"]||[s,""];$("st").textContent=m[0];$("st").className="st "+m[1];$("detail").textContent=J.lastErr()||(on?"Repo: "+J.CFG.owner+"/"+J.CFG.repo+" → "+J.CFG.path:"");$("synckey").checked=!!c.syncKey;}
+  const m=map[on?s:"off"]||[s,""];$("st").textContent=m[0];$("st").className="st "+m[1];$("detail").textContent=J.lastErr()||(g?"Google Drive save spot":(on?"Repo: "+J.CFG.owner+"/"+J.CFG.repo+" → "+J.CFG.path:""));$("synckey").checked=!!c.syncKey;}
 $("go").onclick=async()=>{const t=$("tok").value.trim();if(!t){$("msg").textContent="Paste your token first.";return;}$("msg").textContent="Connecting…";const r=await J.connect(t);$("msg").textContent=r.error?("❌ "+r.error):"";render();};
 $("now").onclick=async()=>{await J.syncNow();render();};
 $("disc").onclick=()=>{if(confirm("Disconnect this device? Your records stay online and on this device; new changes here just won't sync until you reconnect.")){J.disconnect();render();}};

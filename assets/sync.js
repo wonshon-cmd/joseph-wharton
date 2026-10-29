@@ -8,7 +8,12 @@
    ===================================================================== */
 (function(){
 "use strict";
-const CFG={owner:"wonshon-cmd",repo:"joseph-wharton-data",path:"progress.json",branch:"main",
+const CFG={
+  // ⬇ Google Apps Script "save spot" (records saved in your Google Drive). Paste the /exec URL here.
+  //   When set, EVERY device syncs automatically, no setup needed. (Same approach as the Pivot or Perish board.)
+  gasUrl:"",
+  // Alternative backend: private GitHub repo + per-device token (used only if gasUrl is empty).
+  owner:"wonshon-cmd",repo:"joseph-wharton-data",path:"progress.json",branch:"main",
   // localStorage keys to sync, with how to merge them:
   //  "history" = practice-app records: union of every attempt from every device
   //  "lww"     = whole value, newest edit wins
@@ -31,13 +36,18 @@ Storage.prototype.removeItem=function(k){_rm.call(this,k);if(this===localStorage
 const b64e=str=>{const b=new TextEncoder().encode(str);let s="";for(let i=0;i<b.length;i+=0x8000)s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(s)};
 const b64d=b64=>{const s=atob(String(b64).replace(/\s/g,""));const b=new Uint8Array(s.length);for(let i=0;i<s.length;i++)b[i]=s.charCodeAt(i);return new TextDecoder().decode(b)};
 
+// ---------- backends ----------
+const useGas=()=>!!CFG.gasUrl;
+const enabled=()=>useGas()||!!cfg().token;
+async function gasGet(){const r=await fetch(CFG.gasUrl+(CFG.gasUrl.includes("?")?"&":"?")+"t="+Date.now(),{cache:"no-store"});if(!r.ok)throw httpErr(r.status,"Google save spot error "+r.status);const j=await r.json();if(j.ok===false)throw httpErr(500,j.error||"Google save spot error");return{sha:j.rev||0,data:j.data||{keys:{}}};}
+async function gasPut(data,rev){const r=await fetch(CFG.gasUrl,{method:"POST",body:JSON.stringify({baseRev:rev,data})});if(!r.ok)throw httpErr(r.status,"Google save spot error "+r.status);const j=await r.json();if(j.conflict)throw httpErr(409,"conflict");if(j.ok===false)throw httpErr(500,j.error||"save failed");return j.rev;}
 // ---------- GitHub contents API ----------
 function api(path,opt){const c=cfg();return fetch("https://api.github.com"+path,Object.assign({cache:"no-store"},opt||{},{headers:Object.assign({"Accept":"application/vnd.github+json","Authorization":"Bearer "+c.token,"X-GitHub-Api-Version":"2022-11-28"},(opt&&opt.headers)||{})}));}
 const fileUrl=()=>`/repos/${CFG.owner}/${CFG.repo}/contents/${CFG.path}`;
-async function getRemote(){const r=await api(fileUrl()+"?ref="+CFG.branch+"&t="+Date.now());
+async function getRemote(){if(useGas())return gasGet();const r=await api(fileUrl()+"?ref="+CFG.branch+"&t="+Date.now());
   if(r.status===404){const rr=await api(`/repos/${CFG.owner}/${CFG.repo}`);if(rr.status===404)throw httpErr(404,"Can't find the private repo "+CFG.owner+"/"+CFG.repo+" (or the token can't see it).");return{sha:null,data:{keys:{}}};}
   if(!r.ok)throw httpErr(r.status,await r.text());const j=await r.json();return{sha:j.sha,data:jparse(b64d(j.content))||{keys:{}}};}
-async function putRemote(data,sha){const body={message:"Sync progress "+new Date().toISOString(),content:b64e(JSON.stringify(data)),branch:CFG.branch};if(sha)body.sha=sha;
+async function putRemote(data,sha){if(useGas())return gasPut(data,sha);const body={message:"Sync progress "+new Date().toISOString(),content:b64e(JSON.stringify(data)),branch:CFG.branch};if(sha)body.sha=sha;
   const r=await api(fileUrl(),{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});if(!r.ok)throw httpErr(r.status,await r.text());return (await r.json()).content.sha;}
 function httpErr(st,msg){const e=new Error(msg);e.status=st;return e}
 
@@ -49,12 +59,12 @@ function mergeHistory(L,R){L=L||{};R=R||{};const reset=Math.max(L.resetAt||0,R.r
   if(!out.settings.apiKey&&R.settings&&R.settings.apiKey)out.settings.apiKey=R.settings.apiKey;
   return out;}
 function stripSecrets(key,val){if(!val||CFG.keys[key]!=="history")return val;const v=JSON.parse(JSON.stringify(val));const c=cfg();
-  if(!c.syncKey){if(v.settings)delete v.settings.apiKey;}return v;}
+  if(!c.syncKey||useGas()){if(v.settings)delete v.settings.apiKey;}return v;}
 const stable=v=>{if(v===undefined)return "null";if(v===null||typeof v!=="object")return JSON.stringify(v);if(Array.isArray(v))return "["+v.map(stable).join(",")+"]";return "{"+Object.keys(v).filter(k=>v[k]!==undefined).sort().map(k=>JSON.stringify(k)+":"+stable(v[k])).join(",")+"}";};
 const sizeOf=v=>v==null?0:JSON.stringify(v).length;
 
 // ---------- one sync cycle ----------
-async function syncNow(opts){opts=opts||{};const c=cfg();if(!c.token){setState("off");return{changed:false}}
+async function syncNow(opts){opts=opts||{};const c=cfg();if(!enabled()){setState("off");return{changed:false}}
   if(busy){again=true;return{changed:false}}busy=true;setState("syncing");let changedLocal=false;
   try{for(let attempt=0;attempt<3;attempt++){
       const rem=await getRemote();const m=meta();const out={version:1,updated:Date.now(),keys:Object.assign({},rem.data.keys||{})};
@@ -75,8 +85,8 @@ async function syncNow(opts){opts=opts||{};const c=cfg();if(!c.token){setState("
     return{changed:changedLocal};
   }catch(e){lastErr=explain(e);setState(navigator.onLine===false||/^Offline/.test(lastErr)?"offline":"error");return{changed:false,error:lastErr};}
   finally{busy=false;if(again){again=false;schedule(300);}}}
-function explain(e){const st=e&&e.status;if(st===401)return"GitHub rejected the token (expired or wrong). Reconnect on the Sync page.";if(st===403)return"The token isn't allowed to write to the data repo. Recreate it with Contents: Read and write.";if(st===404)return e.message;if(/Failed to fetch|NetworkError|Load failed/i.test(String(e&&e.message)))return"Offline. Your progress is safe on this device and will sync when you're back online.";return"Sync problem: "+String(e&&e.message||e).slice(0,160);}
-function schedule(ms){if(!cfg().token)return;clearTimeout(pushTimer);setState("pending");pushTimer=setTimeout(()=>syncNow(),ms==null?1500:ms);}
+function explain(e){const st=e&&e.status;if(useGas()&&st)return"The Google save spot answered with an error ("+st+"). Check the Apps Script deployment (Who has access: Anyone).";if(st===401)return"GitHub rejected the token (expired or wrong). Reconnect on the Sync page.";if(st===403)return"The token isn't allowed to write to the data repo. Recreate it with Contents: Read and write.";if(st===404)return e.message;if(/Failed to fetch|NetworkError|Load failed/i.test(String(e&&e.message)))return"Offline. Your progress is safe on this device and will sync when you're back online.";return"Sync problem: "+String(e&&e.message||e).slice(0,160);}
+function schedule(ms){if(!enabled())return;clearTimeout(pushTimer);setState("pending");pushTimer=setTimeout(()=>syncNow(),ms==null?1500:ms);}
 
 // ---------- status chip ----------
 let chip=null;
@@ -88,18 +98,18 @@ function banner(){if(document.getElementById("jw-banner"))return;const d=documen
   d.innerHTML='New progress arrived from another device. <button style="margin-left:8px;font:inherit;padding:4px 10px;border-radius:8px;border:0;cursor:pointer">Refresh to see it</button>';d.querySelector("button").onclick=()=>location.reload();document.body.appendChild(d);}
 function mountChip(){if(chip||!document.body||document.body.dataset.nochip)return;chip=document.createElement("a");chip.href=BASE+"sync.html";chip.className="jw-noprint";
   chip.style.cssText="position:fixed;right:10px;bottom:10px;z-index:9999;color:#fff;font:700 13px/1 -apple-system,Segoe UI,Arial,sans-serif;padding:8px 12px;border-radius:999px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.25)";
-  document.body.appendChild(chip);const st=document.createElement("style");st.textContent="@media print{.jw-noprint{display:none!important}}";document.head.appendChild(st);setState(cfg().token?(state==="off"?"ok":state):"off");}
+  document.body.appendChild(chip);const st=document.createElement("style");st.textContent="@media print{.jw-noprint{display:none!important}}";document.head.appendChild(st);setState(enabled()?(state==="off"?"syncing":state):"off");}
 
 // ---------- device setup link (#jwsync=TOKEN) ----------
 (function(){const m=(location.hash||"").match(/jwsync=([^&]+)/);if(m){const c=cfg();c.token=decodeURIComponent(m[1]);delete c.lastSync;saveCfg(c);history.replaceState(null,"",location.pathname+location.search);}})();
 
 // ---------- public API for the Sync page ----------
-window.JWSync={CFG,cfg,saveCfg,syncNow,state:()=>state,lastErr:()=>lastErr,setupLink:()=>BASE+"sync.html#jwsync="+encodeURIComponent(cfg().token||""),
+window.JWSync={CFG,enabled,useGas,cfg,saveCfg,syncNow,state:()=>state,lastErr:()=>lastErr,setupLink:()=>BASE+"sync.html#jwsync="+encodeURIComponent(cfg().token||""),
   connect:async token=>{const c=cfg();c.token=token.trim();delete c.lastSync;saveCfg(c);const r=await syncNow();if(r.error){return r;}return{ok:true};},
   disconnect:()=>{const c=cfg();delete c.token;delete c.lastSync;saveCfg(c);setState("off");}};
 
 // ---------- start ----------
-const start=()=>{mountChip();if(cfg().token)syncNow({initial:true});};
+const start=()=>{mountChip();if(enabled())syncNow({initial:true});};
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
 window.addEventListener("online",()=>schedule(200));
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")schedule(200);});

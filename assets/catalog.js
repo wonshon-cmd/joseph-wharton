@@ -26,6 +26,8 @@ window.CATALOG = {
             { icon: "📘", title: "Full Study Guide", href: "study-guide/", desc: "Visual summary of every lecture, 152 MC, 29 essays, math drills, mock exam, weak spots, glossary, company examples." },
             { icon: "📄", title: "MAX Cheat Sheet", href: "cheat-sheets/max.html", desc: "Current version: 2 pages, all topics + graphics + abbreviation key.", extra: [{ label: "PDF", href: "cheat-sheets/max.pdf" }] },
             { icon: "📝", title: "Cheat Sheet (with space)", href: "cheat-sheets/with-space.html", desc: "Earlier version with company examples and room for handwritten notes.", extra: [{ label: "PDF", href: "cheat-sheets/with-space.pdf" }] },
+            { icon: "🕹️", title: "Pivot or Perish: Team 4 Copilot", href: "https://wonshon-cmd.github.io/pivotorperishteam4/", desc: "Getchells strategy dashboard, competitors, build plan, and the team write-up board (separate site)." },
+            { icon: "🪵", title: "BEWÖÖD Pricing Case", href: "https://wonshon-cmd.github.io/wonshon-cmd-bewood-digest/", desc: "Case digest and answers (separate site)." },
             { icon: "📚", title: "Deep Dive PDFs (for NotebookLM)", href: "pdfs/deep-dive-all-topics.pdf", desc: "All 10 topics in one PDF, plus one PDF per topic.", extra: [
               { label: "① Kahn Matrix", href: "pdfs/by-topic/MKTG6110_01_Kahn_Matrix.pdf" },
               { label: "② Segmentation", href: "pdfs/by-topic/MKTG6110_02_Segmentation.pdf" },

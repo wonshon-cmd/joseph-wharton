@@ -8,11 +8,12 @@ My Wharton coursework, study tools, and saved practice records, all in one websi
 
 ```
 index.html                      ← Joseph Wharton home (all terms + "jump back in" progress)
+google-apps-script/Code.gs      ← the Google save spot (deploy once in your Google account)
 sync.html                       ← ☁️ cloud sync setup / status for this device
 assets/
   catalog.js                    ← THE file to edit when adding terms / courses / links
   hub.css, hub.js               ← shared look + page rendering
-  sync.js                       ← cloud sync engine (records → private data repo)
+  sync.js                       ← cloud sync engine (records → Google Drive save spot)
 term-3/
   index.html                    ← Term 3 (lists its courses)
   mktg-6110/
@@ -32,10 +33,15 @@ term-3/
 
 ## Your records (cloud sync)
 
-Every practice answer, essay, score, and draft syncs to **one private file** (`progress.json`) in the private repo **`wonshon-cmd/joseph-wharton-data`**, so it's the same on every device.
+Every practice answer, essay, score, and draft syncs online, so it's the same on every device.
 
-- Set up once at **`sync.html`** (☁️ button bottom-right on every page): create the private repo + a fine-grained token (Contents: Read & write on that repo only), paste it, click Connect.
-- Other devices: use **"Copy setup link"** on the Sync page and open it once on the new device.
+**Main method: Google save spot** (same approach as the Pivot or Perish "permanent board")
+- `google-apps-script/Code.gs` is a tiny Google Apps Script web app that stores everything in one file in Google Drive (`joseph-wharton-progress.json`, plus one dated backup per day).
+- Deploy it once (script.google.com → paste Code.gs → run `setup` → Deploy as Web app, *Execute as: Me*, *Who has access: Anyone*), then put the `/exec` URL in `CFG.gasUrl` at the top of `assets/sync.js`.
+- After that, every device syncs automatically, with no per-device setup. Status: ☁️ button bottom-right on every page → `sync.html`.
 - Works offline; changes sync when back online. Histories from different devices are merged, never overwritten.
-- Engine: `assets/sync.js`. It syncs the localStorage keys listed in its `CFG.keys` (add new apps' keys there).
-- Your Anthropic API key (optional Claude grading) is never stored in this public repo; it only syncs to the private data repo if you tick that option.
+- The Anthropic API key (optional Claude grading) is never sent to the save spot.
+
+**Alternative:** private GitHub repo (`joseph-wharton-data`) + fine-grained token per device (used only if `gasUrl` is empty). See "Advanced" on `sync.html`.
+
+Engine: `assets/sync.js`. It syncs the localStorage keys listed in `CFG.keys` (add new apps' keys there).
