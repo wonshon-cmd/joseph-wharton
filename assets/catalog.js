@@ -24,7 +24,7 @@ window.CATALOG = {
           progressKey2: "mktg6110_prep_v1",         // study guide app (MC quiz / essays / drills)
           items: [
             { icon: "🎯", title: "Practice & Records", href: "practice/", desc: "12 exam topics (incl. Price Sensitivity & Promotion), 132 MC + 38 short answers with instant grading (and optional Claude grading). Every answer syncs online to all your devices, with your full history on My Records.", primary: true },
-            { icon: "📘", title: "Full Study Guide", href: "study-guide/", desc: "Visual summary of every lecture, 194 MC, 36 essays (incl. Promotion), math drills, mock exam, weak spots, glossary, company examples." },
+            { icon: "📘", title: "Full Study Guide", href: "study-guide/", desc: "Visual summary of every lecture, 197 MC, 36 essays (incl. Promotion, WACC & beta), math drills, mock exam, weak spots, glossary, company examples." },
             { icon: "📄", title: "MAX Cheat Sheet", href: "cheat-sheets/max.html", desc: "Current version: 2 pages, covers every practice question incl. Promotion; red underlined = key essay ideas.", extra: [{ label: "PDF", href: "cheat-sheets/max.pdf" }] },
             { icon: "📝", title: "Cheat Sheet (with space)", href: "cheat-sheets/with-space.html", desc: "2 pages, larger font (7.6px): every practice question covered in compact bullets + company examples, a little room for notes.", extra: [{ label: "PDF", href: "cheat-sheets/with-space.pdf" }] },
             { icon: "🕹️", title: "Pivot or Perish: Team 4 Copilot", href: "https://wonshon-cmd.github.io/pivotorperishteam4/", desc: "Getchells strategy dashboard, competitors, build plan, and the team write-up board (separate site)." },

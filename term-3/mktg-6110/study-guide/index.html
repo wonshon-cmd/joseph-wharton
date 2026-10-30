@@ -898,6 +898,7 @@ Value is created only if  ROIC > WACC   (the spread matters, not margin or growt
       </div>
       <div class="grid2">
         <div class="card" style="margin:8px 0"><b>WACC</b> = blended return investors require. Higher WACC → heavier discounting → lower value; a <b>1–2 pt WACC swing moves value 20–30%</b>. Debt is cheap at first (tax advantage), but too much raises risk. Credit rating 0–9 (AAA–D) comes from the <b>current ratio, interest coverage, and debt-to-equity</b>. The <b>downward spiral</b>: rating falls → rates rise → interest drains cash → WACC rises → value drops. A strong, durable brand and strategy lowers perceived risk.</div>
+        <div class="card" style="margin:8px 0;border-left:5px solid #c0162f"><b>Beta (β)</b> <span class="sub">(mentioned in class; standard finance, not on her slides)</span> = how much a company's stock moves <b>with the overall market</b> (β = 1 moves with the market; β &gt; 1 swings more = riskier). Higher β → investors demand a higher <b>cost of equity</b> (CAPM: risk-free rate + β × market premium) → higher <b>WACC</b> → lower market value. Marketing link: a <b>strong, durable brand and loyal customers</b> make cash flows steadier and less tied to the economy → lower perceived risk → lower β and WACC → higher value. (In the simulation, the equity rate is simply fixed at AAA + 6%.)</div>
         <div class="card" style="margin:8px 0"><b>Horizon & terminal value.</b> The Kahn Matrix sets the forecast horizon <b>T</b> (6–12 yrs); terminal value is typically <b>60–80%</b> of valuation. A strong, stable strategy makes analysts confident, so terminal value arrives sooner, is discounted less, and is <b>worth more</b>. <b>Idle growing cash = warning</b> (under-investment). <b>More stores ≠ more value</b>: prove a positive ROIC − WACC spread first, because scale amplifies losses as well as gains.</div>
       </div>
       <div class="callout key"><b class="lbl">From class: simulation must-knows</b>You run <b>Getchells = Macy's</b> (mid-tier, “stuck in the middle”). You start with <b>200 stores</b> and run <b>two lines</b>: lower-cost/high-frequency and higher-cost/low-frequency. <b>8 rounds</b>; you're <b>graded on market value at period 8, curved against the other teams</b> (same start). Investments are <b>sluggish</b>: they build over time and only move you if you <b>outspend competitors</b>; fair value follows the leader. Manage costs (vendor management) even if Low Price isn't your strategy. <b>WACC is what really matters</b>: more debt → higher WACC → heavier discounting. Unspent budget goes to market value, but <b>hoarding cash is bad</b>. Only <b>one person submits</b>; divide up the data work.</div>
@@ -1409,6 +1410,14 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
             <li>EVC common in <b>B2B</b>: savings are quantifiable → raises the customer's <b>reference point</b>. No rivals + R&amp;D story (pharma) → price near EVC</li>
             <li><b>Company factors</b>: maximize profit (discrimination), cover costs, <b>product-line consistency</b> (premium ≥ cheap version) vs competitive factors (can/will they respond)</li>
           </ul><p class="eg">▸ <b>e.g.</b> Raju's pool pill · Warby $95 vs Luxottica $300 · Costco 11% / Walmart 25% · Jesse's omakase · BeWood</p></div>
+        <div class="sec" style="--c:#0a2f6b"><h5>MARKET VALUE · WACC · BETA</h5>
+          <ul>
+            <li><b>Market value</b> = future free cash flow discounted at <b>WACC</b> (Weighted Average Cost of Capital = blended return debt + equity investors require)</li>
+            <li><b class="k">WACC ↑ → value ↓</b>: 1–2 pts ≈ 20–30% of value. Debt cheap at first, too much → risk ↑ → WACC ↑</li>
+            <li><b class="k">ROIC &gt; WACC</b> = value created; growth with ROIC &lt; WACC <b>destroys</b> value (prove the spread, then scale)</li>
+            <li><b>Beta (β)</b> = how much the stock moves with the market → β ↑ → cost of equity ↑ → WACC ↑</li>
+            <li><b class="k">Strong brand + loyal customers → steadier cash flow → lower risk, β, WACC → higher value</b>. CLV discounts the same way (i ≈ WACC)</li>
+          </ul></div>
 </div>
     </div>
   </div>
@@ -1892,6 +1901,11 @@ ESSAYS.push(
 pts:["Acknowledges the data: ad elasticity ≈0.1 vs price ≈2.6; promotions/sales force/distribution move short-term sales more","Promotions erode margins and train price sensitivity (no long-term growth); performance marketing optimizes immediate conversion at the expense of brand","Brand equity drives purchase; advertising is the main vehicle; long-term effects (salience, pricing power, distribution, HR/analysts) not in short-term metrics","Evidence: Coca-Cola keeps advertising (salience erodes if it stops); Budweiser spikes at later sporting events; S-curve threshold (~3 exposures)","Recommendation: balance performance + brand, set SMART mission, measure with incrementality tests and MMM rather than last-touch"],
 model:"The CFO is right about the short-run numbers: the typical advertising elasticity is about 0.1, versus about 2.6 for price, and promotions, the sales force, and distribution all move sales faster. But that comparison is misleading. Price promotions erode margins and train customers to wait for deals, so they don't create long-term growth, and pure performance marketing optimizes the next conversion while starving the brand. Brand equity drives purchase, and advertising is still the main way to build it. Its effects are long-term and mostly unmeasured by short windows: Coca-Cola keeps advertising despite near-universal awareness because its salience would erode if competitors kept spending, and Budweiser's Super Bowl ads produced sales spikes weeks later at March Madness and other games. Advertising also supports pricing power, distribution leverage, and even recruiting and analyst perception. The response curve is S-shaped, so cutting spend below the roughly three-exposure threshold could waste whatever is left. I'd recommend keeping a balanced mix, setting a specific mission for each campaign, and measuring with randomized holdout tests and a marketing mix model rather than last-touch attribution, which over-credits performance channels."}
 );
+MCQ.push(
+{id:"g30",t:"gtm",q:"In finance, a company's beta (β) measures:",o:["How much its stock moves with the overall market (systematic risk); higher β → higher cost of equity → higher WACC","Its marketing budget as a share of sales","Its customer retention rate","Its brand awareness"],a:0,e:"CAPM: cost of equity = risk-free rate + β × market risk premium. Higher WACC means heavier discounting and a lower market value."},
+{id:"g31",t:"gtm",q:"How can marketing lower a firm's WACC and raise its market value?",o:["A strong, durable brand and loyal customers make cash flows steadier, lowering perceived risk (and beta), which lowers WACC","By taking on as much debt as possible","By cutting all brand spending","By raising prices every quarter"],a:0,e:"Market value = future free cash flow discounted at WACC. Lower risk → lower WACC → higher value; a 1–2 point WACC change can move value 20–30%. Too much debt raises risk and WACC."},
+{id:"g32",t:"gtm",q:"A company grows revenue and store count quickly, but its ROIC is 7% and its WACC is 9%. What is happening to value?",o:["Value is being destroyed: growth with ROIC below WACC destroys value","Value is rising because revenue grows","Value is unchanged","Value rises because more stores means more brand awareness"],a:0,e:"Value creation depends on the spread between ROIC and WACC, not growth or margin alone. Prove a positive spread first, then scale."}
+);
 // k = what you see on screen; full = what it stands for; plain = everyday meaning; ex = analogy / where it shows up in the course
 // m = extra spellings to detect in text (case-sensitive for abbreviations)
 const GLOSSARY = [
@@ -2287,6 +2301,11 @@ pr27:"Duolingo tested which social video worked best, showed it in a cheap 5-sec
 pr28:"Watermarking = hidden tags in ads that let a company follow results without breaking privacy rules, but only if websites cooperate."
 });
 Object.assign(ESSAY_PLAIN,{e36:"Ads seem to move sales much less than discounts. Should you cut ads? Explain why ads still matter long-term (Coke, Budweiser) and how to measure properly."});
+Object.assign(PLAIN,{
+g30:"Beta = how jumpy a company's stock is compared with the whole market. Jumpier = riskier, so investors want a higher return, which raises the company's cost of money (WACC) and lowers its value.",
+g31:"Investors pay more for companies whose future profits are predictable. Loyal customers and a strong brand make profits steadier, so the company looks less risky and is worth more.",
+g32:"If every dollar you invest earns less than it costs you to borrow or raise that dollar, growing faster just loses money faster."
+});
 // ---------------- state ----------------
 const LS="mktg6110_prep_v1";
 function load(){try{return JSON.parse(localStorage.getItem(LS))||{}}catch(e){return {}}}
