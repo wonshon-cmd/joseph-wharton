@@ -20,10 +20,10 @@ window.CATALOG = {
           color: "#d55181",
           status: "Final exam: Sat, Oct 31 (15 MC × 2 + 8 short answers × 9)",
           progressKey: "mktg6110_site_v1",          // localStorage key of the practice app (for progress on cards)
-          progressTotals: { mc: 88, sa: 30 },
+          progressTotals: { mc: 132, sa: 38 },
           progressKey2: "mktg6110_prep_v1",         // study guide app (MC quiz / essays / drills)
           items: [
-            { icon: "🎯", title: "Practice & Records", href: "practice/", desc: "10 exam topics, 88 MC + 30 short answers with instant grading (and optional Claude grading). Every answer syncs online to all your devices, with your full history on My Records.", primary: true },
+            { icon: "🎯", title: "Practice & Records", href: "practice/", desc: "12 exam topics (incl. Price Sensitivity & Promotion), 132 MC + 38 short answers with instant grading (and optional Claude grading). Every answer syncs online to all your devices, with your full history on My Records.", primary: true },
             { icon: "📘", title: "Full Study Guide", href: "study-guide/", desc: "Visual summary of every lecture, 194 MC, 36 essays (incl. Promotion), math drills, mock exam, weak spots, glossary, company examples." },
             { icon: "📄", title: "MAX Cheat Sheet", href: "cheat-sheets/max.html", desc: "Current version: 2 pages, covers every practice question incl. Promotion; red underlined = key essay ideas.", extra: [{ label: "PDF", href: "cheat-sheets/max.pdf" }] },
             { icon: "📝", title: "Cheat Sheet (with space)", href: "cheat-sheets/with-space.html", desc: "Earlier version with company examples and room for handwritten notes.", extra: [{ label: "PDF", href: "cheat-sheets/with-space.pdf" }] },
