@@ -131,7 +131,7 @@ details.terms summary{cursor:pointer;font-weight:700;font-size:15px}
   .cs2 .pg{border:none;border-radius:0;padding:0;margin:0;break-after:page;page-break-after:always}
   .cs2 .pg:last-child{break-after:auto;page-break-after:auto}
   .pgtitle{font-size:14px;margin-bottom:6px;padding-bottom:2px}.pgtitle span{font-size:10px}
-  .cs2 .cols{display:block;column-count:3;column-gap:8px;column-fill:auto;height:calc(10.36in - 36px);overflow:hidden} .cs2 .col{display:contents}
+  .cs2 .cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;height:calc(10.36in - 36px);overflow:hidden;align-items:start} .cs2 .col{min-width:0}
   .sec h5{break-after:avoid} .sec li,.sec .t,.sec .eg{break-inside:avoid}
   .cs2 .pg .sec{--pf:7.6px}
   .sec{font-size:var(--pf,8.1px);line-height:1.3;margin-bottom:6px;border-radius:5px}
@@ -1317,10 +1317,10 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
   <div class="cs2">
   <!-- ================= PAGE 1 ================= -->
   <div class="pg">
-    <div class="pgtitle"><b>MKTG 6110 Final: Cheat Sheet (1/2)</b><span>★ SAMPLE-QUESTION TOPICS · 15 MC × 2 + 8 essays × 9</span></div>
+    <div class="pgtitle"><b>MKTG 6110 Final: Cheat Sheet (1/2)</b><span>★ SAMPLE-QUESTION TOPICS + brands, pricing, CLV · 15 MC × 2 + 8 essays × 9</span></div>
     <div class="cols">
       <div class="col">
-        <div class="sec" style="--c:#d55181"><h5>① KAHN MATRIX ★ sample MC</h5>
+<div class="sec" style="--c:#d55181"><h5>① KAHN MATRIX ★ sample MC</h5>
           <table class="t km"><tr><th></th><th>Product</th><th>Experience</th></tr><tr><th>Add pleasure</th><td><b>BRAND</b></td><td><b>EXPERIENTIAL</b></td></tr><tr><th>Remove pain</th><td><b>LOW PRICE</b></td><td><b>FRICTIONLESS</b></td></tr></table>
           <ul>
             <li><b>Survive</b> = fair value (customers' minimum) in ALL 4 (RadioShack failed)</li>
@@ -1330,8 +1330,7 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
             <li>Mid-tier dept stores (Macy's = Getchells) = “stuck in the middle”</li>
             <li><b>Frictionless leaders</b> must capture and use ALL customer data to integrate touchpoints seamlessly (digital-experience paradox: customers control the touchpoints)</li>
           </ul><p class="eg">▸ <b>e.g.</b> <b>Brand</b>: Nordstrom, Best Buy, Kroger, LV, Hermès, Lululemon, Zara, Warby Parker, Glossier · <b>Experiential</b>: Sephora, Apple Store, Eataly, Whole Foods, Trader Joe's, Stitch Fix, Duane Reade · <b>Low Price</b>: Walmart (EDLP), Costco, T.J.Maxx, Burlington · <b>Frictionless</b>: Amazon · Failed: RadioShack · Sim: Cadabra=Amazon, PriceMart=Walmart, AIM=Target, BestCo=Costco, Zephara=Sephora, KT Benny=JCPenney</p></div>
-
-        <div class="sec" style="--c:#2a78d6"><h5>② GOOD SEGMENTATION ★ sample MC</h5>
+<div class="sec" style="--c:#2a78d6"><h5>② GOOD SEGMENTATION ★ sample MC</h5>
           <ul>
             <li><b>Homogeneous WITHIN + different BETWEEN</b> in response to marketing → east/west answer = “<b>it depends</b>”. Trap: “heterogeneity <i>within</i>” is backwards.</li>
             <li>Also: identifiable, reachable, big enough, <b>actionable</b>. “Serving the average buyer serves no one.” Firms <b>uncover</b> segments.</li>
@@ -1341,8 +1340,7 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
             <li><b>Targeting grid</b> (attractiveness × fit): hi/hi <b>Perfect</b> · hi fit, lo attr <b>Domination essential</b> · lo fit, hi attr <b>Beware shake-out</b> · lo/lo <b>Stay away</b></li>
             <li>Attractiveness = size, growth, profit (CLV); fit = plays to strengths. Then <b class="k">Selectivity &amp; Concentration</b>: focus resources (3 principles: Customer Value · Differential Advantage · S&amp;C)</li>
           </ul><p class="eg">▸ <b>e.g.</b> Quidel (Hopefuls/Fearfuls) · Pivot or Perish 6 segments (Seg 1 online low-price → Cadabra; Seg 3 brand/experience → Zephara) · Lululemon: suburban women 30–40s → men, global · gender profiling critique</p></div>
-
-        <div class="sec" style="--c:#6250d6"><h5>③ BRAND ARCHITECTURE ★ sample MC</h5>
+<div class="sec" style="--c:#6250d6"><h5>③ BRAND ARCHITECTURE ★ sample MC</h5>
           <table class="t"><tr><th>Type</th><th>Example</th><th>Key trade-off</th></tr>
             <tr><td><b class="k">House of Brands</b></td><td>P&G, pharma, LVMH</td><td><b>risk contained</b>, own segments · most costly</td></tr>
             <tr><td>Endorsed</td><td>Loft by Ann Taylor → Loft</td><td>parent credibility · spillover risk</td></tr>
@@ -1352,9 +1350,8 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
           <li>LVMH synergies: back office, ads, real estate, talent · Toyota → <b>Lexus</b> · Amazon = hybrid · Goals: strong brands, synergy, clarity, leverage</li>  <li>Choose by venture <b>risk</b> · segment distinctness · <b>budget</b> · can the parent name stretch? HoB also risks <b>internal competition</b>. Endorsed may later stand alone; a sub-brand keeps the parent name</li>
           </ul><p class="eg">▸ <b>e.g.</b> P&G (Tide, Pampers, Gillette, Crest) · Unilever · pharma · LVMH (LV, Dior) · Loft by Ann Taylor · Amazon (Basics / Prime, AWS, Alexa / Audible / Zappos, Whole Foods, Twitch, Ring) · Virgin (airline, mobile, money) · Toyota→Lexus · Kia</p></div>
       </div>
-
       <div class="col">
-        <div class="sec" style="--c:#4a3aa7"><h5>④ EXTENSIONS & LUXURY ★ sample essay</h5>
+<div class="sec" style="--c:#4a3aa7"><h5>④ EXTENSIONS & LUXURY ★ sample essay</h5>
           <ul>
             <li>Why extend: ① cheaper (leverage equity) ② <b>move the brand</b> (Mountain Man → young drinkers)</li>
             <li><b>Two-way test</b>: brand adds value to the extension AND the extension adds value back. Never extend a weak brand or weaken the original → otherwise use a <b>new brand</b>.</li>
@@ -1366,16 +1363,14 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
             <li><b>Reposition</b> when target market changes, competitors move, context shifts, brand ages (“never let a brand age out”), NOT to cut COGS. Rewrite target/POD/FOR/RTB → 4Ps</li>
             <li><b>Silver bullet</b> = radically different move to grab attention and restart (riskiest, last resort)</li>
           </ul><p class="eg">▸ <b>e.g.</b> Clorox → wipes · Starbucks → bottled Frappuccino, ice cream · Lululemon women → men · BMW 760Li $160k vs 128i $31.5k · Mountain Man light beer · Pierre Cardin ✘ · Hermès, Gucci ✔ · Schweppes · Pepsi · Porsche · LV × Supreme · Amazon luxury (doubtful)</p></div>
-
-        <div class="sec" style="--c:#008300"><h5>⑤ SUBSCRIPTION PERKS ★ sample essay</h5>
+<div class="sec" style="--c:#008300"><h5>⑤ SUBSCRIPTION PERKS ★ sample essay</h5>
           <ul>
             <li>Unintended: ① <b class="k">margin erosion</b> ② <b class="k">trained to expect discounts</b> ③ deal-seekers → <b class="k">low incremental value</b> ④ <b class="k">cannibalize full-price sales</b></li>
             <li>CLV = m·r/(1.1−r): $100 @ 80% = $267; perks → $75 @ 85% = <b>$255 (worse)</b>; need ~86% retention to break even</li>
             <li>Kahn: loyal = less price-sensitive → “<b class="k">I raise price</b>” (American Airlines). Subscriptions = 3-part tariff.</li>
             <li>Fix: tiers, non-price perks, measure incrementality. Costco ~92% renewal → 5.1×</li>
           </ul><p class="eg">▸ <b>e.g.</b> Amazon Prime · Costco (92.2% US/Can renewal, $1.33B fees/qtr) · American Airlines miles (“3 peanuts”) · Netflix · newspapers · Dropbox/AI freemium · Dollar Diaper Club</p></div>
-
-        <div class="sec" style="--c:#1c5cab"><h5>⑥ MASS vs TWO SEGMENTS ★ sample essay (25% each)</h5>
+<div class="sec" style="--c:#1c5cab"><h5>⑥ MASS vs TWO SEGMENTS ★ sample essay (25% each)</h5>
           <ul>
             <li>Mass: <b>cheaper, efficient media</b>, less tailored · Segments: <b>more relevant</b>, costlier, complex</li>
             <li>Depends on: <b>cost of differentiation</b> (check ROI) · <b>competitive intensity</b> (high → segment) · <b>brand equity</b> (strong like Coke → mass OK)</li>
@@ -1383,10 +1378,11 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
             <li>Limited budget: concentrate on the best-fit segment first, prove ROI, then add</li>
             <li><b>Double jeopardy</b>: big brands get more buyers AND those buyers buy more often → broad awareness still pays in mass/average categories</li>
           </ul><p class="eg">▸ <b>e.g.</b> Coca-Cola, Budweiser (mass awareness) · Lululemon (niche → mass) · TV Guide (known, undifferentiated) · Quidel (2 segments) · Pringles (vague → kids/teens)</p></div>
-
-        <div class="sec" style="--c:#1a1a1a"><h5>✍ ESSAY RECIPE (9 pts)</h5>
+<div class="sec" style="--c:#1a1a1a"><h5>✍ ESSAY RECIPE (9 pts)</h5>
           <ol><li><b>Position</b> in sentence 1</li><li>The <b>trade-off</b> (short vs long term · cost vs relevance)</li><li>“<b>It depends on…</b>” (cost · competition · brand · customer)</li><li>A <b>course example</b></li><li><b>Recommend + risk</b>. Answer EVERY part asked.</li></ol></div>
-      <div class="sec" style="--c:#6250d6"><h5>⑦ MEASURING BRANDS 🎤</h5>
+      </div>
+      <div class="col">
+<div class="sec" style="--c:#6250d6"><h5>⑦ MEASURING BRANDS 🎤</h5>
           <ul>
             <li><b>Customer-based</b>: awareness (recognition, recall, top-of-mind, latency) → associations (<b>conjoint</b>) → emotion (neuromarketing) → loyalty (purchases). <b>Price premium</b> = branded − unbranded price.</li>
             <li><b>BAV</b>: Differentiation (margins), Relevance (trial), Esteem (loyalty), Knowledge. Strength = D+R; Stature = E+K.</li>
@@ -1410,28 +1406,23 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
             <li>EVC common in <b>B2B</b>: savings are quantifiable → raises the customer's <b>reference point</b>. No rivals + R&amp;D story (pharma) → price near EVC</li>
             <li><b>Company factors</b>: maximize profit (discrimination), cover costs, <b>product-line consistency</b> (premium ≥ cheap version) vs competitive factors (can/will they respond)</li>
           </ul><p class="eg">▸ <b>e.g.</b> Raju's pool pill · Warby $95 vs Luxottica $300 · Costco 11% / Walmart 25% · Jesse's omakase · BeWood</p></div>
-        <div class="sec" style="--c:#0a2f6b"><h5>MARKET VALUE · WACC · BETA</h5>
-          <ul>
-            <li><b>Market value</b> = future free cash flow discounted at <b>WACC</b> (Weighted Average Cost of Capital = blended return debt + equity investors require)</li>
-            <li><b class="k">WACC ↑ → value ↓</b>: 1–2 pts ≈ 20–30% of value. Debt cheap at first, too much → risk ↑ → WACC ↑</li>
-            <li><b class="k">ROIC &gt; WACC</b> = value created; growth with ROIC &lt; WACC <b>destroys</b> value (prove the spread, then scale)</li>
-            <li><b>Beta (β)</b> = how much the stock moves with the market → β ↑ → cost of equity ↑ → WACC ↑</li>
-            <li><b class="k">Strong brand + loyal customers → steadier cash flow → lower risk, β, WACC → higher value</b>. CLV discounts the same way (i ≈ WACC)</li>
-          </ul></div>
-</div>
+<div class="sec" style="--c:#008300"><h5>CLV (slides)</h5>
+          <div class="fx">CLV = m × r ÷ (1 + i − r) − AC</div>
+          <ul><li>Phone: AC $400; m $250; 1-yr BE 1.6M custs · 5 yrs $1,250 → churn $840 → discount <b>$664</b> (net $264)</li>
+          <li>Avon: avg $0.87B vs segments <b>$1.89B</b> → averages mislead · CAC ≤ CLV · 80/20</li>  <li>Funnel: everything before the 1st purchase = <b class="k">acquisition cost</b>; after = CLV. CLV = NPV of future profit − AC (customers as assets)</li>
+            <li><b>M-O-F</b>: Marketing CAC ≤ CLV · Ops sets service levels by segment · Finance treats customers as a measurable asset (Marketing–Finance interface)</li>
+            <li>Formula assumes constant m &amp; r, year-end cash, infinite horizon (NOT growing revenue). Phone = <b>pure single-service contractual</b> (Fader)</li>
+            <li><b>Lever 1 Costs &amp; Fit</b>: fire low-CLV customers, self-service, referrals · <b>Lever 2</b>: premium tiers, cross/upsell, lock-in. CLV nonlinear in r → averages hide loyal segments</li>
+          </ul><p class="eg">▸ <b>e.g.</b> Mobile carrier · Avon-style seller · Costco · Diaper Club ($438) · Harrah's</p></div>
+      </div>
     </div>
   </div>
-
   <!-- ================= PAGE 2 ================= -->
   <div class="pg">
-    <div class="pgtitle"><b>MKTG 6110 Final: Cheat Sheet (2/2)</b><span>🎤 STRESSED IN CLASS → then everything else</span></div>
+    <div class="pgtitle"><b>MKTG 6110 Final: Cheat Sheet (2/2)</b><span>🎤 Pricing tactics, place, promotion, STP, journey · lecture only · no math</span></div>
     <div class="cols">
       <div class="col">
-        
-
-        
-
-        <div class="sec" style="--c:#b42b2a"><h5>⑨ PRICE DISCRIMINATION 🎤</h5>
+<div class="sec" style="--c:#b42b2a"><h5>⑨ PRICE DISCRIMINATION 🎤</h5>
           <ul>
             <li><b>1st</b>: a price per person (haggling: cars, art, B2B; control the sales force)</li>
             <li><b>2nd</b>: self-select/quantity: bulk · <b>2-part</b> (razor+blades, HP ink, Keurig) · <b>3-part</b> (subscriptions)</li>
@@ -1439,8 +1430,7 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
             <li><b>Good/better/best</b>: “best” priced <b>above</b> its extra benefits' value (insensitive buyers, like 1st class); most pick the middle. Student ID = <b>fence</b> (transaction cost)</li>
             <li><b>Price-match</b> signals “cheapest” → most shoppers stop searching; the few searchers get matched vs rivals' loss leaders. Periodic (early bird) = give up time</li>
           </ul><p class="eg">▸ <b>e.g.</b> Used cars, art (1st) · razors, HP ink, Keurig, newspapers (2nd) · Apple, runway → T.J.Maxx, AI freemium, Walmart price-match, early bird, student ID, first class (3rd)</p></div>
-
-        <div class="sec" style="--c:#0d7a53"><h5>⑩ PLACE & CHANNELS 🎤</h5>
+<div class="sec" style="--c:#0d7a53"><h5>⑩ PLACE & CHANNELS 🎤</h5>
           <ul>
             <li><b>30–50%</b> of price in the channel; now the “favorite P” (differentiation). Breadth = # categories, depth = # choices.</li>
             <li><b>Direct</b>: margin, control, <b class="k">DATA</b> · hard to scale. <b>Indirect</b>: scale · <b class="k">double marginalization</b>, channel conflict (car dealers; Tesla “not a car”)</li>
@@ -1450,19 +1440,24 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
             <li><b class="k">It depends</b>: DTC brands (Bonobos, Rent the Runway) → Nordstrom/Amazon for <b>scale</b>; luxury leaves dept stores for <b>control</b>; many do both (hybrid)</li>
             <li>“Favorite P”: mature categories differentiate via experience (Sephora vs Macy's). <b>Data ownership</b> = key negotiation point. <b>Kirkland</b> = private (store) brand</li>
           </ul><p class="eg">▸ <b>e.g.</b> Nike DTC → lost to HOKA, On, New Balance · Tesla vs dealers · Amazon data · Sephora vs Macy's · Bonobos → Nordstrom · Kirkland · Apple, Lululemon</p></div>
+<div class="sec" style="--c:#1baf7a"><h5>JOURNEY, AI & SIMULATION (slides)</h5>
+          <ul>
+            <li>Journey = web; find the <b>drop-off</b>. SEO → GEO: “known ≠ found”; Share of Model. Digital twins ≈0.2 correlation (ideas, not forecasts).</li>
+            <li><b>Boycotts</b>: Nike +31% · Goya +22% · Bud Light −28% (identity clash, substitutable, shelf loss)</li>
+            <li>Sim: fair value 75% of leader · value = discounted cash flow · <b>ROIC &gt; WACC</b> · debt ↑ WACC ↑ value ↓ · lead 2 + parity 2</li>
+            <li>B2B <b>buying center</b>: Initiator · <b>Gatekeeper</b> (controls info) · Influencer · Decider · Buyer · User</li>
+            <li>Match tool to blocker: problem unaware → awareness · don't understand → demos · <b class="k">don't believe → proof</b> (cases, ROI, trials) · install worry → support · price → EVC</li>
+            <li>BOPAS: find the friction, measure it (clickstream), weigh the Ops cost (slots/labor) vs changing customer expectations</li>
+            <li>AI at each stage: discovery · AI-built shortlist · win the AI's pick · reviews train future AI (<b>retention → visibility</b>). Most use: <b>Comparison 29%</b>; purchase 8%</li>
+            <li>44% of top-Google SaaS brands have 0 ChatGPT visibility. <b class="k">Share of Model</b> = how often/favorably you appear in AI answers vs rivals</li>
+            <li>AI playbook: audit search dependence · track SoM monthly · fix FAQs/comparison pages/llms.txt · agent mystery-buys</li>
+            <li><b>Digital twins</b>: replicate ~half of effects, <b class="k">overestimate</b> sizes; <b>hyper-rational</b>, under-individuated, stereotyped, skewed data. Ideation only → complement, calibrate with humans</li>
+            <li>Boycott risk: polarized base · <b>substitutable</b> · <b>observable</b> · identity ownership · prolonged media · shelf loss (NOT price). Bud Light: retailers cut shelf → spiral</li>
+            <li>Nike: authentic, fits core (+$6B). <b>Goya</b>: buzz ≠ behavior (habit, loyalty, unique). <b>Identity loyalty</b> = brand represents the self: powerful but fragile</li>
+          </ul><p class="eg">▸ <b>e.g.</b> BOPAS · SmartEquip · Point11 · Columbia digital twins · Nike, Goya, Bud Light, Target, Tesla</p></div>
       </div>
-
       <div class="col">
-        <div class="sec" style="--c:#008300"><h5>CLV (slides)</h5>
-          <div class="fx">CLV = m × r ÷ (1 + i − r) − AC</div>
-          <ul><li>Phone: AC $400; m $250; 1-yr BE 1.6M custs · 5 yrs $1,250 → churn $840 → discount <b>$664</b> (net $264)</li>
-          <li>Avon: avg $0.87B vs segments <b>$1.89B</b> → averages mislead · CAC ≤ CLV · 80/20</li>  <li>Funnel: everything before the 1st purchase = <b class="k">acquisition cost</b>; after = CLV. CLV = NPV of future profit − AC (customers as assets)</li>
-            <li><b>M-O-F</b>: Marketing CAC ≤ CLV · Ops sets service levels by segment · Finance treats customers as a measurable asset (Marketing–Finance interface)</li>
-            <li>Formula assumes constant m &amp; r, year-end cash, infinite horizon (NOT growing revenue). Phone = <b>pure single-service contractual</b> (Fader)</li>
-            <li><b>Lever 1 Costs &amp; Fit</b>: fire low-CLV customers, self-service, referrals · <b>Lever 2</b>: premium tiers, cross/upsell, lock-in. CLV nonlinear in r → averages hide loyal segments</li>
-          </ul><p class="eg">▸ <b>e.g.</b> Mobile carrier · Avon-style seller · Costco · Diaper Club ($438) · Harrah's</p></div>
-
-        <div class="sec" style="--c:#c2185b"><h5>⑨+ PRICE SENSITIVITY · DYNAMIC · SUBSCRIPTIONS 🎤</h5>
+<div class="sec" style="--c:#c2185b"><h5>⑨+ PRICE SENSITIVITY · DYNAMIC · SUBSCRIPTIONS 🎤</h5>
           <ul>
             <li>Want <b class="k">inelastic</b>. Less sensitive: no substitutes/necessity · brand = quality signal · <b>switching costs</b> · hard to compare · <b>3rd party pays</b> · <b>mental accounting</b> · <b>scarcity</b> (OK for luxury, PR risk at Walmart) · loyalty. More: <b>stockpiling</b>, easy comparison.</li>
             <li><b>Bundle</b>: sensitive on main item, not peripherals (= loss leader logic); <b>end-of-aisle</b> hides substitutes</li>
@@ -1479,8 +1474,7 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
             <li><b>Chain model</b> = pop × seg % × penetration × usage × UC × share · <b>wCPM</b> = cost ÷ target-weighted reach (000s)</li>
           </ul><p class="eg">▸ <b>e.g.</b> pharma · Wells Fargo · insurance, biz class · Paris vs Philly · Hermès Birkin, Ferrari · Amazon comps · Uber, Wendy's · Harry's, Birchbox, Prime</p>
           <ul><li><b>Math = concepts only</b> (no calcs on exam)</li></ul></div>
-
-        <div class="sec" style="--c:#2a78d6"><h5>STP, POSITIONING & FIRM (slides)</h5>
+<div class="sec" style="--c:#2a78d6"><h5>STP, POSITIONING & FIRM (slides)</h5>
           <ul>
             <li>5Cs → STP → 4Ps. Positioning = <b>Target · POD · Frame of ref. · Reason to believe</b></li>
             <li><b>Pringles</b>: share 25% via trial → 7% (low repeat) → repositioned as a fun snack for kids vs all snacks. <i>Make what you can sell.</i></li>
@@ -1494,8 +1488,9 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
             <li><b>Rolls-Royce</b> Power by the Hour: paid per flight hour, earns more when engines need less service (one incentive). <b>Peloton</b>: read a temporary surge as permanent → capex, recall</li>
             <li><b>Apple Computer → Apple Inc.</b> (2007) = repositioning to consumer electronics. <b>Projection bias</b> → do the research</li>
           </ul><p class="eg">▸ <b>e.g.</b> Pringles → Kellogg's $2.7B · Apple Inc. (2007) · Rolls-Royce · Peloton · Lululemon 5Cs (tariffs, Mirror, Costco dupes)</p></div>
-
-        <div class="sec" style="--c:#7b3fa0"><h5>⑪ PROMOTION 🎤</h5>
+      </div>
+      <div class="col">
+<div class="sec" style="--c:#7b3fa0"><h5>⑪ PROMOTION 🎤</h5>
           <ul>
             <li><b>IMC</b> = all tools, one message (empowered consumers, fragmented media, silos waste $). WOM = 13% online / 26% offline of sales impact.</li>
             <li><b>6Ms</b>: Market → Mission (<b>SMART</b>) → Message (Awareness → Persuasion → Conversion) → Media → Money (<b>S-curve</b>) → Measurement. Market first (Taco Bell breakfast).</li>
@@ -1504,28 +1499,27 @@ Variable-cost-heavy → RAISE price, you earn the margin on every unit
             <li>Paid (buy) · Owned (control) · Earned (win) · <b>Retail media</b> (sell; 1st-party data at purchase; $71B, Amazon/Walmart/Target ~74%)</li>
             <li>🎤 Class: <b class="k">performance vs brand</b> (promos erode margin; brand equity drives purchase) · <b class="k">earned = gold standard, needs paid first</b> · Taco Bell 3 targets (rivals' breakfast, own lunch fans, non-breakfast) → each its own campaign; “Routine Republic” + <b>Waze</b>: 15% visited, 1 in 7 returned · last-touch → multi-touch → <b>MMM</b> (multicollinearity, endogeneity) · <b>GDPR/CCPA</b> · S-curve threshold ~3 exposures · <b>Coke</b> keeps advertising (salience) · Budweiser spikes at later games · <b>Duolingo</b>: 5-sec SB slot + in-app push</li>
             <li>Elasticities: ads ≈0.1 · <b>price ≈ −2.6</b> · promos −2 to −12 (pull-forward) · distribution ≈1. Organic growth: distribution, innovation, satisfaction, brand</li>
-            <li><b>SMART</b> = Specific, Measurable, Achievable, Relevant, Time-bound. Knows brand but won't consider it → <b class="k">Persuasion</b> (interest, evaluation)</li>
+            <li><b class="k">Mission: SMART</b> = Specific · Measurable · Achievable · Relevant · Time-bound (Dunkin'): ✘ “Make our coffee a cultural phenomenon” · ~ “Sell more specialty coffee this year” · ✔ “Sell <b>10% more</b> specialty coffee to <b>younger consumers</b> <b>this year</b>”</li>
+            <li><b>Creative brief</b> = where strategy becomes creative direction (Colgate, Quaker). Knows brand but won't consider it → <b class="k">Persuasion</b> (interest, evaluation)</li>
             <li><b>S-curve</b>: below threshold ≈ wasted · steep middle · diminishing returns past saturation</li>
             <li><b class="k">Incrementality</b> = (test − control) ÷ test; randomized holdout or PSA placebo, mostly online. Last-click over-credits search; MMM slow, no individual data</li>
             <li>Ad→WOM study: +10% TV ≈ +69K mentions, but 1% WOM → only 0.01–0.06% sales (more in entertainment/sports). <b>YouTube</b> pays 12–24 months</li>
             <li><b>Watermarking</b> (LG Ads): IDs at each touchpoint for privacy-compliant tracking; needs publisher cooperation</li>
+                      <li><b class="k">Message must match the moment</b>: <b>Awareness</b> (raise attention) → <b>Persuasion</b> (interest, change evaluation) → <b>Conversion</b> (action) = <b>AIDA</b> (Awareness, Interest, Desire, Action). Know where the customer is: consider → evaluate → buy → enjoy → advocate → bond (<b>loyalty loop</b>)</li>
+            <li><b>IMC tools</b>: TV/radio, print, out-of-home, sales promo, point-of-purchase, events, placement, personal selling, digital, PR, WOM. <b>Why now</b>: empowered consumers, fragmented media, silos waste $, coordinated spend works harder</li>
+            <li><b>Taco Bell</b>: breakfast = only growing daypart; 47% eat breakfast out; QSRs get 79%; Taco Bell ≈ none → pick the target first</li>
+            <li>eWOM bigger: low trialability, private use, less competition. Satisfaction .4, brand assets .33 = major growth drivers. Distribution ≈1 = major</li>
+            <li><b>MMM</b> best with years of clean data + varying spend, for budget allocation/ROI by channel ✘ slow, no individuals, collinear channels, missing variables. <b>Media</b>: sold/retail = sell space on your owned media</li>
+            <li>Funnel = imperfect but <b>diagnostic</b> (awareness → persuasion → conversion → <b>loyalty</b>). ~3-exposure threshold. Long-term: equity, channel pricing power, HR, analysts. Gen AI: 87% marketers, 83% ad execs</li>
           </ul><p class="eg">▸ <b>e.g.</b> Taco Bell · Dunkin' SMART · Coca-Cola · Super Bowl $8M (WOM spikes, decays) · TikTok 42% ROI, YouTube long tail · gen AI: 45% of young consumers like AI ads vs 82% execs assume</p></div>
-
-        <div class="sec" style="--c:#1baf7a"><h5>JOURNEY, AI & SIMULATION (slides)</h5>
+<div class="sec" style="--c:#0a2f6b"><h5>MARKET VALUE · WACC · BETA</h5>
           <ul>
-            <li>Journey = web; find the <b>drop-off</b>. SEO → GEO: “known ≠ found”; Share of Model. Digital twins ≈0.2 correlation (ideas, not forecasts).</li>
-            <li><b>Boycotts</b>: Nike +31% · Goya +22% · Bud Light −28% (identity clash, substitutable, shelf loss)</li>
-            <li>Sim: fair value 75% of leader · value = discounted cash flow · <b>ROIC &gt; WACC</b> · debt ↑ WACC ↑ value ↓ · lead 2 + parity 2</li>
-            <li>B2B <b>buying center</b>: Initiator · <b>Gatekeeper</b> (controls info) · Influencer · Decider · Buyer · User</li>
-            <li>Match tool to blocker: problem unaware → awareness · don't understand → demos · <b class="k">don't believe → proof</b> (cases, ROI, trials) · install worry → support · price → EVC</li>
-            <li>BOPAS: find the friction, measure it (clickstream), weigh the Ops cost (slots/labor) vs changing customer expectations</li>
-            <li>AI at each stage: discovery · AI-built shortlist · win the AI's pick · reviews train future AI (<b>retention → visibility</b>). Most use: <b>Comparison 29%</b>; purchase 8%</li>
-            <li>44% of top-Google SaaS brands have 0 ChatGPT visibility. <b class="k">Share of Model</b> = how often/favorably you appear in AI answers vs rivals</li>
-            <li>AI playbook: audit search dependence · track SoM monthly · fix FAQs/comparison pages/llms.txt · agent mystery-buys</li>
-            <li><b>Digital twins</b>: replicate ~half of effects, <b class="k">overestimate</b> sizes; <b>hyper-rational</b>, under-individuated, stereotyped, skewed data. Ideation only → complement, calibrate with humans</li>
-            <li>Boycott risk: polarized base · <b>substitutable</b> · <b>observable</b> · identity ownership · prolonged media · shelf loss (NOT price). Bud Light: retailers cut shelf → spiral</li>
-            <li>Nike: authentic, fits core (+$6B). <b>Goya</b>: buzz ≠ behavior (habit, loyalty, unique). <b>Identity loyalty</b> = brand represents the self: powerful but fragile</li>
-          </ul><p class="eg">▸ <b>e.g.</b> BOPAS · SmartEquip · Point11 · Columbia digital twins · Nike, Goya, Bud Light, Target, Tesla</p></div>
+            <li><b>Market value</b> = future free cash flow discounted at <b>WACC</b> (Weighted Average Cost of Capital = blended return debt + equity investors require)</li>
+            <li><b class="k">WACC ↑ → value ↓</b>: 1–2 pts ≈ 20–30% of value. Debt cheap at first, too much → risk ↑ → WACC ↑</li>
+            <li><b class="k">ROIC &gt; WACC</b> = value created; growth with ROIC &lt; WACC <b>destroys</b> value (prove the spread, then scale)</li>
+            <li><b>Beta (β)</b> = how much the stock moves with the market → β ↑ → cost of equity ↑ → WACC ↑</li>
+            <li><b class="k">Strong brand + loyal customers → steadier cash flow → lower risk, β, WACC → higher value</b>. CLV discounts the same way (i ≈ WACC)</li>
+          </ul></div>
       </div>
     </div>
   </div>
@@ -1905,6 +1899,26 @@ MCQ.push(
 {id:"g30",t:"gtm",q:"In finance, a company's beta (β) measures:",o:["How much its stock moves with the overall market (systematic risk); higher β → higher cost of equity → higher WACC","Its marketing budget as a share of sales","Its customer retention rate","Its brand awareness"],a:0,e:"CAPM: cost of equity = risk-free rate + β × market risk premium. Higher WACC means heavier discounting and a lower market value."},
 {id:"g31",t:"gtm",q:"How can marketing lower a firm's WACC and raise its market value?",o:["A strong, durable brand and loyal customers make cash flows steadier, lowering perceived risk (and beta), which lowers WACC","By taking on as much debt as possible","By cutting all brand spending","By raising prices every quarter"],a:0,e:"Market value = future free cash flow discounted at WACC. Lower risk → lower WACC → higher value; a 1–2 point WACC change can move value 20–30%. Too much debt raises risk and WACC."},
 {id:"g32",t:"gtm",q:"A company grows revenue and store count quickly, but its ROIC is 7% and its WACC is 9%. What is happening to value?",o:["Value is being destroyed: growth with ROIC below WACC destroys value","Value is rising because revenue grows","Value is unchanged","Value rises because more stores means more brand awareness"],a:0,e:"Value creation depends on the spread between ROIC and WACC, not growth or margin alone. Prove a positive spread first, then scale."}
+);
+MCQ.push(
+{id:"pr29",t:"promo",q:"In SMART objectives, the letters stand for:",o:["Specific, Measurable, Achievable, Relevant, Time-bound","Simple, Memorable, Attractive, Repeatable, Targeted","Strategic, Marketable, Actionable, Reliable, Tested","Specific, Monetary, Aggressive, Realistic, Tactical"],a:0,e:"The Mission step of the 6Ms: without a specific, measurable objective you can't tell whether the campaign worked."},
+{id:"pr30",t:"promo",q:"Dunkin' example: why is \"Sell more specialty coffee this year\" only 'better', not 'best'?",o:["It has a time frame but no specific number and no target segment, so success can't be measured precisely","It is too specific","It has no time frame at all","It names a target segment but no product"],a:0,e:"✘ 'Make our coffee a cultural phenomenon' (not measurable) → ~ 'Sell more specialty coffee this year' → ✔ 'Sell 10% more specialty coffee to younger consumers this year' (number + who + when)."},
+{id:"pr31",t:"promo",q:"In the communications plan, the creative brief is:",o:["Where strategy becomes creative direction: it translates target, objective, and message into guidance for the creative team","The final TV ad itself","The media budget spreadsheet","The post-campaign measurement report"],a:0,e:"The lecture showed Colgate and Quaker briefs: problem, facts, objective, target audience, and the big picture, handed to creatives before any ad is made."}
+);
+MCQ.push(
+{id:"pr32",t:"promo",q:"'Message must match the moment' maps Awareness → Persuasion → Conversion onto AIDA. What does AIDA stand for?",o:["Awareness, Interest, Desire, Action","Attention, Information, Decision, Advocacy","Awareness, Intent, Demand, Adoption","Ads, Influencers, Digital, Analytics"],a:0,e:"Awareness = raise attention · Persuasion = increase interest, change evaluation (Interest, Desire) · Conversion = drive the action."},
+{id:"pr33",t:"promo",q:"To serve the right message, the marketer must know where the customer is in the journey. The loyalty loop in the lecture runs:",o:["Consider → evaluate → buy → enjoy → advocate → bond","Buy → consider → bond → evaluate","Awareness → buy → forget","Advocate → consider → buy only"],a:0,e:"After buying, customers enjoy, advocate, and bond, and loyal customers loop back to buy again. Different stages need different messages."},
+{id:"pr34",t:"promo",q:"Which is NOT one of the lecture's reasons for IMC 'now'?",o:["TV advertising has become free","Consumers are more empowered","Media is fragmented","Functions (PR, social, retail, CRM) work in silos, wasting spend"],a:0,e:"The fourth reason: coordinated spend costs less and works harder."},
+{id:"pr35",t:"promo",q:"According to the lecture, how much of sales impact comes from word of mouth?",o:["About 13% from online WOM and 26% from offline WOM","About 1% from each","Over 80% from online WOM","None; WOM doesn't affect sales"],a:0,e:"Offline WOM matters even more than online WOM, which is why earned media is the 'gold standard'."},
+{id:"pr36",t:"promo",q:"Why was breakfast the growth opportunity for Taco Bell?",o:["Breakfast is the only daypart still growing, 47% of Americans regularly eat breakfast at a restaurant, and quick-service restaurants get 79% of those occasions","Breakfast is shrinking but cheap to advertise","Taco Bell already led breakfast","Competitors had left breakfast entirely"],a:0,e:"Taco Bell owned lunch and dinner share but had almost no breakfast presence. So: decide the target market first."},
+{id:"pr37",t:"promo",q:"'Sold' (retail) media differs from paid, owned, and earned media because:",o:["You SELL it: the company invites other marketers to place content on its owned media (e.g., selling ad space on its website)","You buy it from a TV network","You win it through reviews","You control it but nobody else can use it"],a:0,e:"Paid = buy it · Owned = control it · Earned = win it · Sold/Retail = sell it."},
+{id:"pr38",t:"promo",q:"How did the lecture treat the marketing funnel / hierarchy of effects (awareness → persuasion → conversion → loyalty)?",o:["An imperfect metaphor but useful for diagnosing where a campaign should focus (goal and new vs existing customers)","A precise model of every purchase","Irrelevant to advertising","Only useful for B2B"],a:0,e:"Campaign type, message, and budget differ by goal (awareness vs conversion vs retention) and audience."},
+{id:"pr39",t:"promo",q:"According to the class discussion of the S-curve, below about how many exposures does advertising have minimal effect?",o:["About 3 exposures","About 30 exposures","1 exposure","There is no threshold"],a:0,e:"Below the frequency threshold the spend is mostly wasted; then returns accelerate, then diminish."},
+{id:"pr40",t:"promo",q:"Which long-term effects of advertising did the lecture say short-term conversion metrics miss?",o:["Brand equity, channel pricing power, and even HR (recruiting) and analyst perception","Only clicks","Only coupon redemptions","None; short-term metrics capture everything"],a:0,e:"That's why cutting brand advertising based on last-click data can quietly hurt the business."},
+{id:"pr41",t:"promo",q:"In the elasticity table, eWOM (online word of mouth) has a bigger effect when:",o:["Products have low trialability, are consumed privately, and categories are less competitive","Products are free samples","Categories are extremely competitive","Products are consumed in public only"],a:0,e:"eWOM elasticity ≈ .24–.42; whether it drives long-term growth 'depends'. Customer satisfaction (.4) and brand assets (.33) are major growth drivers."},
+{id:"pr42",t:"promo",q:"Which lever had an elasticity around 1 and was rated a MAJOR long-term growth driver?",o:["Distribution","Advertising","Price promotion","Price"],a:0,e:"Distribution ≈1 (0.6–1.7), bigger for concentrated brands, high-revenue categories, bulky items. Advertising ≈0.1 (minor); price promotion large but NOT a growth driver."},
+{id:"pr43",t:"promo",q:"Marketing mix models work BEST when:",o:["You have multiple years of clean historical data, spend varies over time, and you want high-level budget allocation / ROI by channel","You need real-time, individual-level signals","Two channels always run together","You have only one week of data"],a:0,e:"Limits: time-intensive, no real-time signal, no individual users; collinear channels and missing variables distort results."},
+{id:"pr44",t:"promo",q:"What is the main downside of attribution models?",o:["They are mostly useful only for online behavior (and credit ≠ cause)","They need decades of data","They can't use user-level data","They only work for TV"],a:0,e:"They use user-level data on impressions, clicks, and conversions (e.g., first click = Instagram ad, last click = search ad)."}
 );
 // k = what you see on screen; full = what it stands for; plain = everyday meaning; ex = analogy / where it shows up in the course
 // m = extra spellings to detect in text (case-sensitive for abbreviations)
@@ -2305,6 +2319,26 @@ Object.assign(PLAIN,{
 g30:"Beta = how jumpy a company's stock is compared with the whole market. Jumpier = riskier, so investors want a higher return, which raises the company's cost of money (WACC) and lowers its value.",
 g31:"Investors pay more for companies whose future profits are predictable. Loyal customers and a strong brand make profits steadier, so the company looks less risky and is worth more.",
 g32:"If every dollar you invest earns less than it costs you to borrow or raise that dollar, growing faster just loses money faster."
+});
+Object.assign(PLAIN,{
+pr29:"SMART goals are Specific (exactly what), Measurable (a number), Achievable (realistic), Relevant (matters to the business), and Time-bound (a deadline).",
+pr30:"'Sell more this year' has a deadline but no number and no target group. 'Sell 10% more to younger consumers this year' says how much, to whom, and by when.",
+pr31:"The creative brief is the short document that tells the ad team who we're talking to, what we want them to do, and what to say, before any ad is made."
+});
+Object.assign(PLAIN,{
+pr32:"AIDA = Awareness (notice it), Interest (curious), Desire (want it), Action (buy). It's the same idea as awareness → persuasion → conversion.",
+pr33:"Customers consider, compare, buy, use it, recommend it, and become attached, then buy again. Know which step they're at before choosing the message.",
+pr34:"IMC matters now because customers have more power, there are many more media channels, and departments that don't coordinate waste money.",
+pr35:"Word of mouth drives a real share of sales: about 13% from online talk and 26% from in-person talk.",
+pr36:"Breakfast is the only meal time still growing, and fast-food places get most of it. Taco Bell had almost none, so it was a big opportunity.",
+pr37:"'Sold' or retail media = the company sells ad space on its own website or app to other brands (like Amazon showing other brands' ads).",
+pr38:"The funnel (aware → convinced → buy → loyal) isn't exactly how people shop, but it helps figure out where a campaign should focus.",
+pr39:"People need to see an ad about three times before it starts to work. Spending too little is wasted.",
+pr40:"Ads also help in ways quick metrics miss: stronger brand, more pricing power with stores, easier hiring, and better views from Wall Street analysts.",
+pr41:"Online reviews and talk matter most when you can't easily try the product first, use it privately, and there aren't many competitors.",
+pr42:"Getting into more stores (distribution) moves sales about 1-for-1 and builds long-term growth; ads move sales only a little in the short run.",
+pr43:"MMM needs several years of good data where spending went up and down, and it's for big-picture budget decisions, not real-time tracking.",
+pr44:"Attribution can only follow people online, and getting credit isn't the same as causing the sale."
 });
 // ---------------- state ----------------
 const LS="mktg6110_prep_v1";
