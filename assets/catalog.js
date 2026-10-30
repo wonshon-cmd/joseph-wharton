@@ -20,10 +20,12 @@ window.CATALOG = {
           color: "#d55181",
           status: "Final exam: Sat, Oct 31 (15 MC × 2 + 8 short answers × 9)",
           progressKey: "mktg6110_site_v1",          // localStorage key of the practice app (for progress on cards)
-          progressTotals: { mc: 148, sa: 38 },
+          progressTotals: { mc: 289, sa: 71 },
           progressKey2: "mktg6110_prep_v1",         // study guide app (MC quiz / essays / drills)
           items: [
-            { icon: "🎯", title: "Practice & Records", href: "practice/", desc: "12 exam topics (incl. Price Sensitivity & Promotion), 148 MC + 38 short answers with instant grading (and optional Claude grading). Every answer syncs online to all your devices, with your full history on My Records.", primary: true },
+            { icon: "🎯", title: "Practice & Records", href: "practice/", desc: "12 exam topics (incl. Price Sensitivity & Promotion) + Brian's bank + 🎯 Weak Spots: 289 MC + 71 short answers with instant grading (and optional Claude grading). Every answer syncs online to all your devices, with your full history on My Records.", primary: true },
+            { icon: "🎯", title: "Weak Spots", href: "practice/#weak", desc: "Only the questions you got wrong, with what to review and plain-English explanations. Clears once you answer right twice in a row." },
+            { icon: "🧑‍🎓", title: "Brian's Question Bank", href: "practice/#brian", desc: "174 questions made by Brian (141 MC + 33 short answers), fact-checked against the course; corrections marked ✎." },
             { icon: "📘", title: "Full Study Guide", href: "study-guide/", desc: "Visual summary of every lecture, 213 MC, 36 essays (incl. Promotion, WACC & beta), math drills, mock exam, weak spots, glossary, company examples." },
             { icon: "📄", title: "MAX Cheat Sheet", href: "cheat-sheets/max.html", desc: "Current version: 2 pages, covers every practice question incl. Promotion; red underlined = key essay ideas.", extra: [{ label: "PDF", href: "cheat-sheets/max.pdf" }] },
             { icon: "📝", title: "Cheat Sheet (with space)", href: "cheat-sheets/with-space.html", desc: "2 pages, larger font (7.6px): every practice question covered in compact bullets + company examples, a little room for notes.", extra: [{ label: "PDF", href: "cheat-sheets/with-space.pdf" }] },
