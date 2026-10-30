@@ -24,7 +24,7 @@ window.CATALOG = {
           progressKey2: "mktg6110_prep_v1",         // study guide app (MC quiz / essays / drills)
           items: [
             { icon: "🎯", title: "Practice & Records", href: "practice/", desc: "10 exam topics, 88 MC + 30 short answers with instant grading (and optional Claude grading). Every answer syncs online to all your devices, with your full history on My Records.", primary: true },
-            { icon: "📘", title: "Full Study Guide", href: "study-guide/", desc: "Visual summary of every lecture, 152 MC, 29 essays, math drills, mock exam, weak spots, glossary, company examples." },
+            { icon: "📘", title: "Full Study Guide", href: "study-guide/", desc: "Visual summary of every lecture, 166 MC, 32 essays, math drills, mock exam, weak spots, glossary, company examples." },
             { icon: "📄", title: "MAX Cheat Sheet", href: "cheat-sheets/max.html", desc: "Current version: 2 pages, all topics + graphics + abbreviation key.", extra: [{ label: "PDF", href: "cheat-sheets/max.pdf" }] },
             { icon: "📝", title: "Cheat Sheet (with space)", href: "cheat-sheets/with-space.html", desc: "Earlier version with company examples and room for handwritten notes.", extra: [{ label: "PDF", href: "cheat-sheets/with-space.pdf" }] },
             { icon: "🕹️", title: "Pivot or Perish: Team 4 Copilot", href: "https://wonshon-cmd.github.io/pivotorperishteam4/", desc: "Getchells strategy dashboard, competitors, build plan, and the team write-up board (separate site)." },
