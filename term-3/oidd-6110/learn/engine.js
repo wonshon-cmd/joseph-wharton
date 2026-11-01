@@ -321,6 +321,8 @@ function pHome(){nav("home");
   <h1>OIDD 6110: Operations Management, learned from zero</h1>
   <p class="sub">Every module explained in plain English as if you've never taken a business class, with pictures, the <b>logic and the "why"</b> behind each formula, step-by-step worked examples, and auto-graded practice. Everything here points at one goal: <b>the final exam</b>.</p>
   <div class="count">${DATES.map(d=>{const n=daysTo(d[1]);return `<div class="c ${n<=7&&n>=0?'urgent':''}"><span class="sub" style="font-size:13px">${d[0]}</span><b>${n>=0?n+" days":"done"}</b><span style="font-size:12.5px">${new Date(d[1]+"T12:00").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})} · ${d[2]}</span></div>`;}).join("")}</div>
+  <div class="callout trap" style="background:#fff;border-color:#c0392b"><b>🎯 The final looks like HW1</b>Business scenarios → 2–4 questions each → a number in a box (or circle one) → 1 point each, no partial credit. So the core of this site is <a href="#exam"><b>Exam Practice</b></a>: unlimited freshly generated mock exams in exactly that format (HW1-style half, second half, full 2-hour final), graded on submit with full solutions, plus drills per question type and the <a href="#playbook"><b>Exam Playbook</b></a> (“if you see X → do Y”).
+  <div style="margin-top:8px"><a class="btn" href="#exam">▶ Take a mock exam</a> <a class="btn ghost" href="#playbook">🧠 Exam Playbook</a></div></div>
   <div class="callout key"><b>🗺️ How to use this site (recommended order)</b>
    <span class="stepnum">1</span><b>Learn</b> a module (read the lesson; it's short and visual) →
    <span class="stepnum">2</span>walk through the <b>worked examples</b> one step at a time →
@@ -392,16 +394,19 @@ function pRecords(){nav("records");const s=load();let tot=0,ok=0,att=0;const row
   const hw=Object.keys(REG).filter(id=>REG[id].where.hw);const hs=hw.filter(id=>hist(id).length);
   APP.innerHTML=`<div class="crumb"><a href="#home">OIDD 6110</a> › Records</div><h1>📊 My Records</h1><p class="sub">Synced across devices. ${att} answers so far, ${att?Math.round(ok/att*100):0}% right.</p>
   <table class="t"><tr><th>Module</th><th>Questions tried</th><th>Latest-attempt accuracy</th></tr>${rows}<tr class="tot"><td>HW1-style practice test</td><td>${hs.length}/${hw.length}</td><td>${hs.length?Math.round(hs.filter(id=>lastOk(id)).length/hs.length*100)+"%":"–"}</td></tr></table>
-  <h2>Recent answers</h2><table class="t"><tr><th>When</th><th>Question</th><th>Your answer</th><th></th></tr>${all.slice(0,60).map(h=>{const q=REG[h.id];const t=q?q.q.replace(/<[^>]+>/g,"").slice(0,90):h.id.replace("gen:","🎲 ");return `<tr><td style="white-space:nowrap">${new Date(h.ts).toLocaleString([],{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</td><td>${esc(t)}</td><td>${esc(h.a)}</td><td>${h.ok?"✅":"❌"}</td></tr>`;}).join("")}</table>
+  <h2>Recent answers</h2><table class="t"><tr><th>When</th><th>Question</th><th>Your answer</th><th></th></tr>${all.slice(0,60).map(h=>{const q=REG[h.id];const t=q?q.q.replace(/<[^>]+>/g,"").slice(0,90):h.id.replace("gen:","🎲 ").replace("xt:","🎯 exam question: ").replace("xs:","📜 mock exam: ");return `<tr><td style="white-space:nowrap">${new Date(h.ts).toLocaleString([],{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</td><td>${esc(t)}</td><td>${esc(h.a)}</td><td>${h.ok?"✅":"❌"}</td></tr>`;}).join("")}</table>
   <p><button class="btn ghost small" data-act="reset">Reset all OIDD 6110 records</button></p>`;}
 
 /* ---------------- router ---------------- */
+OM.pages=OM.pages||{};
+OM.E={load,save,rec,hist,esc,fmt,parseNum,numOk,hydrate,nav,qHTML,REG,APP,modProg};
 function route(){const h=(location.hash||"#home").slice(1).split("/");
+  if(OM.pages[h[0]]){APP.dataset.page=h.join("/");scrollTo(0,0);OM.pages[h[0]](h);return;}
   if(h[0]==="m"){const same=APP.dataset.page==="m/"+h[1];if(!same){pModule(h[1]);APP.dataset.page="m/"+h[1];}if(h[2]){const el=document.getElementById("s-"+h[2]);if(el)setTimeout(()=>el.scrollIntoView({behavior:same?"smooth":"auto"}),same?0:30);}else if(!same)scrollTo(0,0);
     document.querySelectorAll(".tabs a").forEach(a=>a.classList.toggle("on",a.dataset.jump===h[2]));return;}
   APP.dataset.page=h.join("/");scrollTo(0,0);
   if(h[0]==="hw1")pHW("hw1");else if(h[0]==="cases")pCases();else if(h[0]==="case")pCase(h[1]);else if(h[0]==="tools")pTools();else if(h[0]==="formulas")pFormulas();else if(h[0]==="weak")pWeak();else if(h[0]==="records")pRecords();else pHome();}
 window.addEventListener("hashchange",route);
 window.addEventListener("jw-sync-applied",()=>{});
-route();
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",route);else route();
 })();
