@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>OIDD 6110 · One-page cheat sheet</title>
+<style>
+@page{size:letter;margin:0.22in}
+*{box-sizing:border-box}
+body{margin:0;font:10.6px/1.26 "Arial Narrow",Arial,Helvetica,sans-serif;color:#111;background:#ddd}
+.page{width:8.06in;height:10.54in;margin:10px auto;background:#fff;padding:0;overflow:hidden;columns:4;column-gap:5px;column-fill:auto}
+@media print{body{background:#fff}.page{margin:0}.bar{display:none}}
+.bar{text-align:center;font:14px Arial;padding:8px}.bar a{margin:0 8px}
+h1{font-size:13px;margin:0 0 2px;color:#fff;background:#011f5b;padding:2px 4px;column-span:all}
+.box{border:0.7px solid #9aa;border-radius:3px;padding:2px 3px;margin:0 0 3px;break-inside:avoid}
+.box>b.t{display:block;font-size:11.4px;color:#fff;margin:-2px -3px 2px;padding:1px 3px;border-radius:2px 2px 0 0}
+.c1>b.t{background:#2a63c7}.c2>b.t{background:#b7791f}.c3>b.t{background:#6b46c1}.c4>b.t{background:#0f7b6c}.c5>b.t{background:#c0392b}.c6>b.t{background:#1e8449}.c7>b.t{background:#555}
+.f{font-weight:700;color:#011f5b;background:#eef3fb;border-radius:2px;padding:0 2px;display:inline-block;margin:0.5px 0}
+.ex{color:#333;background:#fff8e1;border-left:2px solid #e0a800;padding:0 2px;margin:1px 0}
+.tr{color:#b00;font-weight:700}
+u{text-decoration-thickness:0.6px}
+p{margin:1px 0}
+ul{margin:0;padding-left:8px}li{margin:0}
+table{border-collapse:collapse;width:100%}td,th{border:0.5px solid #bbb;padding:0 1.5px;text-align:left}th{background:#eee}
+</style></head><body>
+<div class="bar"><a href="../">← OIDD 6110</a><a href="cheat-sheet.pdf">PDF</a><a href="javascript:print()">Print</a><span style="color:#666;font-size:12px">Letter size, 1 page. Syllabus: your exam sheet must be written by you (don't share). Use this as your model.</span></div>
+<div class="page">
+<h1>OIDD 6110 · Operations: Quality &amp; Productivity · one-page sheet (every HW1 question type, formula + worked example)</h1>
+
+<div class="box c1"><b class="t">① 1 RESOURCE: flow rate · utilization · cycle time</b>
+<span class="f">Capacity = m / p</span> (×60 for /hr) · <span class="f">Flow rate R = min(Demand, Capacity)</span><br>
+<span class="f">Utilization = R / Capacity</span> (≤100%) · <span class="f">Cycle time CT = 1 / R</span><br>
+Demand &lt; cap → <u>demand-constrained</u>; else capacity-constrained (bottleneck 100%).
+<div class="ex">Laser cutter cap 5 jobs/hr, demand 4/hr → R = min(4,5) = <b>4/hr</b>; u = 4/5 = <b>80%</b>; CT = 1/4 hr = <b>15 min/job</b> <span class="tr">(not 60/5 = 12)</span></div></div>
+
+<div class="box c1"><b class="t">② MANY STEPS / PARALLEL UNITS: bottleneck · empty system</b>
+Box = resource (worker/machine, add up its activities), △ = inventory.<br>
+<span class="f">Cap<sub>i</sub> = m<sub>i</sub>/p<sub>i</sub> × 60</span> → <span class="f">Bottleneck = lowest cap</span> = process capacity <span class="tr">(not longest p!)</span><br>
+<span class="f">Time for X units from EMPTY = Σp + (X−1) × CT</span>, CT = 60/process cap (min)
+<div class="ex">Circuit: Bike 8 units·5 min = 96/hr; Rope 6·4 = 90; Treadmill 15·10 = 90; Kettlebell 12·9 = <b>80</b>; Box 10·6 = 100 → cap <b>80/hr</b>. 60 athletes from empty: Σp = 34; CT = 0.75 min → 34 + 59×0.75 = <b>78.25 min</b></div>
+<b>“Which action raises capacity most?”</b> Recompute every option; only bottleneck changes help, until the next station limits.
+<div class="ex">+1 kettlebell → 13/9×60 = 86.7 → cap 86.7 · kettlebell 9→8 min → 12/8×60 = 90 → cap <b>90 (best)</b> · +1 treadmill → still 80 · faster bike → still 80</div>
+Parallel (vs sequential) work: ↓ flow time only, same capacity. Work cell (each of 4 does all 6.5 min): cap 4/6.5×60 = 36.9/hr.</div>
+
+<div class="box c2"><b class="t">③ LABOR: labor content · labor utilization · idle</b>
+<span class="f">Labor content LC = Σ p<sub>i</sub></span> (each step once; staffing irrelevant)<br>
+<span class="f">Avg labor utilization = LC / (CT × total # workers)</span><br>
+<span class="f">Idle<sub>i</sub> per cycle = CT × m<sub>i</sub> − p<sub>i</sub></span> · CT = 1/R (if demand-constrained CT = 1/demand!)
+<div class="ex">Passport office: Intake 3 staff·12 min (15/hr), Review 4·20 (<b>12/hr</b>), Photo 1·4 (15/hr) → cap 12/hr; LC = 12+20+4 = <b>36 min</b>; CT = 5 min, 8 workers → 36/(5×8) = <b>90%</b></div>
+<div class="ex">Subway 37/46/37 s: CT 46; idle 9+0+9 = 18 s; LC 120; 120/(46×3) = 87%</div></div>
+
+<div class="box c2"><b class="t">④ COST · TAKT · MANPOWER · ASSIGN WORKERS</b>
+<span class="f">Cost of direct labor = total wages per hr / R</span> (R = min(demand, cap): <u>includes idle time</u>)<br>
+<span class="f">Takt = available time / demand</span> · <span class="f">Target manpower = LC / takt</span> (lower bound; round up only if asked)
+<div class="ex">Steps 8, 5, 6 min, 1 worker each, $15/hr. Demand 6/hr: cap 60/8 = 7.5 &gt; 6 → R = 6 → $45/6 = <b>$7.50/unit</b> <span class="tr">(not $45/7.5)</span>. Demand 15/hr: takt = 60/15 = <b>4 min</b>; LC 19 → TM = 19/4 = <b>4.75</b></div>
+<b>N workers to assign</b> (each step ≥1): add one at a time to the current bottleneck, check combos.
+<div class="ex">5 workers on 8/5/6: (2,1,2) → 15, 12, 20 → <b>12/hr</b>; (2,2,1) → 10; (3,1,1) → 10</div>
+<div class="ex">Mr K: S1 10, S2 20, S3 30 min → bottleneck S3 2/hr; u(S2) = 2/3; LC 60; ALU = 60/(30·3) = 67%; $20×3/2 = $30; 10 guests empty = 60+9×30 = 330 min; takt 600/40 = 15; TM 4</div></div>
+
+<div class="box c3"><b class="t">⑤ LITTLE'S LAW · INVENTORY TURNS · COST</b>
+<span class="f">I = R × T</span> (same time units) · T = I/R
+<div class="ex">ER 180 patients/day, 60 inside → T = 60/180 day = <b>8 h</b></div>
+<span class="f">Turns = COGS / Inventory</span> <span class="tr">(not revenue)</span> · <span class="f">Days of supply = Inv/COGS × 365</span> = 365/turns<br>
+<span class="f">Per-unit inventory cost = (annual %) / turns × item cost</span>
+<div class="ex">Rev 3,450, COGS 2,070, Inv 345 → turns 2,070/345 = <b>6</b>; 24%/6 = 4% → $150 item: <b>$6.00</b>; days = 365/6 = 60.8</div>
+<b>True:</b> higher turns ⇒ shorter time in inventory ⇒ lower per-unit holding cost. <b>Not implied:</b> higher revenue, margin or profit (Tiffany 0.66 turns, 61% margin; Kroger 13.4). Compare competitors only.<br>
+<span class="f">Turnover = leavers/yr ÷ employees</span> · tenure at departure = 1/turnover · <span class="f">avg tenure = ½ × tenure at departure</span>
+<div class="ex">Costco 160k staff, avg 9 yrs → 18 yrs at departure; turnover 1/18 = 5.6%; hires = 160,000/18 = 8,889/yr</div></div>
+
+<div class="box c4"><b class="t">⑥ BUILD-UP DIAGRAM (inventory / backlog over time)</b>
+<span class="f">Slope = supply rate − demand rate</span> (+ = inventory, − = backlog)<br>
+Convert: <span class="f">demand/hr = customers × units each / hours open</span><br>
+<span class="f">Last customer served = start + total units / production rate</span> (if backlog at end)<br>
+<span class="f">Level at time t = P·(t − start) − D·(t − open)</span>; max backlog = level when arrivals stop<br>
+Runs out when P(t − s) = D(t − open) → <span class="f">t = (D·open − P·s)/(D − P)</span>
+<div class="ex">Juice bar: 120 customers 7am–1pm × 2 bottles = 240 → D = 40/hr; pressing 30/hr from 6am. 7am: +30. Net −10/hr → out at 10am; 1pm: −30 → <b>max backlog 30</b>; last served 6 + 240/30 = <b>2pm</b>. Check: produced = demanded ✔</div>
+<div class="ex">Donut: bake 60/hr from 4am, sell 120/hr 7–11am → 180 at 7am; 0 at 10am; −60 at 11am; served by noon</div></div>
+
+<div class="box c5"><b class="t">⑦ MULTIPLE FLOW UNITS (product mix) · ATTRITION</b>
+<span class="f">1) Demand at resource = total demand × Σ mix% of types that visit it</span> 2) cap = m/p 3) <span class="f">Implied util = demand / cap</span> (can be &gt;100%) → <span class="f">bottleneck = HIGHEST implied util</span> <span class="tr">(not lowest capacity)</span><br>
+<span class="f">Max demand (same mix) = total demand / max implied util</span> · minutes-of-work: Σ(d<sub>k</sub>·p<sub>k</sub>) / (m·60)
+<div class="ex">Taco shop 5 orders/min: 30% burrito, 50% bowl, 20% drink. Assemble (burrito+bowl) m=2, 0.4 min: demand 5×0.8 = 4/min; cap 2/0.4 = 5 → <b>80%</b>. Grill (burrito) 1, 0.5: 1.5/2 = 75%. Prep 4/6 = 67%, Drinks 1/2 = 50%, Pay 5/6.67 = 75% → bottleneck <b>Assemble</b>; max demand = 5/0.8 = <b>6.25/min</b></div>
+<div class="ex">Prof: File 18/20 = 90%, Foreign 3/6 = 50%, Dept1 14/12 = <b>117%</b>, Dept2 4/15, Print 18/30 → Dept1; max 18/1.167 = 15.4/hr</div>
+<span class="f">Process yield = y<sub>1</sub>·y<sub>2</sub>…</span> · <span class="f">start = Q / yield</span> · downstream demand = arrivals × earlier yields
+<div class="ex">Capital One 26.4% booked → 700/0.264 = 2,652 apps; UW 130/day vs cap 8×400/40 = 80 → 163% bottleneck</div></div>
+
+<div class="box c6"><b class="t">⑧ WAITING (variability) · TRANSIENT QUEUE</b>
+a = avg time BETWEEN arrivals (30/hr → a = 2 min) · <span class="f">u = p/(a·m)</span> (&lt;1) · <span class="f">CV = sd/mean</span> (Poisson CVa = 1)<br>
+<span class="f">Tq = (p/m) · u<sup>√(2(m+1))−1</sup>/(1−u) · (CVa²+CVp²)/2</span>; m=1: p·u/(1−u)·(…)/2<br>
+<span class="f">T = Tq + p</span> · <span class="f">Iq = Tq/a</span> · Ip = p/a · I = Iq + Ip
+<div class="ex">Emails a=2 (sd 2), p=4 (sd 2), m=3: u = 0.667; CVa 1, CVp 0.5 → 0.625; (4/3)·0.667<sup>1.83</sup>/0.333 = 1.43 → Tq = <b>1.19 min</b>, T = 5.19, Iq = 0.6</div>
+u/(1−u): 80%→4, 90%→9, 95%→19. u ≥ 100% → <b>triangle</b>: longest queue = (in − out)×duration; <span class="f">total wait = ½ × (build-up + depletion) × longest queue</span>; avg = total / # customers
+<div class="ex">Brewery 2/min in, 1/min out, 60 min → queue 60; depletes in 60 min; total ½·120·60 = 3,600 cust-min; /120 = <b>30 min</b></div></div>
+
+<div class="box c7"><b class="t">⑨ LEAN · LOSS · QUALITY · INTRO (concepts)</b>
+<span class="f">OEE = value-add time / paid time</span> (resource) · <span class="f">%VAT = value-add / flow time</span> (flow unit). MRI 18×40 min = 12h / 20h = 60%; radiology visit 20/135 = 15%.<br>
+Push piles WIP before the bottleneck (20→10→15/hr); pull/kanban caps WIP (cards); JIT; heijunka needs short setups; jidoka = detect-stop-alert (Andon); poka-yoke = fool-proof.<br>
+<b>Loss:</b> <span class="f">r = p/a; P<sub>m</sub>(r) = (r<sup>m</sup>/m!)/Σ<sub>0..m</sub> r<sup>k</sup>/k!</span>; R = (1−P<sub>m</sub>)/a. r=2, m=3 → 21.1%. Pooling ↓ waits/loss.<br>
+<b>Quality:</b> <span class="f">Cp = (USL−LSL)/6σ</span>; six sigma = Cp 2; ±3σ → 0.27% defects (two tails).<br>
+<b>Intro:</b> frontier = firms not Pareto-dominated (no one better on all dims); inhibitors = waste, variability, inflexibility (volume vs mix flexibility).</div>
+
+<div class="box c7"><b class="t">✔ CHECKLIST (1 pt, no partial credit)</b>
+Units (/min vs /hr; ×60) · is demand &lt; capacity? · CT = 1/R · labor cost uses R · implied util for mixes · customers→units · keep 3 decimals · never blank.</div>
+</div>
+</body></html>
