@@ -22,6 +22,11 @@ term-3/
     study-guide/                ← full study guide app
     cheat-sheets/               ← max.html/.pdf, with-space.html/.pdf
     pdfs/                       ← deep-dive-all-topics.pdf + by-topic/*.pdf
+  oidd-6110/
+    index.html                  ← OIDD 6110 course home
+    learn/                      ← "learn from zero" app (index.html + engine.js)
+      content/NN-module.js      ← one file per module (lesson, formulas, worked examples, questions, 🎲 generators)
+      content/cases.js, hw1.js  ← cases broken down by module; HW1 skill map + practice test
 ```
 
 ## Adding a new course or term

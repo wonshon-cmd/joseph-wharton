@@ -44,6 +44,24 @@ window.CATALOG = {
               { label: "⑩ Place & Channels", href: "pdfs/by-topic/MKTG6110_10_Place_and_Channels.pdf" }
             ] }
           ]
+        },
+        {
+          code: "OIDD 6110",
+          slug: "oidd-6110",
+          title: "Operations Management: Quality & Productivity",
+          prof: "Prof. Christian Terwiesch",
+          color: "#0f7b6c",
+          status: "HW1 Nov 20 · HW2 Dec 5 · HW3 Dec 10 · Final Sat Dec 12 (2 h, closed book, 1-page own cheat sheet)",
+          progressKey: "oidd6110_learn_v1",
+          progressTotals: { mc: 155 },
+          items: [
+            { icon: "📖", title: "Learn from Zero: 10 Modules", href: "learn/", desc: "Every module explained for a total beginner: pictures, the logic and the “why”, step-by-step worked examples, concept checks, calculation drills with unlimited 🎲 new numbers, traps and what the professor emphasized.", primary: true },
+            { icon: "📝", title: "HW1 Prep", href: "learn/#hw1", desc: "Skill map of HW1 (due Nov 20) + a full HW1-style practice test with different numbers. HW1 itself is never solved here (syllabus: no AI on homework)." },
+            { icon: "📂", title: "Cases by Module", href: "learn/#cases", desc: "Capital One and the Picadilly Bank call center broken down module by module (with the slot-by-slot waiting-time and cost analysis), plus Subway and the mortgage exercise." },
+            { icon: "🧮", title: "Calculators", href: "learn/#tools", desc: "Process (bottleneck, labor), waiting time, Little's Law & turns, build-up diagram, implied utilization, Erlang loss: play “what if” to build intuition." },
+            { icon: "📐", title: "All Formulas", href: "learn/#formulas", desc: "Every formula with why it works, on one printable page. Use it to write your own one-page exam cheat sheet." },
+            { icon: "🎯", title: "Weak Spots & Records", href: "learn/#weak", desc: "Questions you missed (with links back to the lesson) and your full answer history, synced to all devices.", extra: [{ label: "📊 Records", href: "learn/#records" }] }
+          ]
         }
         // , { code: "XXXX 0000", slug: "xxxx-0000", title: "Next course", prof: "", color: "#2a78d6", items: [] }
       ]

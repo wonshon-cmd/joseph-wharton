@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>OIDD 6110 · Learn Operations from Zero</title>
+<script src="../../../assets/sync.js?v=20261101a"></script>
+<style>
+:root{--navy:#011f5b;--red:#990000;--bg:#f6f5f1;--ink:#1b1b1b;--ink2:#55534e;--line:#e3e1da;--teal:#0f7b6c;--teal-l:#e3f4f1;--gold:#b7791f;--gold-l:#fdf3dc;--blue:#2a63c7;--blue-l:#e8f0fd;--rose:#c0392b;--rose-l:#fdecea;--purple:#6b46c1;--purple-l:#efe9fb;--green:#1e8449;--green-l:#e6f5ec;--oidd:#0f7b6c}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--navy)}
+header.top{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+header.top .in{max-width:1080px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+header.top .logo{font-weight:800;color:#fff;text-decoration:none;font-size:17px}
+header.top .logo span{color:#ffd29c}
+header.top nav{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+header.top nav a{color:#fff;text-decoration:none;font-size:14px;font-weight:600;padding:5px 10px;border-radius:8px;opacity:.9}
+header.top nav a:hover,header.top nav a.on{background:rgba(255,255,255,.16);opacity:1}
+main{max-width:1080px;margin:0 auto;padding:22px 18px 90px}
+h1{font-size:32px;line-height:1.15;margin:6px 0 6px}
+h2{font-size:23px;margin:34px 0 10px;line-height:1.25}
+h3{font-size:19px;margin:22px 0 8px}
+.sub{color:var(--ink2)}
+.crumb{font-size:14px;color:var(--ink2)}.crumb a{color:var(--ink2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;color:inherit;text-decoration:none;display:block}
+a.card{transition:transform .12s,box-shadow .12s}a.card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.card h3{margin:2px 0 4px}
+.tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:6px;color:#fff;background:var(--oidd)}
+.tag.gray{background:#8a877f}.tag.gold{background:var(--gold)}.tag.red{background:var(--rose)}.tag.blue{background:var(--blue)}
+.pill{display:inline-block;font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px;background:#eef2f9;color:var(--navy);margin:2px 4px 2px 0}
+.bar{height:8px;background:#ecebe6;border-radius:99px;overflow:hidden;margin:8px 0 4px}.bar>div{height:100%;background:var(--green)}
+.btn{display:inline-block;border:0;border-radius:10px;padding:9px 16px;font:inherit;font-size:15px;font-weight:700;cursor:pointer;background:var(--navy);color:#fff;text-decoration:none}
+.btn:hover{filter:brightness(1.12)}.btn.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}.btn.teal{background:var(--teal)}.btn.small{padding:5px 11px;font-size:13px}
+.btn.gold{background:var(--gold)}
+/* ---------- lesson typography ---------- */
+.lesson p{margin:10px 0}
+.k{font-weight:800;text-decoration:underline;text-decoration-color:#f0b429;text-decoration-thickness:3px;text-underline-offset:3px}
+.hl{background:linear-gradient(transparent 55%,#ffe08a 55%);font-weight:700;padding:0 2px}
+.red{color:var(--rose);font-weight:800}.grn{color:var(--green);font-weight:800}.blu{color:var(--blue);font-weight:800}.pur{color:var(--purple);font-weight:800}
+.callout{border-radius:12px;padding:12px 16px 12px 16px;margin:14px 0;border-left:6px solid;background:#fff}
+.callout>b:first-child{display:block;margin-bottom:2px}
+.callout.why{background:var(--blue-l);border-color:var(--blue)}
+.callout.analogy{background:var(--gold-l);border-color:var(--gold)}
+.callout.trap{background:var(--rose-l);border-color:var(--rose)}
+.callout.prof{background:var(--purple-l);border-color:var(--purple)}
+.callout.key{background:var(--green-l);border-color:var(--green)}
+.callout.case{background:var(--teal-l);border-color:var(--teal)}
+.callout.note{background:#f1efe9;border-color:#8a877f}
+.formula{background:#fff;border:2px solid var(--navy);border-radius:12px;padding:12px 16px;margin:12px 0;font-size:18px}
+.formula .eq{font-family:"Cambria Math",Cambria,Georgia,serif;font-size:20px;font-weight:700;color:var(--navy)}
+.formula .why{font-size:15px;color:var(--ink2);margin-top:4px}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;line-height:1.2}
+.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+table.t{border-collapse:collapse;width:100%;background:#fff;border-radius:10px;overflow:hidden;margin:12px 0;font-size:15px}
+table.t th{background:var(--navy);color:#fff;text-align:left;padding:7px 10px;font-weight:700}
+table.t td{border-top:1px solid var(--line);padding:7px 10px;vertical-align:top}
+table.t tr.bn td{background:#fdecea;font-weight:700}
+table.t tr.tot td{background:#f1efe9;font-weight:800}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px;position:sticky;top:52px;background:var(--bg);padding:8px 0;z-index:10;border-bottom:1px solid var(--line)}
+.tabs a{text-decoration:none;font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--ink)}
+.tabs a.on{background:var(--oidd);color:#fff;border-color:var(--oidd)}
+.sec{scroll-margin-top:110px}
+.lsec{background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 20px 14px;margin:14px 0}
+.lsec>h3{margin-top:14px;color:var(--navy)}
+.stepnum{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--oidd);color:#fff;font-weight:800;font-size:14px;margin-right:8px;flex:none}
+/* worked examples */
+.wex{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:14px 0}
+.wex .setup{background:#faf9f6;border-radius:10px;padding:10px 14px;margin:8px 0}
+.wstep{display:none;border-top:1px dashed var(--line);padding:10px 0 4px}
+.wstep.show{display:block;animation:fade .25s}
+.wstep .ask{font-weight:800;color:var(--navy);display:flex;align-items:flex-start}
+.wstep .ans{margin:6px 0 0 36px}
+.wstep .wy{margin:8px 0 0 36px;font-size:15px;background:var(--blue-l);border-radius:8px;padding:6px 10px}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+/* questions */
+.q{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0}
+.q .qh{display:flex;gap:8px;align-items:baseline}
+.q .qn{font-weight:800;color:var(--oidd);flex:none}
+.q .opts{display:grid;gap:7px;margin:10px 0 4px}
+.q .opt{text-align:left;border:1.5px solid var(--line);background:#fcfbf8;border-radius:10px;padding:8px 12px;font:inherit;font-size:16px;cursor:pointer;color:var(--ink)}
+.q .opt:hover{border-color:var(--oidd)}
+.q .opt.right{background:var(--green-l);border-color:var(--green);font-weight:700}
+.q .opt.wrong{background:var(--rose-l);border-color:var(--rose)}
+.q .fb{display:none;margin-top:10px;border-radius:10px;padding:10px 14px;font-size:15.5px}
+.q .fb.show{display:block}.q .fb.ok{background:var(--green-l)}.q .fb.no{background:var(--rose-l)}
+.q .hist{font-size:12px;color:var(--ink2);margin-top:6px}
+.calcrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.calcrow input{font:inherit;font-size:17px;padding:7px 10px;border:1.5px solid var(--line);border-radius:10px;width:150px}
+.calcrow .unit{color:var(--ink2);font-weight:700}
+.steps{display:none;margin-top:10px;background:#faf9f6;border-radius:10px;padding:10px 14px}
+.steps.show{display:block}
+.steps ol{margin:4px 0;padding-left:22px}.steps li{margin:6px 0}
+.badge{font-size:12px;font-weight:800;border-radius:6px;padding:1px 7px;margin-left:6px}
+.badge.ok{background:var(--green-l);color:var(--green)}.badge.no{background:var(--rose-l);color:var(--rose)}
+/* viz */
+.viz{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:12px 0;overflow-x:auto}
+.viz svg{display:block;max-width:100%;height:auto;margin:0 auto}
+.viz .cap{font-size:13px;color:var(--ink2);text-align:center;margin-top:4px}
+.tool{background:#fff;border:2px solid var(--teal);border-radius:14px;padding:14px 18px;margin:14px 0}
+.tool h3{margin-top:4px;color:var(--teal)}
+.tool input,.tool select{font:inherit;font-size:15px;padding:4px 6px;border:1.5px solid var(--line);border-radius:8px;width:78px}
+.tool label{font-size:14px;font-weight:700;margin-right:10px;white-space:nowrap}
+.tool .out{margin-top:10px}
+.kpi{display:inline-block;background:#f1efe9;border-radius:10px;padding:6px 12px;margin:4px 6px 4px 0;font-size:14px}
+.kpi b{display:block;font-size:19px;color:var(--navy)}
+.mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.mod{background:#fff;border:1px solid var(--line);border-left:6px solid var(--oidd);border-radius:12px;padding:12px 14px;text-decoration:none;color:inherit;display:block}
+.mod:hover{box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.mod .n{font-size:12px;font-weight:800;color:var(--oidd);letter-spacing:.06em}
+.mod h3{margin:2px 0 2px;font-size:18px}
+.mod p{margin:0;font-size:14px;color:var(--ink2)}
+.count{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.count .c{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;min-width:150px}
+.count .c b{display:block;font-size:22px;color:var(--navy)}
+.count .c.urgent{border:2px solid var(--rose)}
+.src{font-size:12px;font-weight:700;color:var(--ink2);background:#f1efe9;border-radius:6px;padding:1px 7px}
+.hwmap td:first-child{font-weight:800;white-space:nowrap}
+.foot{font-size:13px;color:var(--ink2);margin-top:40px}
+.printonly{display:none}
+@media (max-width:640px){h1{font-size:26px}body{font-size:16px}.tabs{top:96px}}
+@media print{header.top,.tabs,.btn,.noprint,.jw-back{display:none!important}body{background:#fff;font-size:11px}main{padding:0;max-width:none}.printonly{display:block}.lsec,.q,.wex,.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="logo" href="../../../">Joseph <span>Wharton</span></a><span style="opacity:.7">›</span><a class="logo" href="../" style="font-weight:700">OIDD 6110</a>
+  <nav id="nav">
+    <a href="#home">🏠 Home</a><a href="#hw1">📝 HW1 Prep</a><a href="#cases">📂 Cases</a><a href="#tools">🧮 Calculators</a><a href="#formulas">📐 Formulas</a><a href="#weak">🎯 Weak Spots</a><a href="#records">📊 Records</a>
+  </nav>
+</div></header>
+<main id="app"><p>Loading…</p></main>
+
+<!-- content (one file per module: easy to update when new slides arrive) -->
+<script>
+window.OM={modules:[],cases:[],hw:{},gens:{}};
+// helpers for content files
+OM.V=(kind,cfg)=>`<div data-viz="${kind}" data-cfg='${JSON.stringify(cfg||{}).replace(/'/g,"&#39;")}'></div>`;
+OM.T=name=>OM.V("tool",{t:name});
+OM.fmt=(x,d=2)=>{if(x==null||isNaN(x))return"–";if(!isFinite(x))return"∞";const r=Math.round(x*Math.pow(10,d))/Math.pow(10,d);return r.toLocaleString("en-US",{maximumFractionDigits:d});};
+OM.rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+OM.pick=arr=>arr[Math.floor(Math.random()*arr.length)];
+OM.fr=(a,b)=>`<span class="frac"><span>${a}</span><span>${b}</span></span>`;
+</script>
+<script src="content/01-intro.js?v=20261101a"></script>
+<script src="content/02-process.js?v=20261101a"></script>
+<script src="content/03-flow.js?v=20261101a"></script>
+<script src="content/04-little.js?v=20261101a"></script>
+<script src="content/05-multi.js?v=20261101a"></script>
+<script src="content/06-kpi.js?v=20261101a"></script>
+<script src="content/07-lean.js?v=20261101a"></script>
+<script src="content/08-wait.js?v=20261101a"></script>
+<script src="content/09-loss.js?v=20261101a"></script>
+<script src="content/10-quality.js?v=20261101a"></script>
+<script src="content/cases.js?v=20261101a"></script>
+<script src="content/hw1.js?v=20261101a"></script>
+<script src="engine.js?v=20261101a"></script>
+</body>
+</html>
