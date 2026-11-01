@@ -315,14 +315,14 @@ function daysTo(d){const t=new Date(d+"T23:59:00");return Math.ceil((t-Date.now(
 
 /* ---------------- pages ---------------- */
 function pHome(){nav("home");
-  const mods=OM.modules.map(m=>{const p=modProg(m);return `<a class="mod" href="#m/${m.id}" style="border-left-color:${m.color||'#0f7b6c'}"><span class="n">MODULE ${m.n} · ${esc(m.code)}</span><h3>${m.icon||""} ${esc(m.title)}</h3><p>${esc(m.blurb)}</p>
+  const mods=OM.modules.map(m=>{const p=modProg(m);return `<a class="mod" href="#practice/${m.id}" style="border-left-color:${m.color||'#0f7b6c'}"><span class="n">MODULE ${m.n} · ${esc(m.code)}</span><h3>${m.icon||""} ${esc(m.title)}</h3><p>${esc(m.blurb)}</p>
    <div class="bar"><div style="width:${p.n?Math.round(p.seen/p.n*100):0}%"></div></div><p style="font-size:12.5px">${p.seen}/${p.n} questions tried · ${p.seen?Math.round(p.ok/p.seen*100):0}% right ${m.status?`· <span class="src">${esc(m.status)}</span>`:""}</p></a>`;}).join("");
   APP.innerHTML=`<span class="tag">Term 3 · Fall 2026 · Prof. Christian Terwiesch</span>
   <h1>OIDD 6110: Operations Management, learned from zero</h1>
   <p class="sub">Every module explained in plain English as if you've never taken a business class, with pictures, the <b>logic and the "why"</b> behind each formula, step-by-step worked examples, and auto-graded practice. Everything here points at one goal: <b>the final exam</b>.</p>
   <div class="count">${DATES.map(d=>{const n=daysTo(d[1]);return `<div class="c ${n<=7&&n>=0?'urgent':''}"><span class="sub" style="font-size:13px">${d[0]}</span><b>${n>=0?n+" days":"done"}</b><span style="font-size:12.5px">${new Date(d[1]+"T12:00").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})} · ${d[2]}</span></div>`;}).join("")}</div>
   <div class="callout trap" style="background:#fff;border-color:#c0392b"><b>🎯 The final looks like HW1</b>Business scenarios → 2–4 questions each → a number in a box (or circle one) → 1 point each, no partial credit. So the core of this site is <a href="#exam"><b>Exam Practice</b></a>: unlimited freshly generated mock exams in exactly that format (HW1-style half, second half, full 2-hour final), graded on submit with full solutions, plus drills per question type and the <a href="#playbook"><b>Exam Playbook</b></a> (“if you see X → do Y”).
-  <div style="margin-top:8px"><a class="btn" href="#exam">▶ Take a mock exam</a> <a class="btn ghost" href="#playbook">🧠 Exam Playbook</a></div></div>
+  <div style="margin-top:8px"><a class="btn" href="#exam">▶ Take a mock exam</a> <a class="btn ghost" href="#practice/intro">📚 Practice by chapter</a> <a class="btn ghost" href="#playbook">🧠 Exam Playbook</a></div></div>
   <div class="callout key"><b>🗺️ How to use this site (recommended order)</b>
    <span class="stepnum">1</span><b>Learn</b> a module (read the lesson; it's short and visual) →
    <span class="stepnum">2</span>walk through the <b>worked examples</b> one step at a time →
@@ -330,7 +330,7 @@ function pHome(){nav("home");
    <span class="stepnum">4</span>do the <b>calculation drills</b> (🎲 gives unlimited new numbers) →
    <span class="stepnum">5</span>see it applied in a <b>case</b> → <span class="stepnum">6</span>clean up with <b>🎯 Weak Spots</b>.
    Then use <a href="#hw1"><b>📝 HW1 Prep</b></a>: a skill map and a full HW1-style practice test, so you can do the real homework on your own.</div>
-  <h2>The 10 modules</h2><div class="mods">${mods}</div>
+  <h2>The 10 modules <span class="sub" style="font-size:15px;font-weight:400">(click → that chapter's questions; 📖 lesson link inside)</span></h2><div class="mods">${mods}</div>
   <h2>Course at a glance</h2>
   <table class="t"><tr><th>Session</th><th>Modules</th><th>Case / prep</th></tr>
   <tr><td>1 · Sat Oct 17</td><td>INTRO, PROCESS, LITTLE</td><td>Mortgage exercise (Huntsman Bank A), retailer inventory turns</td></tr>
@@ -397,6 +397,18 @@ function pRecords(){nav("records");const s=load();let tot=0,ok=0,att=0;const row
   <h2>Recent answers</h2><table class="t"><tr><th>When</th><th>Question</th><th>Your answer</th><th></th></tr>${all.slice(0,60).map(h=>{const q=REG[h.id];const t=q?q.q.replace(/<[^>]+>/g,"").slice(0,90):h.id.replace("gen:","🎲 ").replace("xt:","🎯 exam question: ").replace("xs:","📜 mock exam: ");return `<tr><td style="white-space:nowrap">${new Date(h.ts).toLocaleString([],{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</td><td>${esc(t)}</td><td>${esc(h.a)}</td><td>${h.ok?"✅":"❌"}</td></tr>`;}).join("")}</table>
   <p><button class="btn ghost small" data-act="reset">Reset all OIDD 6110 records</button></p>`;}
 
+function pPractice(id){nav("practice");qCounter=0;const m=OM.modules.find(x=>x.id===id)||OM.modules[0];
+  const blocks=OM.examBlocks?Object.keys(OM.examBlocks).filter(t=>OM.examBlocks[t].mod===m.id||(OM.examBlocks[t].mods||[]).includes(m.id)):[];
+  const st=load();const acc=t=>{const h=(st.mc["xt:"+t]||[]).slice(-12);return h.length?Math.round(h.filter(x=>x.ok).length/h.length*100)+"%":"–";};
+  APP.innerHTML=`<div class="crumb"><a href="#home">OIDD 6110</a> › Practice by chapter</div><h1>📚 Practice by chapter</h1>
+  <p class="sub">Pick a chapter (module). Each tab collects <b>all</b> questions for that chapter, built from the slides and lectures: concept questions, calculation drills, unlimited 🎲 new-number problems, and exam-style scenarios (HW1 format).</p>
+  <div class="tabs" style="position:static">${OM.modules.map(x=>{const p=modProg(x);return `<a href="#practice/${x.id}" class="${x.id===m.id?"on":""}">${x.n}. ${esc(x.code)} <span style="opacity:.75;font-weight:600">${p.seen}/${p.n}</span></a>`;}).join("")}</div>
+  <div class="callout key" style="border-color:${m.color};"><b>${m.icon||""} Module ${m.n} · ${esc(m.code)}: ${esc(m.title)} ${m.status&&m.status.includes("📗")?`<span class="src">${esc(m.status)}</span>`:""}</b>${esc(m.blurb)}<div style="margin-top:6px"><a class="btn small ghost" href="#m/${m.id}">📖 Review the lesson</a> <a class="btn small ghost" href="#m/${m.id}/formulas">📐 Formulas</a> <a class="btn small ghost" href="#m/${m.id}/worked">🧩 Worked examples</a></div></div>
+  ${blocks.length?`<h2>🎯 Exam-style scenarios (HW1 format)</h2><p class="sub">One business scenario with 2–4 numeric questions, new numbers every time.</p><div class="grid">${blocks.map(t=>`<a class="card" href="#drill/${t}"><h3 style="font-size:16px">🔁 ${esc(OM.examBlocks[t].title)}</h3><span class="pill">recent accuracy ${acc(t)}</span><span class="pill">Start →</span></a>`).join("")}</div>`:""}
+  <h2>✅ Concept questions (${(m.checks||[]).length})</h2>${(m.checks||[]).map(q=>qHTML(q)).join("")}
+  ${(m.calcs||[]).length?`<h2>🔢 Calculation questions (${m.calcs.length})</h2><p class="sub">Type the number (percent as 67 or 0.67). 💡 Hint and 👣 step-by-step available.</p>${m.calcs.map(q=>qHTML(Object.assign({type:"num"},q))).join("")}`:""}
+  ${(m.gens||[]).length?`<h2>🎲 Unlimited practice</h2>${m.gens.map(g=>genHTML(g[0],g[1])).join("")}`:""}
+  <div style="display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap">${(()=>{const i=OM.modules.indexOf(m);const pv=OM.modules[i-1],nx=OM.modules[i+1];return (pv?`<a class="btn ghost" href="#practice/${pv.id}">← ${esc(pv.code)}</a>`:"<span></span>")+(nx?`<a class="btn" href="#practice/${nx.id}">Next chapter: ${esc(nx.code)} →</a>`:`<a class="btn" href="#exam">Take a full mock exam →</a>`);})()}</div>`;hydrate();}
 /* ---------------- router ---------------- */
 OM.pages=OM.pages||{};
 OM.E={load,save,rec,hist,esc,fmt,parseNum,numOk,hydrate,nav,qHTML,REG,APP,modProg};
@@ -405,7 +417,7 @@ function route(){const h=(location.hash||"#home").slice(1).split("/");
   if(h[0]==="m"){const same=APP.dataset.page==="m/"+h[1];if(!same){pModule(h[1]);APP.dataset.page="m/"+h[1];}if(h[2]){const el=document.getElementById("s-"+h[2]);if(el)setTimeout(()=>el.scrollIntoView({behavior:same?"smooth":"auto"}),same?0:30);}else if(!same)scrollTo(0,0);
     document.querySelectorAll(".tabs a").forEach(a=>a.classList.toggle("on",a.dataset.jump===h[2]));return;}
   APP.dataset.page=h.join("/");scrollTo(0,0);
-  if(h[0]==="hw1")pHW("hw1");else if(h[0]==="cases")pCases();else if(h[0]==="case")pCase(h[1]);else if(h[0]==="tools")pTools();else if(h[0]==="formulas")pFormulas();else if(h[0]==="weak")pWeak();else if(h[0]==="records")pRecords();else pHome();}
+  if(h[0]==="practice")pPractice(h[1]);else if(h[0]==="hw1")pHW("hw1");else if(h[0]==="cases")pCases();else if(h[0]==="case")pCase(h[1]);else if(h[0]==="tools")pTools();else if(h[0]==="formulas")pFormulas();else if(h[0]==="weak")pWeak();else if(h[0]==="records")pRecords();else pHome();}
 window.addEventListener("hashchange",route);
 window.addEventListener("jw-sync-applied",()=>{});
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",route);else route();

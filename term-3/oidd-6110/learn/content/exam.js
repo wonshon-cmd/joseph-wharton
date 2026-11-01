@@ -138,12 +138,39 @@ B.people={half:2,title:"Little's Law & employee turnover",mod:"little",gen(){
 B.concepts={half:2,title:"Concept questions (MC)",mod:null,gen(){
   const pool=[];OM.modules.forEach(m=>(m.checks||[]).forEach(q=>{if(!q.multi)pool.push(q);}));const pick=shuffle(pool).slice(0,3);
   return{title:"Concepts",intro:"<p>Circle the best answer.</p>",qs:pick.map(q=>mc(q.q,q.opts,q.a,q.why))};}};
+
+B.setup={half:2,title:"Set-ups & batch sizes (variety)",mod:"multi",gen(){
+  const S=P([20,30,45,60,90,120]),p=P([0.25,0.5,1,1.5,2]);const B0=R(3,30)*10;const cap=B0/(S+B0*p);const Rr=T((1/p)*P([0.3,0.4,0.5,0.6,0.7]));const Bn=Rr*S/(1-Rr*p);
+  return{title:"Stamping press",intro:`<p>A press needs a <b>${S}-minute</b> set-up before each batch; each part then takes <b>${p} minutes</b>.</p>`,qs:[
+   num(`With a batch size of ${B0}, what is the capacity (parts per hour)?`,cap*60,"parts/hour",[`Batch time = ${S} + ${B0} × ${p} = ${S+B0*p} min`,`${B0}/${S+B0*p} × 60 = <b>${fmt(cap*60,2)}</b>`]),
+   num(`Demand is ${Rr} parts per minute. What is the smallest batch size that meets demand?`,Bn,"parts",[`B = R·S/(1 − R·p) = ${Rr}×${S}/(1 − ${Rr}×${p})`,`= <b>${fmt(Bn,2)}</b>`]),
+   mc("Cutting the set-up time in half (same demand) lets you…",["Use smaller batches → less inventory, same output","Only increase inventory","Lower the processing time","Nothing changes"],0,"Required batch B = R·S/(1−R·p) is proportional to S.")]};}};
+B.priority={half:2,title:"Priority rules (FCFS vs SPT)",mod:"wait",gen(){
+  const jobs=[R(2,15),R(2,15),R(2,15),R(2,15)];const w=a=>{let t=0,s=0;a.forEach(x=>{s+=t;t+=x;});return s/a.length;};const spt=jobs.slice().sort((a,b)=>a-b);
+  return{title:"Copy shop jobs",intro:`<p>Four jobs are waiting at time 0 (in arrival order): <b>${jobs.join(", ")} minutes</b>. One machine.</p>`,qs:[
+   num("Average waiting time (before a job starts) under FCFS?",w(jobs),"minutes",[`Starts: ${jobs.map((x,i)=>jobs.slice(0,i).reduce((a,b)=>a+b,0)).join(", ")}`,`Average = <b>${fmt(w(jobs),2)}</b>`]),
+   num("Average waiting time under SPT (shortest first)?",w(spt),"minutes",[`Order ${spt.join(", ")}; starts ${spt.map((x,i)=>spt.slice(0,i).reduce((a,b)=>a+b,0)).join(", ")}`,`Average = <b>${fmt(w(spt),2)}</b>`]),
+   mc("Which statement is true?",["SPT minimizes the average wait but long jobs may wait a long time","FCFS always minimizes the average wait","SPT increases total work","Priority rules change capacity"],0,"Priority rules reorder who waits; SPT minimizes the average.")]};}};
+B.kpi={half:2,title:"KPI tree & operating leverage",mod:"kpi",gen(){
+  const q=R(20,80)*10,pr=R(6,20),vc=R(1,pr-3),fc=Math.round(q*(pr-vc)*P([0.6,0.7,0.8])),inc=P([5,10,20]);const p0=q*(pr-vc)-fc,p1=q*(1+inc/100)*(pr-vc)-fc;const dem=Math.round(q*(1+inc/200));
+  return{title:"Capacity and profit",intro:`<p>A shop is capacity-constrained at <b>${q} units/day</b> (demand is higher). Price <b>$${pr}</b>, variable cost <b>$${vc}</b>/unit, fixed cost <b>$${fc}</b>/day.</p>`,qs:[
+   num("What is the profit per day?",p0,"$/day",[`${q} × (${pr} − ${vc}) − ${fc} = <b>$${fmt(p0)}</b>`]),
+   num(`A process improvement raises bottleneck capacity by ${inc}% and demand is unlimited. New profit per day?`,p1,"$/day",[`Volume ${fmt(q*(1+inc/100))} × ${pr-vc} − ${fc} = <b>$${fmt(p1)}</b>`]),
+   num(`If instead demand were only ${dem} units/day, what would the profit be after the improvement?`,Math.min(dem,q*(1+inc/100))*(pr-vc)-fc,"$/day",[`Flow rate = min(${dem}, ${fmt(q*(1+inc/100))}) = ${fmt(Math.min(dem,q*(1+inc/100)))}`,`× ${pr-vc} − ${fc} = <b>$${fmt(Math.min(dem,q*(1+inc/100))*(pr-vc)-fc)}</b>`])]};}};
+B.frontier={half:2,title:"Efficiency frontier (Pareto dominance)",mod:"intro",gen(){
+  for(let t=0;t<200;t++){const f=["P","Q","R","S","T"].map(n=>({n,c:T(2+Math.random()*3),w:R(10,120)}));
+   const dom=x=>f.some(y=>y!==x&&y.c<=x.c&&y.w<=x.w&&(y.c<x.c||y.w<x.w));const on=f.filter(x=>!dom(x));const off=f.filter(dom);if(on.length<2||off.length<1)continue;
+   const tgt=P(off);const by=f.find(y=>y!==tgt&&y.c<=tgt.c&&y.w<=tgt.w);const others=shuffle(f.filter(x=>x!==by&&x!==tgt)).slice(0,3);const opts=shuffle([by,...others]);
+   return{title:"Call center benchmarking",intro:`<p>Five call centers (lower is better for both):</p><table class="t" style="max-width:380px"><tr><th>Firm</th><th>$ per call</th><th>Avg wait (sec)</th></tr>${f.map(x=>`<tr><td>${x.n}</td><td>${x.c.toFixed(2)}</td><td>${x.w}</td></tr>`).join("")}</table>`,qs:[
+    num("How many firms are on the efficiency frontier?",on.length,"firms",[`A firm is off the frontier if another is at least as good on both and better on one.`,`On the frontier: <b>${on.map(x=>x.n).join(", ")}</b> → ${on.length}`],{tol:0.01}),
+    mc(`Firm ${tgt.n} is Pareto dominated by which firm?`,opts.map(x=>"Firm "+x.n),opts.indexOf(by),`${by.n}: $${by.c.toFixed(2)} ≤ $${tgt.c.toFixed(2)} and ${by.w} ≤ ${tgt.w} sec.`)]};}
+  return B.single.gen();}};
 OM.examBlocks=B;
 
 /* ---------- exam state ---------- */
 const MODES={half1:{name:"HW1-style half exam",desc:"Exactly HW1's structure: 7 scenarios, ~22 questions (single resource, parallel stations, staffed steps, labor cost/takt/manpower, turns, build-up, multiple flow units).",blocks:["single","parallel","staffed","labor","turns","buildup","multi"],min:60},
- half2:{name:"Second-half exam (HW2-style topics)",desc:"Waiting time formula, transient queues, OEE/%VAT, attrition, Erlang loss, quality, Little's Law with people, concept MCs. (Adjusted once HW2 is uploaded.)",blocks:["queue","transient","oee","attrition","loss","quality","people","concepts"],min:60},
- full:{name:"Full mock final (2 hours)",desc:"Both halves, like last year's final = HW1 + HW2. About 40+ questions.",blocks:["single","parallel","staffed","labor","turns","buildup","multi","queue","transient","oee","attrition","loss","quality","concepts"],min:120}};
+ half2:{name:"Second-half exam (HW2-style topics)",desc:"Waiting time formula, transient queues, OEE/%VAT, attrition, Erlang loss, quality, Little's Law with people, concept MCs. (Adjusted once HW2 is uploaded.)",blocks:["queue","transient","oee","attrition","setup","loss","quality","people","kpi","concepts"],min:70},
+ full:{name:"Full mock final (2 hours)",desc:"Both halves, like last year's final = HW1 + HW2. About 40+ questions.",blocks:["single","parallel","staffed","labor","turns","buildup","multi","queue","transient","oee","attrition","setup","loss","quality","concepts"],min:120}};
 let X=null;  // current exam {mode, blocks:[{type,title,intro,qs}], start, end, answers, submitted}
 function newExam(mode){const M=MODES[mode];X={mode,blocks:M.blocks.map(t=>Object.assign({type:t},B[t].gen())),start:Date.now(),end:Date.now()+M.min*60000,answers:{},submitted:false};sessionStorage.setItem("oidd_exam",JSON.stringify(X));}
 function loadExam(){try{X=JSON.parse(sessionStorage.getItem("oidd_exam"));}catch(e){X=null;}}
