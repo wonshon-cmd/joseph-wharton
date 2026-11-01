@@ -53,7 +53,7 @@ window.CATALOG = {
           color: "#0f7b6c",
           status: "HW1 Nov 20 · HW2 Dec 5 · HW3 Dec 10 · Final Sat Dec 12 (2 h, closed book, 1-page own cheat sheet)",
           progressKey: "oidd6110_learn_v1",
-          progressTotals: { mc: 193 },
+          progressTotals: { mc: 224 },
           items: [
             { icon: "📚", title: "Practice by Chapter", href: "learn/#practice/intro", desc: "One tab per module (INTRO, PROCESS, FLOW, LITTLE, MULTI, KPI, LEAN, WAIT, LOSS, QUALITY): every concept question, calculation question, 🎲 unlimited new-number problem and exam-style scenario for that chapter.", primary: true },
             { icon: "🎯", title: "Exam Practice (HW1 format)", href: "learn/#exam", desc: "Unlimited freshly generated mock exams that look like HW1 / the final: scenarios with numeric answers, 1 pt each, timed, graded on submit with full solutions. HW1-style half, second half, or full 2-hour final, plus drills for each question type.", primary: true, extra: [{ label: "🧠 Exam Playbook", href: "learn/#playbook" }] },

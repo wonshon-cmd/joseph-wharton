@@ -301,6 +301,7 @@ APP.addEventListener("click",e=>{
   if(act==="wall"){const w=b.closest(".wex");w.querySelectorAll(".wstep").forEach(s=>s.classList.add("show"));const nb=w.querySelector('[data-act="wnext"]');if(nb){nb.textContent="✔ All steps shown";nb.disabled=true;}}
   if(act==="reset"){if(confirm("Erase ALL your OIDD 6110 practice records on every device?")){const s=load();s.mc={};s.resetAt=Date.now();save(s);route();}}
 });
+APP.addEventListener("click",e=>{const j=e.target.closest("[data-jumpto]");if(j){e.preventDefault();const el=document.getElementById(j.dataset.jumpto);if(el)el.scrollIntoView({behavior:"smooth"});}});
 APP.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches("[data-in]")){const btn=e.target.parentElement.querySelector('[data-act="check"]');if(btn)btn.click();}});
 
 /* ---------------- page pieces ---------------- */
@@ -404,10 +405,14 @@ function pPractice(id){nav("practice");qCounter=0;const m=OM.modules.find(x=>x.i
   <p class="sub">Pick a chapter (module). Each tab collects <b>all</b> questions for that chapter, built from the slides and lectures: concept questions, calculation drills, unlimited 🎲 new-number problems, and exam-style scenarios (HW1 format).</p>
   <div class="tabs" style="position:static">${OM.modules.map(x=>{const p=modProg(x);return `<a href="#practice/${x.id}" class="${x.id===m.id?"on":""}">${x.n}. ${esc(x.code)} <span style="opacity:.75;font-weight:600">${p.seen}/${p.n}</span></a>`;}).join("")}</div>
   <div class="callout key" style="border-color:${m.color};"><b>${m.icon||""} Module ${m.n} · ${esc(m.code)}: ${esc(m.title)} ${m.status&&m.status.includes("📗")?`<span class="src">${esc(m.status)}</span>`:""}</b>${esc(m.blurb)}<div style="margin-top:6px"><a class="btn small ghost" href="#m/${m.id}">📖 Review the lesson</a> <a class="btn small ghost" href="#m/${m.id}/formulas">📐 Formulas</a> <a class="btn small ghost" href="#m/${m.id}/worked">🧩 Worked examples</a></div></div>
-  ${blocks.length?`<h2>🎯 Exam-style scenarios (HW1 format)</h2><p class="sub">One business scenario with 2–4 numeric questions, new numbers every time.</p><div class="grid">${blocks.map(t=>`<a class="card" href="#drill/${t}"><h3 style="font-size:16px">🔁 ${esc(OM.examBlocks[t].title)}</h3><span class="pill">recent accuracy ${acc(t)}</span><span class="pill">Start →</span></a>`).join("")}</div>`:""}
-  <h2>✅ Concept questions (${(m.checks||[]).length})</h2>${(m.checks||[]).map(q=>qHTML(q)).join("")}
-  ${(m.calcs||[]).length?`<h2>🔢 Calculation questions (${m.calcs.length})</h2><p class="sub">Type the number (percent as 67 or 0.67). 💡 Hint and 👣 step-by-step available.</p>${m.calcs.map(q=>qHTML(Object.assign({type:"num"},q))).join("")}`:""}
-  ${(m.gens||[]).length?`<h2>🎲 Unlimited practice</h2>${m.gens.map(g=>genHTML(g[0],g[1])).join("")}`:""}
+  ${m.summary?`<div class="lsec" style="border-left:6px solid ${m.color||'#0f7b6c'}"><h3>📝 Chapter summary (read this first)</h3><div class="lesson">${m.summary}</div></div>`:""}
+  ${(()=>{const lvl=(q,calc)=>q.lvl||(OM.levels||{})[q.id]||(calc?"medium":"easy");const all=[...(m.checks||[]).map(q=>({q,calc:false})),...(m.calcs||[]).map(q=>({q:Object.assign({type:"num"},q),calc:true}))];
+    const L=[["easy","🟢 Easy","Definitions and one-step questions: check you know the idea.","#1e8449"],["medium","🟡 Medium","Apply a formula or reason through a situation (typical homework level).","#b7791f"],["hard","🔴 Hard","Multi-step problems and tricky cases (exam level).","#c0392b"]];
+    return `<div class="tabs" style="position:static">${L.map(l=>`<a href="#practice/${m.id}" data-jumpto="lv-${l[0]}">${l[1]} (${all.filter(x=>lvl(x.q,x.calc)===l[0]).length+(l[0]==="medium"?(m.gens||[]).length:0)+(l[0]==="hard"?blocks.length:0)})</a>`).join("")}</div>`+
+    L.map(l=>{const qs=all.filter(x=>lvl(x.q,x.calc)===l[0]);return `<section class="sec" id="lv-${l[0]}"><h2 style="color:${l[3]}">${l[1]}</h2><p class="sub">${l[2]}</p>${qs.map(x=>qHTML(x.q)).join("")}
+      ${l[0]==="medium"&&(m.gens||[]).length?`<h3>🎲 Unlimited medium practice (new numbers every click)</h3>${m.gens.map(g=>genHTML(g[0],g[1])).join("")}`:""}
+      ${l[0]==="hard"&&blocks.length?`<h3>🎯 Exam-style scenarios (HW1 format, new numbers every time)</h3><div class="grid">${blocks.map(t=>`<a class="card" href="#drill/${t}"><h3 style="font-size:16px">🔁 ${esc(OM.examBlocks[t].title)}</h3><span class="pill">recent accuracy ${acc(t)}</span><span class="pill">Start →</span></a>`).join("")}</div>`:""}
+      ${!qs.length&&!(l[0]==="medium"&&(m.gens||[]).length)&&!(l[0]==="hard"&&blocks.length)?"<p class='sub'>None yet.</p>":""}</section>`;}).join("");})()}
   <div style="display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap">${(()=>{const i=OM.modules.indexOf(m);const pv=OM.modules[i-1],nx=OM.modules[i+1];return (pv?`<a class="btn ghost" href="#practice/${pv.id}">← ${esc(pv.code)}</a>`:"<span></span>")+(nx?`<a class="btn" href="#practice/${nx.id}">Next chapter: ${esc(nx.code)} →</a>`:`<a class="btn" href="#exam">Take a full mock exam →</a>`);})()}</div>`;hydrate();}
 /* ---------------- router ---------------- */
 OM.pages=OM.pages||{};

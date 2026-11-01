@@ -172,9 +172,10 @@ const MODES={half1:{name:"HW1-style half exam",desc:"Exactly HW1's structure: 7 
  half2:{name:"Second-half exam (HW2-style topics)",desc:"Waiting time formula, transient queues, OEE/%VAT, attrition, Erlang loss, quality, Little's Law with people, concept MCs. (Adjusted once HW2 is uploaded.)",blocks:["queue","transient","oee","attrition","setup","loss","quality","people","kpi","concepts"],min:70},
  full:{name:"Full mock final (2 hours)",desc:"Both halves, like last year's final = HW1 + HW2. About 40+ questions.",blocks:["single","parallel","staffed","labor","turns","buildup","multi","queue","transient","oee","attrition","setup","loss","quality","concepts"],min:120}};
 let X=null;  // current exam {mode, blocks:[{type,title,intro,qs}], start, end, answers, submitted}
-function newExam(mode){const M=MODES[mode];X={mode,blocks:M.blocks.map(t=>Object.assign({type:t},B[t].gen())),start:Date.now(),end:Date.now()+M.min*60000,answers:{},submitted:false};sessionStorage.setItem("oidd_exam",JSON.stringify(X));}
-function loadExam(){try{X=JSON.parse(sessionStorage.getItem("oidd_exam"));}catch(e){X=null;}}
-function saveExam(){sessionStorage.setItem("oidd_exam",JSON.stringify(X));}
+function newExam(mode){const M=MODES[mode];X={mode,blocks:M.blocks.map(t=>Object.assign({type:t},B[t].gen())),start:Date.now(),end:Date.now()+M.min*60000,answers:{},submitted:false};saveExam();}
+function loadExam(){const d=E.load().drafts||{};X=d.exam?JSON.parse(JSON.stringify(d.exam)):null;}
+/* the in-progress exam lives in the synced record (drafts.exam) so it continues on any device */
+function saveExam(){const s=E.load();s.drafts=s.drafts||{};s.drafts.exam=X;E.save(s);}
 function isRight(q,v){if(q.opts)return v!=null&&v!==""&&+v===q.a;if(v==null||v==="")return false;return !!E.numOk(q,v);}
 
 /* ---------- rendering ---------- */
