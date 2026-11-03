@@ -6,6 +6,9 @@
 window.CATALOG = {
   owner: "Joseph Wharton",
   tagline: "My Wharton coursework, study tools, and records, all in one place.",
+  projects: [
+    { icon: "◉", title: "Hush: the clinic front desk that answers itself", href: "apps/hush/", desc: "Clinics get ~53 calls per physician per day, mostly for appointments. Hush is a patient self-service assistant (booking, refills, red-flag triage, billing, referrals, scheduled callbacks), a staff queue sorted by urgency, and an Erlang C staffing + ROI model." }
+  ],
   terms: [
     {
       id: "term-3",

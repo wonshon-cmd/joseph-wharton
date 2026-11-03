@@ -14,6 +14,8 @@ assets/
   catalog.js                    ← THE file to edit when adding terms / courses / links
   hub.css, hub.js               ← shared look + page rendering
   sync.js                       ← cloud sync engine (records → Google Drive save spot)
+apps/
+  hush/                         ← Hush: clinic front-desk app (index.html, app.css, app.js, FLOW.md)
 term-3/
   index.html                    ← Term 3 (lists its courses)
   mktg-6110/

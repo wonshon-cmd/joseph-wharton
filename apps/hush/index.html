@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Hush · the clinic front desk that answers itself</title>
+<link rel="stylesheet" href="app.css?v=20261103a">
+</head>
+<body>
+<header class="bar">
+  <div class="brand"><span class="logo">◉</span> Hush <small id="clinicName">Clinic</small></div>
+  <nav class="tabs" id="tabs">
+    <button data-view="patient" class="on">📱 Patient</button>
+    <button data-view="desk">🗂️ Front Desk <b class="badge" id="deskBadge">0</b></button>
+    <button data-view="insights">📈 Insights</button>
+    <button data-view="setup">⚙️ Setup</button>
+  </nav>
+</header>
+
+<!-- ============ PATIENT ============ -->
+<section class="view on" id="v-patient">
+  <div class="hero">
+    <div class="pitch">
+      <span class="kicker">53 calls per doctor per day. Most of them are for one thing.</span>
+      <h1>Patients get what they need <em>without picking up the phone.</em></h1>
+      <p>Hush handles the five reasons people call: <b>appointments, refills, symptom questions, billing, and referrals</b>. Routine requests are finished on the spot. Anything that needs a person goes into one organized queue for your staff, sorted by urgency, and comes with a callback time instead of hold music.</p>
+      <ul class="why">
+        <li><b>Book, move, or cancel</b> from live open slots, with an automatic waitlist</li>
+        <li><b>Refill requests</b> sent to the doctor's queue already filled out</li>
+        <li><b>Red-flag symptom screen</b> first, so emergencies are sent to 911/988 right away</li>
+        <li><b>Scheduled callbacks</b> moved away from the Monday-morning, after-lunch, and closing-time rushes</li>
+      </ul>
+      <p class="fine">Demo only: no real patient data leaves this browser. Not a medical device. In an emergency, call 911.</p>
+    </div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="phone-head"><span class="dot"></span><div><b id="phoneClinic">Clinic</b><small>Usually answers instantly</small></div><button class="ghost" id="restart" title="Start over">↺</button></div>
+      <div class="chat" id="chat"></div>
+      <form class="composer" id="composer" autocomplete="off">
+        <input id="msg" placeholder="Type what you need… e.g. “refill my lisinopril”">
+        <button>➤</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRONT DESK ============ -->
+<section class="view" id="v-desk">
+  <div class="desk-top">
+    <div>
+      <h2>Front Desk queue</h2>
+      <p class="sub">Every request in one place: sorted by urgency, with a timer against each one's target response time. No voicemail to transcribe.</p>
+    </div>
+    <div class="row">
+      <button class="btn ghost" id="simRush">⚡ Simulate Monday-morning rush</button>
+      <button class="btn ghost" id="clearDone">Clear completed</button>
+    </div>
+  </div>
+  <div class="kpis" id="deskKpis"></div>
+  <div class="desk">
+    <aside class="filters" id="filters"></aside>
+    <div class="queue" id="queue"></div>
+    <aside class="today">
+      <h3>Today's schedule</h3>
+      <div id="todayList"></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ INSIGHTS ============ -->
+<section class="view" id="v-insights">
+  <h2>Phone volume, staffing, and ROI</h2>
+  <p class="sub">The model uses your specialty's call rate per physician (Setup), typical peak patterns, and an Erlang C queue to find how many phone staff you need each hour to answer 80% of calls within 60 seconds. Move the slider to see what self-service does to that number.</p>
+  <div class="controls card">
+    <label>Share of calls Hush handles without staff <b id="defOut">55%</b>
+      <input type="range" id="deflect" min="0" max="85" value="55"></label>
+    <label>Average call length <b id="ahtOut">4.0 min</b>
+      <input type="range" id="aht" min="2" max="8" step="0.5" value="4"></label>
+  </div>
+  <div class="kpis" id="roiKpis"></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>When the phones ring (predicted calls per hour)</h3>
+      <div id="heatmap"></div>
+      <p class="note">The darkest cells line up with the known rushes: Monday morning, the hour after lunch, and the last 90 minutes before closing.</p>
+    </div>
+    <div class="card">
+      <h3>Phone staff needed: Monday</h3>
+      <div class="legend"><span><i style="background:var(--s1)"></i>Phones only</span><span><i style="background:var(--s2)"></i>With Hush</span></div>
+      <div id="staffChart"></div>
+      <p class="note">Erlang C, 80% of calls answered within 60 s. Hover a bar to see the numbers.</p>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>What patients asked Hush for (this browser)</h3>
+      <div id="mixChart"></div>
+    </div>
+    <div class="card">
+      <h3>How to read this</h3>
+      <ul class="tight">
+        <li><b>Handled without staff</b> means the patient finished the task alone, e.g. booked a slot or saw a referral's status.</li>
+        <li><b>Routed</b> means it needs a person (refill sign-off, nurse callback) but arrives fully filled out, so it takes about 1 minute instead of a 4-minute call.</li>
+        <li>Staff cost uses the loaded hourly rate in Setup. Savings count phone time only; they leave out fewer missed calls and fewer no-shows.</li>
+      </ul>
+      <details><summary>Table view of the Monday staffing model</summary><div id="staffTable"></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SETUP ============ -->
+<section class="view" id="v-setup">
+  <h2>Clinic setup</h2>
+  <div class="grid2">
+    <div class="card form" id="setupForm"></div>
+    <div class="card">
+      <h3>Providers</h3>
+      <div id="provList"></div>
+      <form class="row" id="addProv"><input id="provName" placeholder="Dr. New Provider" required><button class="btn">Add</button></form>
+      <h3 style="margin-top:22px">Demo data</h3>
+      <p class="sub">Everything is saved in this browser only (localStorage).</p>
+      <button class="btn danger" id="resetAll">Reset all demo data</button>
+    </div>
+  </div>
+</section>
+
+<div class="tip" id="tip"></div>
+<div class="toast" id="toast"></div>
+<script src="app.js?v=20261103a"></script>
+</body>
+</html>

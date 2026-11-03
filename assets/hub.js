@@ -18,6 +18,7 @@ if(PAGE==="home"){
   $("main").innerHTML=`<h1>${esc(C.owner)}</h1><p class="sub">${esc(C.tagline)}</p>
   <h2>Terms</h2><div class="grid">${C.terms.map(t=>`<a class="card" href="${t.id}/"><span class="tag">${esc(t.when||"")}</span><h3>${esc(t.name)}</h3><p class="sub" style="margin:0">${t.courses.length} course${t.courses.length===1?'':'s'}: ${t.courses.map(c=>esc(c.code)).join(", ")||'none yet'}</p></a>`).join("")}
   <div class="card empty"><h3>＋ Next term</h3><p style="margin:0">Add it in <code>assets/catalog.js</code> (or ask Claude to).</p></div></div>
+  ${(C.projects||[]).length?`<h2>Projects</h2><div class="grid">${C.projects.map(p=>`<a class="card primary" href="${p.href}"><h3>${p.icon||''} ${esc(p.title)}</h3><p class="sub" style="margin:0">${esc(p.desc||'')}</p></a>`).join("")}</div>`:''}
   <h2>Jump back in</h2><div class="grid">${C.terms.flatMap(t=>t.courses.map(c=>`<a class="card" href="${t.id}/${c.slug}/" style="border-left:6px solid ${c.color||'#011f5b'}"><span class="pill">${esc(t.name)}</span><h3>${esc(c.code)} · ${esc(c.title)}</h3>${progHTML(c)}</a>`)).join("")}</div>`;
 }
 if(PAGE==="term"){
