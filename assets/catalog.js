@@ -65,7 +65,7 @@ window.CATALOG = {
             { icon: "📐", title: "All Formulas", href: "learn/#formulas", desc: "Every formula with why it works, on one printable page. Use it to write your own one-page exam cheat sheet." },
             { icon: "🎯", title: "Weak Spots & Records", href: "learn/#weak", desc: "Questions you missed (with links back to the lesson) and your full answer history, synced to all devices.", extra: [{ label: "📊 Records", href: "learn/#records" }] }
           ]
-        }
+        },
         {
           code: "STAT 6130",
           slug: "stat-6130",
@@ -74,9 +74,9 @@ window.CATALOG = {
           color: "#177a87",
           status: "Credit Risk Project · Installment 1",
           items: [
-            { icon: "📊", title: "Interactive Installment 1 Walkthrough", href: "index.html", desc: "JMP steps, regression and PRSM concepts, residual checks, risk diversification, FICO predictions, and interactive graphs.", primary: true }
+            { icon: "📊", title: "Interactive Installment 1 Walkthrough", href: "walkthrough/", desc: "JMP steps, regression and PRSM concepts, residual checks, risk diversification, FICO predictions, and interactive graphs.", primary: true }
           ]
-        },
+        }
         // , { code: "XXXX 0000", slug: "xxxx-0000", title: "Next course", prof: "", color: "#2a78d6", items: [] }
       ]
     }

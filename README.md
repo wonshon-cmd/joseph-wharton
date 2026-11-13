@@ -27,6 +27,9 @@ term-3/
     learn/                      ← "learn from zero" app (index.html + engine.js)
       content/NN-module.js      ← one file per module (lesson, formulas, worked examples, questions, 🎲 generators)
       content/cases.js, hw1.js  ← cases broken down by module; HW1 skill map + practice test
+  stat-6130/
+    index.html                  ← STAT 6130 course home
+    walkthrough/                ← Credit Risk Project Installment 1 interactive walkthrough
 ```
 
 ## Adding a new course or term
