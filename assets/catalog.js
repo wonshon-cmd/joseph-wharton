@@ -65,7 +65,7 @@ window.CATALOG = {
             { icon: "📐", title: "All Formulas", href: "learn/#formulas", desc: "Every formula with why it works, on one printable page. Use it to write your own one-page exam cheat sheet." },
             { icon: "🎯", title: "Weak Spots & Records", href: "learn/#weak", desc: "Questions you missed (with links back to the lesson) and your full answer history, synced to all devices.", extra: [{ label: "📊 Records", href: "learn/#records" }] }
           ]
-        }
+        },
         {
           code: "STAT 6130",
           slug: "stat-6130",
