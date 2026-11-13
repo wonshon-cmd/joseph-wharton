@@ -77,6 +77,19 @@ window.CATALOG = {
             { icon: "📊", title: "Interactive Installment 1 Walkthrough", href: "index.html", desc: "JMP steps, regression and PRSM concepts, residual checks, risk diversification, FICO predictions, and interactive graphs.", primary: true }
           ]
         },
+        {
+          code: "FNCE 6130",
+          slug: "fnce-6130",
+          title: "Macroeconomics and the Global Economic Environment",
+          prof: "Wharton School",
+          color: "#7a4cc2",
+          status: "Business Cycles Quiz: study page ready; quiz step-by-step walkthrough goes here once uploaded",
+          items: [
+            { icon: "🌀", title: "Business Cycles: Learn & Practice", href: "business-cycles/", desc: "7 lessons in Korean with English terms (GDP, real vs nominal, trend vs cycle & NBER, stylized facts, unemployment & Okun's law, shocks & policy, yield curve). Each step explained, 38 practice questions with step-by-step solutions, unlimited 🎲 calculation drills, weak spots and synced records.", primary: true },
+            { icon: "📝", title: "Business Cycles Quiz: Step-by-Step", href: "business-cycles/#quiz", desc: "Problem-by-problem walkthrough of the quiz with the key ideas explained between steps, plus similar practice problems (added once the quiz is uploaded)." },
+            { icon: "📐", title: "Formula Page", href: "business-cycles/#formulas", desc: "Every business-cycle formula on one page: deflator, annualizing, output gap, unemployment, Okun's law." }
+          ]
+        },
         // , { code: "XXXX 0000", slug: "xxxx-0000", title: "Next course", prof: "", color: "#2a78d6", items: [] }
       ]
     }

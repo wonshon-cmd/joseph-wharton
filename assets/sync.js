@@ -17,7 +17,7 @@ const CFG={
   // localStorage keys to sync, with how to merge them:
   //  "history" = practice-app records: union of every attempt from every device
   //  "lww"     = whole value, newest edit wins
-  keys:{"mktg6110_site_v1":"history","mktg6110_prep_v1":"lww","oidd6110_learn_v1":"history"}};
+  keys:{"mktg6110_site_v1":"history","mktg6110_prep_v1":"lww","oidd6110_learn_v1":"history","fnce6130_bc_v1":"lww"}};
 const SK="jw_sync", MK="jw_meta";
 const script=document.currentScript;const BASE=(script&&script.src)?script.src.replace(/assets\/sync\.js.*$/,""):"/";
 const _get=Storage.prototype.getItem, _set=Storage.prototype.setItem, _rm=Storage.prototype.removeItem;

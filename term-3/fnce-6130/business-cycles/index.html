@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>FNCE 6130 · Business Cycles</title>
+<script src="../../../assets/sync.js?v=20261101a"></script>
+<style>
+:root{--navy:#011f5b;--fn:#7a4cc2;--fn-l:#f1ebfb;--bg:#f6f5f1;--card:#fff;--ink:#1b1b1b;--ink2:#55534e;--line:#e3e1da;--teal:#0f7b6c;--teal-l:#e3f4f1;--gold:#9a6412;--gold-l:#fdf3dc;--blue:#2a63c7;--blue-l:#e8f0fd;--rose:#b03227;--rose-l:#fdecea;--green:#1e7a46;--green-l:#e6f5ec}
+@media (prefers-color-scheme:dark){:root{--bg:#15161a;--card:#1f2127;--ink:#ecebe7;--ink2:#a9a7a0;--line:#33353d;--fn-l:#2b2340;--teal-l:#163430;--gold-l:#3a2f17;--blue-l:#1c2a44;--rose-l:#3d1f1c;--green-l:#183526;--fn:#b394ee;--teal:#4cc2ae;--gold:#e0b25a;--blue:#7ea6ec;--rose:#ef8a80;--green:#6fcf97}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",Inter,Roboto,sans-serif}
+a{color:var(--blue)}
+header.top{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+header.top .in{max-width:1000px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+header.top .logo{font-weight:800;color:#fff;text-decoration:none}header.top .logo span{color:#d9c5ff}
+header.top nav{display:flex;gap:2px;flex-wrap:wrap;margin-left:auto}
+header.top nav a{color:#fff;text-decoration:none;font-size:13.5px;font-weight:600;padding:4px 9px;border-radius:8px;opacity:.88}
+header.top nav a:hover{background:rgba(255,255,255,.14);opacity:1}
+.hero{background:linear-gradient(130deg,#1d0f46,#3b2380 60%,#5b3aa8);color:#fff;padding:34px 16px 28px}
+.hero .in{max-width:1000px;margin:0 auto}
+.hero .crumb{font-size:13px;opacity:.8}.hero .crumb a{color:#e3d6ff}
+.hero h1{margin:6px 0 8px;font-size:clamp(26px,5vw,40px);line-height:1.15}
+.hero p{margin:0;max-width:760px;opacity:.92}
+.pill{display:inline-block;margin:12px 6px 0 0;padding:4px 11px;border:1px solid rgba(255,255,255,.3);border-radius:99px;font-size:13px;background:rgba(255,255,255,.08)}
+main{max-width:1000px;margin:0 auto;padding:18px 16px 80px}
+section{margin:28px 0}
+h2{font-size:24px;margin:34px 0 10px;padding-bottom:6px;border-bottom:3px solid var(--fn);scroll-margin-top:70px}
+h3{font-size:19px;margin:22px 0 8px;scroll-margin-top:70px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:14px 0}
+.box{border-radius:12px;padding:12px 15px;margin:12px 0;border-left:5px solid}
+.key{background:var(--fn-l);border-color:var(--fn)}
+.why{background:var(--blue-l);border-color:var(--blue)}
+.trap{background:var(--rose-l);border-color:var(--rose)}
+.tip{background:var(--gold-l);border-color:var(--gold)}
+.ok{background:var(--green-l);border-color:var(--green)}
+.box b.lab{display:block;font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:2px}
+.f{font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-size:17.5px;background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:8px 12px;margin:8px 0;overflow-x:auto;white-space:nowrap}
+ol.steps{counter-reset:s;list-style:none;padding-left:0;margin:8px 0}
+ol.steps>li{counter-increment:s;position:relative;padding:6px 0 6px 40px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:6px;width:27px;height:27px;border-radius:50%;background:var(--fn);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--fn-l)}
+.tw{overflow-x:auto}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.toc a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 13px;font-weight:600}
+.toc a small{display:block;color:var(--ink2);font-weight:400}
+.toc a:hover{border-color:var(--fn)}
+svg text{fill:var(--ink);font-size:12px}
+/* practice */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 14px}
+.filters button,.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:5px 12px;font-size:14px;cursor:pointer;font-weight:600}
+.filters button.on{background:var(--fn);border-color:var(--fn);color:#fff}
+.btn.pri{background:var(--fn);border-color:var(--fn);color:#fff}
+.q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}
+.q .meta{font-size:12.5px;color:var(--ink2);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tag{background:var(--fn-l);color:var(--fn);border-radius:99px;padding:1px 9px;font-weight:700}
+.st-ok{color:var(--green);font-weight:700}.st-no{color:var(--rose);font-weight:700}
+.q .stem{font-weight:600;margin:6px 0 8px}
+.ch{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:8px 12px;margin:6px 0;cursor:pointer;font-size:15.5px}
+.ch:hover{border-color:var(--fn)}
+.ch.right{background:var(--green-l);border-color:var(--green)}
+.ch.wrong{background:var(--rose-l);border-color:var(--rose)}
+.numrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.numrow input{width:150px;padding:7px 10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:16px}
+.sol{margin-top:10px;display:none}.sol.show{display:block}
+.sol .verdict{font-weight:700;margin-bottom:4px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.stat b{font-size:24px;display:block}
+.small{font-size:14px;color:var(--ink2)}
+.quizslot{border:2px dashed var(--fn);border-radius:14px;padding:18px;background:var(--fn-l)}
+@media print{header.top,.filters,.noprint{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="logo" href="../../../">Joseph <span>Wharton</span></a>
+  <nav>
+    <a href="#learn">📖 개념</a><a href="#formulas">📐 공식</a><a href="#practice">✏️ 연습</a><a href="#gen">🎲 드릴</a><a href="#quiz">📝 퀴즈 풀이</a><a href="#records">📊 기록</a>
+  </nav>
+</div></header>
+
+<div class="hero"><div class="in">
+  <div class="crumb"><a href="../../../">Home</a> › <a href="../../">Term 3</a> › <a href="../">FNCE 6130</a> › Business Cycles</div>
+  <h1>Business Cycles: 처음부터 이해하기</h1>
+  <p>GDP 측정 → 실질/명목 → 경기순환의 정의 → 데이터에서 보이는 패턴(stylized facts) → 노동시장과 Okun's law → 충격과 정책 → 금융 지표. 각 단계마다 <b>왜 그런지</b>와 <b>step-by-step 예시</b>, 그리고 바로 풀어보는 문제가 있습니다. 시험 용어는 영어 그대로 표시했어요.</p>
+  <span class="pill">7개 레슨</span><span class="pill" id="pillQ">연습문제</span><span class="pill">🎲 무한 계산 드릴</span><span class="pill">기록 자동 동기화</span>
+</div></div>
+
+<main>
+
+<section>
+  <div class="toc">
+    <a href="#l1">① GDP 측정<small>Y = C + I + G + NX</small></a>
+    <a href="#l2">② Real vs Nominal<small>deflator · CPI · growth rates</small></a>
+    <a href="#l3">③ Business Cycle이란?<small>trend · cycle · NBER</small></a>
+    <a href="#l4">④ Stylized Facts<small>co-movement · volatility · timing</small></a>
+    <a href="#l5">⑤ 노동시장 & Okun<small>u, LFPR, output gap</small></a>
+    <a href="#l6">⑥ 충격 & 정책<small>AD–AS · demand vs supply</small></a>
+    <a href="#l7">⑦ 금융 지표<small>yield curve · spreads</small></a>
+    <a href="#quiz">📝 퀴즈 Step-by-Step<small>업로드하면 여기에 추가</small></a>
+  </div>
+</section>
+
+<!-- ============================= LEARN ============================= -->
+<h2 id="learn">📖 개념 (Learn)</h2>
+
+<!-- L1 -->
+<h3 id="l1">① GDP 측정: 경제의 "크기"를 재는 법</h3>
+<div class="card">
+<p><b>GDP (Gross Domestic Product)</b> = 일정 기간 동안 <b>한 나라 안에서</b> 생산된 <b>최종(final) 재화와 서비스</b>의 <b>시장가치</b>. 경기순환(business cycle)은 결국 "이 GDP가 추세보다 위/아래로 흔들리는 것"이기 때문에, GDP를 정확히 이해하는 것이 출발점입니다.</p>
+<div class="f">Y = C + I + G + NX &nbsp;&nbsp;(NX = X − M)</div>
+<div class="tw"><table>
+<tr><th>구성요소</th><th>포함되는 것</th><th>미국 GDP 비중(대략)</th></tr>
+<tr><td><b>C</b> Consumption</td><td>가계의 durable(차, 가전), nondurable(음식, 옷), services(의료, 교육)</td><td>~68%</td></tr>
+<tr><td><b>I</b> Investment</td><td>기업 설비·구조물(business fixed), <b>신규 주택(residential)</b>, <b>재고 변화(inventory)</b></td><td>~17%</td></tr>
+<tr><td><b>G</b> Government purchases</td><td>정부가 <b>구매</b>하는 재화·서비스 (공무원 급여, 국방, 도로). <b>이전지출(transfers) 제외</b></td><td>~17%</td></tr>
+<tr><td><b>NX</b> Net exports</td><td>수출 − 수입</td><td>~ −3%</td></tr>
+</table></div>
+<div class="box why"><b class="lab">왜 수입(M)을 빼나?</b>미국 소비자가 독일차를 사면 C에 이미 들어가 있어요. 하지만 그 차는 미국에서 생산된 게 아니므로 M으로 다시 빼줘서 <b>GDP에는 영향 0</b>. "수입이 GDP를 줄인다"는 흔한 오해입니다.</div>
+<p><b>GDP에 들어가지 않는 것</b> (시험 단골):</p>
+<ul>
+<li><b>중고품</b> (2019년 차를 2026년에 거래 → 생산은 2019년에 이미 계산). 단, 딜러의 <i>중개 수수료</i>는 이번 기간 서비스이므로 포함.</li>
+<li><b>중간재(intermediate goods)</b>: 빵집이 산 밀가루 → 빵 가격에 이미 포함 (double counting 방지)</li>
+<li><b>금융거래</b>: 주식·채권 매입은 "소유권 이전"일 뿐 생산이 아님. (경제학의 investment ≠ 일상어의 투자)</li>
+<li><b>이전지출</b>: Social Security, 실업수당 → 생산 대가가 아님</li>
+<li>가사노동, 지하경제 (시장거래가 없어서)</li>
+</ul>
+<div class="box key"><b class="lab">핵심: 3가지 측정 방법은 같은 숫자</b>
+<b>Expenditure</b>(누가 샀나: C+I+G+NX) = <b>Income</b>(누가 벌었나: 임금+이자+임대료+이윤) = <b>Value added</b>(단계별 부가가치의 합). 누군가의 지출은 반드시 누군가의 소득이기 때문.</div>
+<p><b>Step-by-step 예시 (value added)</b>: 광산이 철광석을 $200에 제철소에 판매 → 제철소가 강철을 $500에 자동차 회사에 판매 → 자동차를 소비자에게 $1,200에 판매.</p>
+<ol class="steps">
+<li>각 단계 부가가치 = 판매액 − 중간재 구입액: 광산 200 − 0 = <b>200</b>, 제철소 500 − 200 = <b>300</b>, 자동차 1,200 − 500 = <b>700</b></li>
+<li>합계 200 + 300 + 700 = <b>$1,200</b> = 최종재(자동차) 가격과 정확히 같음</li>
+<li>모든 판매액을 더하면 (200+500+1,200 = 1,900) <b>double counting</b> → 틀린 답</li>
+</ol>
+<div class="box trap"><b class="lab">함정: 재고(inventory)</b>올해 생산했지만 안 팔린 물건 → <b>I(재고투자)로 올해 GDP에 포함</b>. 내년에 팔리면 C↑, 재고투자↓ 로 상쇄 → <b>내년 GDP 변화 0</b>. 생산 시점에 계산한다는 원칙!</div>
+<div class="box tip"><b class="lab">GDP vs GNP</b>GDP = <b>어디서</b> 생산했나 (국경 기준). GNP(GNI) = <b>누가</b> 생산했나 (국민 기준). 켄터키 도요타 공장 생산 → 미국 GDP, 일본 GNP.</div>
+</div>
+
+<!-- L2 -->
+<h3 id="l2">② Real vs Nominal: 물가를 걷어내야 "진짜 성장"이 보인다</h3>
+<div class="card">
+<p><b>Nominal GDP</b> = 그 해 가격 × 그 해 수량. <b>Real GDP</b> = <b>기준연도(base year) 가격</b> × 그 해 수량. 경기순환은 <b>real GDP</b>로 봅니다. 가격만 올라서 nominal GDP가 늘어난 건 더 많이 생산한 게 아니니까요.</p>
+<div class="f">GDP deflator = (Nominal GDP ÷ Real GDP) × 100</div>
+<div class="f">%Δ Nominal ≈ %Δ Real + %Δ Price (inflation) &nbsp;&nbsp;정확히는 (1+g<sub>N</sub>) = (1+g<sub>R</sub>)(1+π)</div>
+<p><b>Step-by-step 예시</b> (사과·오렌지 경제, base year = 2025)</p>
+<div class="tw"><table>
+<tr><th></th><th>사과 P</th><th>사과 Q</th><th>오렌지 P</th><th>오렌지 Q</th></tr>
+<tr><td>2025</td><td>$2</td><td>100</td><td>$4</td><td>50</td></tr>
+<tr><td>2026</td><td>$2.5</td><td>110</td><td>$5</td><td>60</td></tr>
+</table></div>
+<ol class="steps">
+<li><b>Nominal 2025</b> = 2×100 + 4×50 = <b>400</b>. 기준연도라서 Real 2025 = 400, deflator = 100.</li>
+<li><b>Nominal 2026</b> = 2.5×110 + 5×60 = 275 + 300 = <b>575</b></li>
+<li><b>Real 2026</b> = <i>2025 가격</i> × 2026 수량 = 2×110 + 4×60 = 220 + 240 = <b>460</b></li>
+<li><b>Deflator 2026</b> = 575 / 460 × 100 = <b>125</b> → 물가 25% 상승</li>
+<li><b>Real growth</b> = 460/400 − 1 = <b>15%</b>, <b>Nominal growth</b> = 575/400 − 1 = 43.75%</li>
+<li>검산: 1.15 × 1.25 = 1.4375 ✓ (근사식 15% + 25% = 40%는 숫자가 크면 오차가 커짐)</li>
+</ol>
+<div class="box key"><b class="lab">분기 성장률의 연율화 (annualized)</b>미국 GDP 발표 "2.8% 성장"은 <b>분기 성장률을 연율로 환산한 값</b>(SAAR).<div class="f">g<sub>annual</sub> = (1 + g<sub>q</sub>)<sup>4</sup> − 1 ≈ 4 × g<sub>q</sub></div>예: 20,000 → 20,150이면 g<sub>q</sub> = 0.75%, 연율 = 1.0075⁴ − 1 = <b>3.03%</b> (≈ 4 × 0.75 = 3.0%). 월간이면 지수 12.</div>
+<div class="box tip"><b class="lab">로그 차분 (log approximation)</b>ln(Y<sub>t</sub>) − ln(Y<sub>t−1</sub>) ≈ 성장률. 그래서 경제학자들은 GDP를 log 스케일로 그립니다: 일정한 성장률 = 직선. 추세(trend)를 직선으로 잡는 이유이기도 해요.</div>
+<p><b>CPI vs GDP deflator</b></p>
+<div class="tw"><table>
+<tr><th></th><th>CPI</th><th>GDP deflator</th></tr>
+<tr><td>대상</td><td>대표 소비자가 사는 <b>고정 바스켓</b></td><td>국내에서 생산된 <b>모든</b> 최종재 (투자재, 정부 포함)</td></tr>
+<tr><td>수입품</td><td><b>포함</b> (수입 TV 가격↑ → CPI↑)</td><td>미포함</td></tr>
+<tr><td>가중치</td><td>고정 (Laspeyres) → 대체효과 무시 → 인플레이션 <b>과대평가</b> 경향</td><td>매년 바뀜 (Paasche)</td></tr>
+</table></div>
+<div class="box trap"><b class="lab">함정: percent vs percentage point</b>실업률 4% → 6%: "2 <b>percentage point</b> 상승" (= 50 <b>percent</b> 상승). Okun's law 등에서 단위를 꼭 확인.</div>
+</div>
+
+<!-- L3 -->
+<h3 id="l3">③ Business Cycle이란? 추세(trend) vs 순환(cycle)</h3>
+<div class="card">
+<p>Real GDP는 장기적으로 연 ~2–3% 성장(trend)하지만, 그 주위를 불규칙하게 오르내립니다. 이 <b>추세 대비 변동</b>이 business cycle입니다.</p>
+<div class="f">ln Y<sub>t</sub> = trend<sub>t</sub> + cycle<sub>t</sub> &nbsp;&nbsp;&nbsp; Output gap = (Y − Y*) / Y*</div>
+<svg viewBox="0 0 640 230" width="100%" role="img" aria-label="Real GDP oscillates around a rising trend; peak, trough, expansion and recession are labeled">
+  <line x1="40" y1="200" x2="620" y2="200" stroke="currentColor" opacity=".3"/>
+  <line x1="40" y1="20" x2="40" y2="200" stroke="currentColor" opacity=".3"/>
+  <text x="44" y="16">ln(Real GDP)</text><text x="590" y="218">time</text>
+  <line x1="40" y1="180" x2="620" y2="60" stroke="#9a9890" stroke-dasharray="6 5" stroke-width="2"/>
+  <text x="560" y="58">trend (Y*)</text>
+  <path d="M40,180 C90,160 120,140 160,140 C200,140 215,175 250,170 C290,163 320,120 380,105 C420,96 440,120 470,122 C500,124 540,85 620,58" fill="none" stroke="#7a4cc2" stroke-width="3"/>
+  <circle cx="160" cy="140" r="5" fill="#b03227"/><text x="132" y="130">Peak</text>
+  <circle cx="250" cy="170" r="5" fill="#1e7a46"/><text x="232" y="190">Trough</text>
+  <text x="168" y="185" style="font-size:11px">recession</text>
+  <text x="285" y="112" style="font-size:11px">expansion</text>
+  <circle cx="380" cy="105" r="5" fill="#b03227"/><text x="360" y="95">Peak</text>
+  <circle cx="470" cy="122" r="5" fill="#1e7a46"/><text x="455" y="142">Trough</text>
+</svg>
+<ul>
+<li><b>Peak</b>(정점) → <b>Recession/Contraction</b>(수축) → <b>Trough</b>(저점) → <b>Expansion</b>(확장) → 다음 peak</li>
+<li>Output gap &gt; 0: 경기 과열(inflation 압력), &lt; 0: 유휴 자원(실업↑)</li>
+</ul>
+<div class="box key"><b class="lab">NBER의 recession 정의 (미국 공식 판정)</b>"A <b>significant decline in economic activity</b> that is <b>spread across the economy</b> and lasts <b>more than a few months</b>." → 3D 기준: <b>Depth</b>(깊이), <b>Diffusion</b>(확산), <b>Duration</b>(지속).<br>보는 지표: real personal income less transfers, nonfarm payroll employment, real consumer spending, real manufacturing & trade sales, industrial production 등 <b>월간 지표</b> (GDP만 보지 않음). 판정은 보통 <b>수개월~1년 이상 늦게</b> 발표.</div>
+<div class="box trap"><b class="lab">함정: "2분기 연속 마이너스 성장 = 경기침체"?</b>이건 언론의 <b>rule of thumb</b>일 뿐, NBER 공식 정의가 아닙니다. 2020년 침체는 단 <b>2개월</b>(2020.2→2020.4)이었지만 깊이·확산이 극단적이라 recession으로 판정됐어요. 반대로 2022년 상반기 2분기 연속 마이너스였지만 NBER는 recession으로 판정하지 않았습니다(고용은 강했음).</div>
+<p><b>미국 경기순환의 특징</b></p>
+<ul>
+<li><b>비대칭성</b>: 2차대전 이후 expansion 평균 약 5년, recession 평균 약 10개월. 확장은 길고 완만, 수축은 짧고 급격.</li>
+<li><b>불규칙성</b>: "cycle"이라 부르지만 주기가 일정하지 않음 → 예측이 어렵다.</li>
+<li>최근 사례: 2001 (닷컴, 8개월), <b>2007.12–2009.6 Great Recession</b> (18개월, 전후 최장), <b>2020.2–2020.4 COVID</b> (2개월, 최단).</li>
+</ul>
+<div class="box why"><b class="lab">왜 추세를 제거(detrend)하나?</b>GDP 수준(level)은 장기 성장 때문에 거의 항상 올라갑니다. 경기순환을 보려면 그 성장을 빼야 해요. 방법: ① 성장률(first difference of log), ② 선형 추세 제거, ③ <b>HP filter</b>(부드러운 추세를 데이터에서 뽑아냄). 어떤 방법이든 "변수 − 추세"를 보고 패턴을 분석합니다.</div>
+</div>
+
+<!-- L4 -->
+<h3 id="l4">④ Stylized Facts: 데이터가 보여주는 경기순환의 규칙</h3>
+<div class="card">
+<p>각 변수의 cycle 성분을 GDP의 cycle 성분과 비교할 때 3가지를 봅니다:</p>
+<ol class="steps">
+<li><b>Co-movement (방향)</b>: GDP와의 상관계수. <b>Procyclical</b>(+, 같이 움직임), <b>Countercyclical</b>(−, 반대로), <b>Acyclical</b>(≈0)</li>
+<li><b>Timing (시점)</b>: <b>Leading</b>(GDP보다 먼저), <b>Coincident</b>(동시), <b>Lagging</b>(나중에)</li>
+<li><b>Volatility (변동성)</b>: 표준편차를 GDP와 비교 (상대 변동성)</li>
+</ol>
+<div class="tw"><table>
+<tr><th>변수</th><th>방향</th><th>시점</th><th>변동성 (GDP 대비)</th></tr>
+<tr><td>Consumption (nondurables + services)</td><td>Procyclical</td><td>Coincident</td><td><b>더 작음</b> (~0.5–0.8×)</td></tr>
+<tr><td>Consumer durables</td><td>Procyclical</td><td>Coincident</td><td><b>훨씬 큼</b></td></tr>
+<tr><td><b>Investment</b> (특히 residential, inventories)</td><td>Procyclical</td><td>Coincident (주택은 leading)</td><td><b>~3× 이상</b></td></tr>
+<tr><td>Employment / hours</td><td>Procyclical</td><td>Coincident (약간 lag)</td><td>GDP와 비슷</td></tr>
+<tr><td><b>Unemployment rate</b></td><td><b>Countercyclical</b></td><td>Lagging 경향</td><td>큼</td></tr>
+<tr><td>Labor productivity (Y/hour)</td><td>Procyclical (약하게)</td><td>Leading</td><td>작음</td></tr>
+<tr><td>Real wage</td><td>약하게 procyclical / acyclical</td><td>–</td><td>작음</td></tr>
+<tr><td>Government purchases</td><td>대체로 Acyclical</td><td>–</td><td>–</td></tr>
+<tr><td>Imports</td><td>Procyclical</td><td>Coincident</td><td>큼</td></tr>
+<tr><td><b>Net exports</b></td><td><b>Countercyclical</b></td><td>–</td><td>–</td></tr>
+<tr><td>Inflation</td><td>Procyclical (lag)</td><td>Lagging</td><td>–</td></tr>
+<tr><td>Stock prices</td><td>Procyclical</td><td><b>Leading</b></td><td>매우 큼</td></tr>
+<tr><td>Credit spreads</td><td><b>Countercyclical</b></td><td>Leading</td><td>–</td></tr>
+</table></div>
+<div class="box why"><b class="lab">왜 소비는 덜 흔들리고 투자는 많이 흔들리나?</b><b>Consumption smoothing</b> (permanent income hypothesis): 사람들은 일시적 소득 변화에 소비를 크게 바꾸지 않아요. 저축/차입으로 완충. 반면 <b>투자는 미래 전망에 의존</b>하고 연기(postpone)가 가능해서 불황에 급감합니다. 내구재(차, 가전)도 "미룰 수 있는 구매"라 투자처럼 움직여요. → GDP 하락의 대부분은 <b>비중은 작지만 변동이 큰 투자</b>에서 나옵니다.</div>
+<div class="box why"><b class="lab">왜 net exports는 countercyclical?</b>호황에 C와 I가 늘면 수입도 같이 늘어남 → NX 감소. 불황엔 수입이 줄어 NX 증가.</div>
+<div class="box key"><b class="lab">Leading / Coincident / Lagging (Conference Board 지표)</b>
+<b>Leading</b>: 주가(S&amp;P 500), <b>yield curve spread</b>(10y − 단기), <b>building permits</b>, 제조업 신규주문, <b>initial jobless claims</b>(역방향), 소비자 기대지수, 주당 근로시간.<br>
+<b>Coincident</b>: nonfarm payroll employment, industrial production, real personal income less transfers, manufacturing &amp; trade sales.<br>
+<b>Lagging</b>: 평균 실업기간, 서비스 CPI, prime rate, 상업대출 잔액, 재고/판매 비율.</div>
+<div class="box tip"><b class="lab">또 하나: Persistence</b>경기 지표는 자기상관(autocorrelation)이 높습니다: 이번 분기 gap이 마이너스면 다음 분기도 마이너스일 가능성이 큼. 그래서 "momentum"이 있어요.</div>
+</div>
+
+<!-- L5 -->
+<h3 id="l5">⑤ 노동시장 & Okun's Law</h3>
+<div class="card">
+<div class="f">Labor force (LF) = Employed (E) + Unemployed (U)</div>
+<div class="f">Unemployment rate u = U / LF &nbsp;&nbsp;&nbsp; Participation rate = LF / Adult pop (16+)</div>
+<p><b>Unemployed</b> = 일자리가 없고, <b>최근 4주간 적극적으로 구직</b>한 사람. 구직을 포기한 <b>discouraged worker</b>는 LF에서 빠짐.</p>
+<p><b>Step-by-step 예시</b>: 성인 인구 260M, 취업 160M, 실업 8M</p>
+<ol class="steps">
+<li>LF = 160 + 8 = <b>168M</b></li>
+<li>u = 8 / 168 = <b>4.76%</b></li>
+<li>LFPR = 168 / 260 = <b>64.6%</b></li>
+<li>실업자 중 2M이 구직 포기 → U = 6, LF = 166 → u = 6/166 = <b>3.61%</b>. <b>아무도 취업하지 않았는데 실업률이 하락!</b> → 실업률만 보면 노동시장을 오판할 수 있음 (그래서 employment-to-population ratio도 봄).</li>
+</ol>
+<div class="box key"><b class="lab">실업의 종류</b><b>Frictional</b>(이직 중 탐색) + <b>Structural</b>(기술·지역 미스매치) = <b>Natural rate u*</b> (경기와 무관, 미국 ~4–4.5%).<br><b>Cyclical</b> = u − u* → 경기순환 때문에 생기는 부분.</div>
+<div class="f">Okun's law (gap 버전): &nbsp;(Y − Y*)/Y* ≈ −2 × (u − u*)</div>
+<div class="f">Okun's law (성장률 버전): &nbsp;%ΔY ≈ g* − 2 × Δu &nbsp;&nbsp;(g* ≈ 추세성장률 ~2–3%)</div>
+<p><b>Step-by-step 예시</b>: u* = 4.5%, 현재 u = 6.5%, Y* = $25T</p>
+<ol class="steps">
+<li>Cyclical unemployment = 6.5 − 4.5 = <b>2 percentage points</b></li>
+<li>Output gap ≈ −2 × 2 = <b>−4%</b></li>
+<li>잃어버린 생산 ≈ 0.04 × 25T = <b>$1T</b> → 실제 Y ≈ $24T</li>
+</ol>
+<div class="box why"><b class="lab">왜 계수가 1이 아니라 2쯤일까?</b>불황 때 생산이 줄어도 기업은 바로 해고하지 않고(labor hoarding) 근로시간을 줄이고, 생산성도 떨어지고, 일부는 LF에서 빠지기 때문에 실업률은 생산보다 덜 움직입니다. 그래서 생산 1% ↓ ≈ 실업률 0.5pp ↑, 즉 실업률 1pp ↑ ≈ 생산 2% ↓.</div>
+<div class="box trap"><b class="lab">함정</b>Okun 계수(2, 2.5, 3...)는 교재·강의마다 다를 수 있어요. <b>문제에 주어진 계수를 사용</b>하세요. 성장률 버전에서는 추세성장률 g*를 빼먹지 말 것.</div>
+</div>
+
+<!-- L6 -->
+<h3 id="l6">⑥ 무엇이 경기순환을 일으키나? 충격(Shocks)과 정책</h3>
+<div class="card">
+<p>단기 분석 도구: <b>AD–AS</b>. 가로축 = 산출량(Y), 세로축 = 물가(P).</p>
+<div class="tw"><table>
+<tr><th>충격</th><th>예시</th><th>Y</th><th>P / inflation</th><th>시사점</th></tr>
+<tr><td><b>Negative demand shock</b> (AD ←)</td><td>소비심리 위축, 주택버블 붕괴, 긴축 통화정책, 금융위기</td><td>↓</td><td>↓</td><td>Y와 물가가 <b>같은 방향</b> → inflation이 procyclical</td></tr>
+<tr><td><b>Negative supply shock</b> (SRAS ←)</td><td>유가 급등(1973, 1979), 공급망 차질(2021–22), 흉작</td><td>↓</td><td><b>↑</b></td><td><b>Stagflation</b>, 정책 딜레마</td></tr>
+<tr><td>Positive productivity shock</td><td>기술혁신</td><td>↑</td><td>↓</td><td>RBC 모형의 핵심 동인</td></tr>
+</table></div>
+<div class="box key"><b class="lab">두 가지 관점</b><b>Keynesian/New Keynesian</b>: 가격·임금이 경직적(sticky) → 수요충격이 산출을 움직임 → 안정화 정책이 유용.<br><b>Real Business Cycle (RBC)</b>: 가격 유연, 생산성(TFP) 등 실물충격에 대한 최적 반응이 곧 경기순환 → 정책 개입 필요성 낮음. (procyclical productivity가 근거로 쓰임)</div>
+<p><b>정책 대응</b></p>
+<ul>
+<li><b>Monetary policy</b> (Fed, dual mandate: 최대고용 + 물가안정): 불황 → 정책금리(fed funds rate) ↓ → 투자·소비↑ → AD →. 금리가 0에 닿으면(ZLB) QE, forward guidance.</li>
+<li><b>Fiscal policy</b>: 정부지출↑ / 감세 → AD →.</li>
+<li><b>Automatic stabilizers</b>: 법 개정 없이 자동 작동. 불황 → 세수↓(소득세), 실업수당↑ → <b>재정적자가 자동으로 확대</b>(countercyclical deficit) → 가처분소득 완충.</li>
+</ul>
+<div class="box trap"><b class="lab">함정: 공급충격 + 정책</b>공급충격엔 통화완화가 산출은 지지하지만 인플레이션을 더 키움. 긴축하면 인플레이션은 잡지만 불황 심화. "정답"이 없는 trade-off라는 게 포인트.</div>
+<div class="box tip"><b class="lab">Phillips curve와 연결</b>Output gap &gt; 0 (u &lt; u*) → 인플레이션 상승 압력. 수요충격 하에서 인플레이션과 실업률이 반대로 움직이는 이유.</div>
+</div>
+
+<!-- L7 -->
+<h3 id="l7">⑦ 금융 지표로 경기 읽기</h3>
+<div class="card">
+<div class="box key"><b class="lab">Yield curve (term spread = 장기금리 − 단기금리)</b>보통은 우상향 (장기 &gt; 단기, term premium). <b>역전(inversion)</b>: 단기 &gt; 장기 → 시장이 "앞으로 Fed가 금리를 내릴 것 = 경기가 나빠질 것"이라고 예상한다는 신호.<br>10y − 3m 스프레드 역전은 1960년대 후반 이후 미국의 거의 모든 recession에 <b>약 6~24개월 앞서</b> 나타남 → 대표적 <b>leading indicator</b>.<br>단, 2022–24년의 긴 역전 뒤 즉시 침체가 오지 않은 것처럼 완벽한 신호는 아님.</div>
+<ol class="steps">
+<li>장기금리 ≈ 미래 단기금리 기대의 평균 + term premium (expectations hypothesis)</li>
+<li>시장이 미래 금리 인하를 예상 → 장기금리가 단기보다 낮아짐 → 역전</li>
+<li>또한 은행은 단기로 빌려 장기로 대출 → 역전 시 수익성↓ → 대출 위축 → 실제로 경기 둔화에 기여</li>
+</ol>
+<div class="box why"><b class="lab">Credit spread (회사채 − 국채)</b>불황 땐 부도 위험↑ → 스프레드 확대 → <b>countercyclical</b>, 그리고 대체로 선행. 기업 자금조달 비용↑ → 투자↓로 이어지는 "financial accelerator".</div>
+<div class="box tip"><b class="lab">Stock market</b>미래 이익의 현재가치 → 선행지표. 하지만 노이즈가 커서 "주식시장은 지난 5번의 경기침체 중 9번을 예측했다" (Samuelson)는 농담이 유명합니다.</div>
+</div>
+
+<!-- ============================= FORMULAS ============================= -->
+<h2 id="formulas">📐 공식 한 페이지</h2>
+<div class="card">
+<div class="tw"><table>
+<tr><th>개념</th><th>공식</th><th>메모</th></tr>
+<tr><td>GDP (지출)</td><td>Y = C + I + G + (X − M)</td><td>최종재, 국내, 이번 기간</td></tr>
+<tr><td>Value added</td><td>판매액 − 중간재 구입액</td><td>합 = GDP</td></tr>
+<tr><td>Real GDP</td><td>Σ P<sub>base</sub> × Q<sub>t</sub></td><td>기준연도 가격</td></tr>
+<tr><td>Deflator</td><td>Nominal / Real × 100</td><td>기준연도 = 100</td></tr>
+<tr><td>Inflation</td><td>π = P<sub>t</sub>/P<sub>t−1</sub> − 1</td><td>deflator 또는 CPI</td></tr>
+<tr><td>Growth 분해</td><td>(1+g<sub>N</sub>) = (1+g<sub>R</sub>)(1+π) ≈ g<sub>R</sub> + π</td><td></td></tr>
+<tr><td>Annualize</td><td>(1+g<sub>q</sub>)<sup>4</sup> − 1 ≈ 4g<sub>q</sub></td><td>월간: ^12</td></tr>
+<tr><td>Average growth</td><td>(Y<sub>T</sub>/Y<sub>0</sub>)<sup>1/T</sup> − 1</td><td>CAGR</td></tr>
+<tr><td>Rule of 70</td><td>두 배 되는 기간 ≈ 70 / g(%)</td><td>2% → 35년</td></tr>
+<tr><td>Output gap</td><td>(Y − Y*) / Y*</td><td>&lt;0 = 침체</td></tr>
+<tr><td>Unemployment</td><td>u = U / (E + U)</td><td></td></tr>
+<tr><td>LFPR</td><td>(E + U) / Adult pop</td><td></td></tr>
+<tr><td>Okun (gap)</td><td>(Y−Y*)/Y* ≈ −β(u − u*), β≈2</td><td>문제의 β 사용</td></tr>
+<tr><td>Okun (growth)</td><td>%ΔY ≈ g* − β·Δu</td><td></td></tr>
+<tr><td>Relative volatility</td><td>σ(x) / σ(Y)</td><td>I ≈ 3+, C ≈ 0.5–0.8</td></tr>
+</table></div>
+</div>
+
+<!-- ============================= PRACTICE ============================= -->
+<h2 id="practice">✏️ 연습문제 (step-by-step 해설 포함)</h2>
+<p class="small">답을 고르거나 입력하면 바로 채점되고, 풀이 단계와 "왜 중요한지"가 나옵니다. 기록은 자동 저장·동기화됩니다.</p>
+<div class="filters" id="filters"></div>
+<div id="qlist"></div>
+
+<!-- ============================= GENERATORS ============================= -->
+<h2 id="gen">🎲 무한 계산 드릴 (매번 새 숫자)</h2>
+<div class="filters" id="genbtns"></div>
+<div id="genarea"><p class="small">위 버튼을 누르면 새 문제가 나와요.</p></div>
+
+<!-- ============================= QUIZ ============================= -->
+<h2 id="quiz">📝 Business Cycles Quiz: Step-by-Step 풀이</h2>
+<div class="quizslot">
+<p><b>퀴즈를 올려주시면</b> 이 자리에 문제별로 다음 순서의 풀이가 추가됩니다:</p>
+<ol class="steps">
+<li><b>문제가 묻는 것</b>: level인가 growth인가 gap인가? 단위(%, pp, annualized)는?</li>
+<li><b>필요한 개념</b>: 위 레슨 링크와 함께 핵심 아이디어 설명</li>
+<li><b>계산/추론 단계</b>: 한 줄씩, 숫자를 넣어서</li>
+<li><b>오답 선택지가 왜 틀렸는지</b></li>
+<li><b>비슷한 연습문제</b>: 숫자/상황을 바꿔서 직접 풀어볼 수 있게</li>
+</ol>
+<p class="small">그 전까지는 아래 전략으로 연습문제를 풀어보세요.</p>
+</div>
+<div class="card">
+<h3 style="margin-top:0">Business cycle 문제 푸는 5단계 체크리스트</h3>
+<ol class="steps">
+<li><b>Real인가 Nominal인가?</b> 경기순환·성장 질문은 거의 항상 real. 물가 정보가 주어지면 먼저 deflate.</li>
+<li><b>Level, growth, gap 중 무엇?</b> "얼마나 컸나"(level) vs "얼마나 빨리"(growth) vs "추세 대비"(gap) 구분.</li>
+<li><b>단위 확인</b>: 분기 vs 연율, percent vs percentage point, $B vs $T.</li>
+<li><b>방향(sign) 감각</b>: procyclical/countercyclical, 수요충격(Y, P 같은 방향) vs 공급충격(반대 방향).</li>
+<li><b>검산</b>: 근사식(합)과 정확식(곱)이 비슷한지, 답의 크기가 현실적인지 (미국 연 성장 −3% ~ +6% 정도).</li>
+</ol>
+</div>
+
+<!-- ============================= RECORDS ============================= -->
+<h2 id="records">📊 내 기록 & Weak Spots</h2>
+<div class="stats" id="stats"></div>
+<div id="weak"></div>
+<p class="noprint"><button class="btn" id="resetBtn">기록 초기화</button></p>
+
+</main>
+
+<script>
+(function(){
+"use strict";
+const KEY="fnce6130_bc_v1";
+const TOP={gdp:"① GDP",real:"② Real/Nominal",cyc:"③ Cycle",fac:"④ Stylized facts",lab:"⑤ Labor/Okun",ad:"⑥ Shocks/Policy",fin:"⑦ Financial"};
+const LINK={gdp:"#l1",real:"#l2",cyc:"#l3",fac:"#l4",lab:"#l5",ad:"#l6",fin:"#l7"};
+
+// ---------------- Question bank ----------------
+// type mc: choices + a (index). type num: ans + tol (absolute) + unit.
+const Q=[
+{id:"gdp1",t:"gdp",q:"다음 중 2026년 미국 GDP에 포함되는 것은?",c:["2019년식 중고차를 2026년에 $15,000에 구입","정부가 지급한 Social Security 연금","한 가족이 2026년에 새로 지어진 주택을 구입","투자자가 Apple 주식을 $10,000어치 매수"],a:2,
+ s:["중고차: 2019년에 이미 생산·계산됨 → 제외 (딜러 수수료만 포함)","Social Security: 이전지출(transfer), 생산의 대가가 아님 → G에 미포함","신규 주택: <b>residential investment(I)</b>로 포함 ✓ (주택 구입은 C가 아니라 I!)","주식 매수: 금융자산 소유권 이전 → 생산 아님 → 제외"],
+ w:"GDP는 '이번 기간에 새로 생산된 최종재'만 센다. 이 원칙 하나로 대부분의 포함/제외 문제가 풀림."},
+{id:"gdp2",t:"gdp",q:"한 기업이 2026년에 $10M어치를 생산했지만 하나도 팔지 못했다. 2026년 GDP에 미치는 영향은?",c:["영향 없음 (팔리지 않았으므로)","재고투자(I)로 +$10M","소비(C)로 +$10M","2027년에 팔릴 때 2027년 GDP에 +$10M"],a:1,
+ s:["GDP는 <b>생산 시점</b> 기준","팔리지 않은 생산물 = 재고 증가 = inventory investment (I의 일부)","→ 2026년 GDP +$10M","2027년에 팔리면: C +10, 재고투자 −10 → 2027년 GDP 순변화 0"],
+ w:"재고 변화는 경기순환에서 특히 변동이 크다. 불황 초기엔 안 팔린 재고가 쌓이고, 이후 기업이 생산을 줄여 재고를 소진하면서 GDP가 더 크게 떨어진다."},
+{id:"gdp3",t:"gdp",type:"num",q:"광산이 철광석을 $200에 제철소에 판매, 제철소는 강철을 $500에 자동차 회사에 판매, 자동차 회사는 자동차를 소비자에게 $1,200에 판매. 이 거래들이 GDP에 기여하는 금액($)은?",ans:1200,tol:0.5,unit:"$",
+ s:["부가가치 = 판매액 − 중간재 구입액","광산 200, 제철소 500−200 = 300, 자동차 1,200−500 = 700","합계 = 200+300+700 = <b>1,200</b> = 최종재 가격","모든 판매액 합(1,900)은 double counting"],
+ w:"Value-added 방식 = 지출 방식. 중간재를 빼는 이유를 이해하면 '최종재만 센다'는 규칙이 자연스러워진다."},
+{id:"gdp4",t:"gdp",q:"미국 소비자가 독일산 자동차를 $40,000에 구입했다. 미국 GDP에 미치는 순효과는?",c:["+$40,000 (C 증가)","−$40,000 (수입 증가)","0 (C +40,000, NX −40,000)","+$40,000 (I 증가)"],a:2,
+ s:["C에 +40,000 기록 (소비자 지출)","수입(M)에 +40,000 → NX −40,000","순효과: 40,000 − 40,000 = <b>0</b>"],
+ w:"'수입은 GDP를 줄인다'는 오해 주의. M을 빼는 건 C/I/G에 섞여 들어간 외국 생산분을 걷어내는 회계적 조정일 뿐."},
+{id:"gdp5",t:"gdp",type:"num",q:"C = $18.0T, I = $4.5T, G = $4.8T, 수출 = $3.1T, 수입 = $3.9T. GDP는 몇 $T?",ans:26.5,tol:0.01,unit:"$T",
+ s:["NX = X − M = 3.1 − 3.9 = −0.8","Y = 18.0 + 4.5 + 4.8 + (−0.8) = <b>26.5</b>"],
+ w:"NX 부호 실수가 가장 흔한 실수. 미국은 무역적자라 NX < 0."},
+{id:"gdp6",t:"gdp",q:"켄터키에 있는 도요타 공장의 생산물은?",c:["미국 GDP와 미국 GNP에 포함","미국 GDP, 일본 GNP에 포함","일본 GDP, 미국 GNP에 포함","일본 GDP와 일본 GNP에 포함"],a:1,
+ s:["GDP = 국경(where) 기준 → 미국 땅에서 생산 → 미국 GDP","GNP = 소유/국민(who) 기준 → 일본 기업 소득 → 일본 GNP"],
+ w:"해외투자·해외근로 소득이 큰 나라(아일랜드 등)는 GDP와 GNP 차이가 크다."},
+{id:"real1",t:"real",type:"num",q:"[사과·오렌지 경제] 2025(base): 사과 $2×100개, 오렌지 $4×50개. 2026: 사과 $2.5×110개, 오렌지 $5×60개. 2026년 GDP deflator는?",ans:125,tol:0.1,unit:"",
+ s:["Nominal 2026 = 2.5×110 + 5×60 = 575","Real 2026 = <i>2025 가격</i> × 2026 수량 = 2×110 + 4×60 = 460","Deflator = 575/460 × 100 = <b>125</b>"],
+ w:"Real GDP는 '가격을 고정하고 수량만 바뀌게' 만든 것. deflator는 nominal과 real의 비율이라 자동으로 물가지수가 된다."},
+{id:"real2",t:"real",type:"num",q:"위 사과·오렌지 경제에서 2025→2026 real GDP 성장률(%)은?",ans:15,tol:0.05,unit:"%",
+ s:["Real 2025 = 기준연도라 nominal과 같음 = 2×100 + 4×50 = 400","Real 2026 = 460","성장률 = 460/400 − 1 = <b>15%</b>","참고: nominal 성장 43.75% = (1.15)(1.25) − 1"],
+ w:"Nominal 성장 43.75% 중 실제 생산 증가는 15%뿐. 나머지는 물가."},
+{id:"real3",t:"real",type:"num",q:"Real GDP가 1분기 $20,000B에서 2분기 $20,150B로 증가했다. 연율화(annualized) 성장률(%)은? (복리로, 소수 둘째자리)",ans:3.03,tol:0.02,unit:"%",
+ s:["분기 성장률 g<sub>q</sub> = 20,150/20,000 − 1 = 0.75%","연율 = (1.0075)<sup>4</sup> − 1 = 1.0303 − 1 = <b>3.03%</b>","근사: 4 × 0.75 = 3.0%"],
+ w:"뉴스의 'GDP 3% 성장'은 대부분 연율화된 분기 수치. 분기 수치를 그대로 연 성장률과 비교하면 4배 차이가 난다."},
+{id:"real4",t:"real",q:"Nominal GDP가 6% 증가하고 GDP deflator가 4% 상승했다. Real GDP 성장률은 대략?",c:["10%","약 2%","약 1.5%","−2%"],a:1,
+ s:["%ΔNominal ≈ %ΔReal + %ΔP","6% ≈ g<sub>R</sub> + 4% → g<sub>R</sub> ≈ <b>2%</b>","정확히: 1.06/1.04 − 1 = 1.92%"],
+ w:"이 분해식은 경기 판단의 기본: 명목 성장이 좋아 보여도 인플레이션이 높으면 실질은 정체일 수 있다."},
+{id:"real5",t:"real",q:"수입 TV 가격이 크게 올랐다. 어떤 지표가 더 크게 영향을 받나?",c:["GDP deflator만","CPI만 (또는 CPI가 더 크게)","둘 다 똑같이","둘 다 영향 없음"],a:1,
+ s:["CPI = 소비자가 사는 바스켓 → <b>수입품 포함</b>","GDP deflator = 국내 생산품만 → 수입 TV 미포함","→ CPI가 반응, deflator는 (직접적으로는) 반응 없음"],
+ w:"유가 같은 수입품 가격 충격이 CPI 인플레이션을 deflator보다 더 크게 올리는 이유."},
+{id:"real6",t:"real",type:"num",q:"Real GDP가 매년 2% 성장한다면 두 배가 되는 데 대략 몇 년? (Rule of 70)",ans:35,tol:0.6,unit:"년",
+ s:["Rule of 70: 배가 기간 ≈ 70 / 성장률(%)","70 / 2 = <b>35년</b>","정확히: ln2/ln1.02 = 35.0년"],
+ w:"추세성장률의 작은 차이가 장기적으론 엄청난 차이: 경기순환(단기)과 성장(장기)을 구분하는 감각."},
+{id:"cyc1",t:"cyc",q:"NBER의 recession 정의에 가장 가까운 것은?",c:["Real GDP가 2분기 연속 감소","실업률이 6%를 넘는 기간","경제 전반에 걸쳐 수개월 이상 지속되는 경제활동의 상당한 감소","주가가 고점 대비 20% 이상 하락"],a:2,
+ s:["NBER: 'significant decline in economic activity spread across the economy, lasting more than a few months'","3D: <b>depth, diffusion, duration</b>","2분기 연속 마이너스 = 언론의 rule of thumb (공식 정의 아님)","20% 하락 = bear market 정의 (주식)"],
+ w:"2020년(2개월짜리 침체)과 2022년 상반기(2분기 연속 마이너스지만 침체 아님)가 이 차이를 보여주는 대표 사례."},
+{id:"cyc2",t:"cyc",q:"2차대전 이후 미국 경기순환에 대한 설명으로 옳은 것은?",c:["Expansion과 recession의 길이가 거의 같다","Expansion이 recession보다 평균적으로 훨씬 길다","Recession이 expansion보다 길다","주기가 정확히 7년으로 일정하다"],a:1,
+ s:["전후 expansion 평균 ≈ 5년 내외, recession 평균 ≈ 10개월","→ 비대칭(asymmetry): 확장은 길고 완만, 수축은 짧고 급격","주기는 불규칙 → '사이클'이지만 예측 불가"],
+ w:"비대칭성은 시험에서 stylized fact로 자주 나온다."},
+{id:"cyc3",t:"cyc",type:"num",q:"Potential GDP Y* = $24.0T, 실제 GDP Y = $23.5T. Output gap(%)은? (소수 둘째자리, 음수면 − 붙이기)",ans:-2.08,tol:0.02,unit:"%",
+ s:["Gap = (Y − Y*) / Y*","= (23.5 − 24.0) / 24.0 = −0.5 / 24 = <b>−2.08%</b>","분모는 Y*(potential)!"],
+ w:"음의 gap = 유휴 자원, 실업 > u*, 인플레이션 하방 압력 → 확장적 정책의 근거."},
+{id:"cyc4",t:"cyc",q:"경기순환을 분석할 때 GDP를 'detrend'하는 이유는?",c:["GDP 데이터의 측정오차를 없애기 위해","장기 성장 추세를 제거해서 추세 대비 변동(cycle)만 보기 위해","인플레이션 효과를 제거하기 위해","계절성을 제거하기 위해"],a:1,
+ s:["GDP level은 장기 성장 때문에 거의 항상 증가","Business cycle = 추세 대비 편차","→ 추세(선형, HP filter 등)를 빼야 cycle이 보임","인플레이션 제거 = deflate(real화), 계절성 제거 = seasonal adjustment: 다른 작업"],
+ w:"Real화, 계절조정, detrend는 서로 다른 3단계. 문제에서 무엇을 묻는지 구분."},
+{id:"cyc5",t:"cyc",q:"다음 미국 recession 중 가장 짧았던 것은?",c:["2001년 (닷컴)","2007–09 (Great Recession)","2020 (COVID-19)","1981–82"],a:2,
+ s:["2020: 2월 peak → 4월 trough, <b>2개월</b> (역사상 최단)","2007–09: 18개월 (전후 최장)","2001: 8개월, 1981–82: 16개월"],
+ w:"짧았지만 매우 깊고 광범위 → 'duration'이 짧아도 depth와 diffusion이 극단이면 recession."},
+{id:"fac1",t:"fac",q:"GDP 구성요소 중 경기순환에서 변동성(표준편차)이 가장 큰 것은?",c:["Nondurable 소비","Services 소비","Investment","Government purchases"],a:2,
+ s:["Investment의 cycle 표준편차 ≈ GDP의 3배 이상","미래 전망에 의존하고 연기 가능 → 불황에 급감","Nondurable·services 소비는 GDP보다 덜 변동 (consumption smoothing)"],
+ w:"GDP 비중은 ~17%뿐이지만, 침체기 GDP 감소의 상당 부분이 투자에서 나온다."},
+{id:"fac2",t:"fac",q:"Nondurable·services 소비가 GDP보다 덜 변동하는 가장 좋은 설명은?",c:["정부가 소비를 통제하기 때문","가계가 일시적 소득 변화에도 소비를 평탄하게 유지하려 하기 때문 (consumption smoothing)","소비는 측정이 부정확하기 때문","소비는 수입품이 많기 때문"],a:1,
+ s:["Permanent income hypothesis: 소비는 '평생/항상 소득'에 따라 결정","일시적 소득 감소 → 저축을 줄이거나 차입해서 소비 유지","→ 소비 변동 < 소득 변동"],
+ w:"반대로 내구재 소비는 '미룰 수 있는 구매'라서 투자처럼 크게 변동한다."},
+{id:"fac3",t:"fac",q:"다음 중 countercyclical 변수는?",c:["Employment","Industrial production","Unemployment rate","Corporate profits"],a:2,
+ s:["Countercyclical = GDP cycle과 음의 상관","불황 → GDP↓, 실업률↑ → 반대로 움직임","나머지는 모두 procyclical"],
+ w:"그 밖의 countercyclical: net exports, initial jobless claims, credit spreads, 재정적자."},
+{id:"fac4",t:"fac",q:"다음 중 leading indicator는?",c:["Unemployment rate","Industrial production","Building permits (건축허가)","Average duration of unemployment"],a:2,
+ s:["Building permits: 착공 전 단계 → 실제 건설·투자보다 <b>먼저</b> 움직임 → leading","Industrial production: coincident","Unemployment rate, 실업기간: lagging"],
+ w:"Leading indicator는 '계획·기대'를 반영하는 변수 (허가, 신규주문, 주가, 금리 스프레드, 기대지수)."},
+{id:"fac5",t:"fac",q:"어떤 변수 X의 cycle 성분과 GDP cycle의 상관계수가 −0.7이고, X의 상관계수가 GDP를 3분기 <b>앞선</b> 시점에서 가장 크다. X는?",c:["Procyclical, leading","Countercyclical, leading","Countercyclical, lagging","Acyclical"],a:1,
+ s:["상관계수 부호 −  → <b>countercyclical</b>","X(t)와 GDP(t+3)의 상관이 가장 큼 → X가 먼저 움직임 → <b>leading</b>","예: initial jobless claims, credit spreads"],
+ w:"방향(부호)과 타이밍(어느 시차에서 상관이 최대인지)은 별개의 질문."},
+{id:"fac6",t:"fac",q:"Net exports가 countercyclical인 이유는?",c:["호황 때 수출이 줄기 때문","호황 때 소비·투자가 늘면서 수입도 늘기 때문","정부가 호황 때 관세를 올리기 때문","환율이 항상 경기와 반대로 움직이기 때문"],a:1,
+ s:["호황 → C, I 증가 → 그 중 일부가 수입품 → M↑","수출은 주로 <i>외국</i> 경기에 좌우","→ NX = X − M 감소 → countercyclical"],
+ w:"Imports는 procyclical, net exports는 countercyclical: 둘을 헷갈리지 말 것."},
+{id:"fac7",t:"fac",q:"Labor productivity(시간당 산출)의 경기순환 특성은?",c:["강한 countercyclical","약한 procyclical","완전히 acyclical","항상 GDP보다 변동이 크다"],a:1,
+ s:["불황 때 기업은 노동을 바로 줄이지 않음 (labor hoarding)","→ 산출이 노동투입보다 더 많이 감소 → 생산성↓","→ procyclical (약하게, 그리고 최근 수십년간 약화)"],
+ w:"RBC 이론은 이를 'TFP 충격이 순환을 일으킨다'는 근거로, Keynesian은 'labor hoarding의 결과'로 해석."},
+{id:"lab1",t:"lab",type:"num",q:"성인 인구 260M, 취업자 160M, 실업자 8M. 실업률(%)은? (소수 둘째자리)",ans:4.76,tol:0.02,unit:"%",
+ s:["LF = E + U = 160 + 8 = 168M","u = U / LF = 8 / 168 = <b>4.76%</b>","분모는 인구(260)가 아니라 LF(168)!"],
+ w:"가장 흔한 실수: 분모에 성인 인구를 쓰는 것."},
+{id:"lab2",t:"lab",type:"num",q:"위 경제의 경제활동참가율(LFPR, %)은? (소수 첫째자리)",ans:64.6,tol:0.1,unit:"%",
+ s:["LFPR = LF / Adult pop","= 168 / 260 = <b>64.6%</b>"],
+ w:"LFPR 하락은 고령화(구조적) 또는 구직포기(경기적)일 수 있음."},
+{id:"lab3",t:"lab",q:"위 경제에서 실업자 2M이 구직을 포기했다(discouraged). 다른 변화는 없다. 실업률은?",c:["4.76%로 변화 없음","약 3.61%로 하락","약 5.4%로 상승","약 2.3%로 하락"],a:1,
+ s:["U = 8 − 2 = 6M, LF = 168 − 2 = 166M (구직 포기 → LF에서 제외)","u = 6 / 166 = <b>3.61%</b>","아무도 취업하지 않았는데 실업률이 하락!"],
+ w:"그래서 불황 깊은 곳에서 실업률은 노동시장 악화를 과소평가할 수 있다 → employment-population ratio, U-6도 함께 본다."},
+{id:"lab4",t:"lab",type:"num",q:"Okun's law: 실업률이 u*보다 1pp 높을 때마다 output gap이 −2%. u* = 4.5%, 현재 u = 6.5%. Output gap(%)은?",ans:-4,tol:0.01,unit:"%",
+ s:["Cyclical unemployment = 6.5 − 4.5 = 2pp","Gap ≈ −2 × 2 = <b>−4%</b>"],
+ w:"실업률 몇 pp의 차이가 생산으로는 그 두 배 정도의 손실: 실업의 비용을 '돈'으로 환산하는 도구."},
+{id:"lab5",t:"lab",type:"num",q:"Okun's law (성장률 버전): %ΔY ≈ 3% − 2×Δu. 올해 실업률이 4.0%에서 5.5%로 올랐다. 올해 real GDP 성장률(%)은?",ans:0,tol:0.01,unit:"%",
+ s:["Δu = 5.5 − 4.0 = +1.5pp","%ΔY ≈ 3 − 2 × 1.5 = 3 − 3 = <b>0%</b>","즉, 추세성장률(3%)보다 낮게 성장하면 실업률이 오른다"],
+ w:"'성장률이 플러스여도 추세보다 낮으면 실업률이 오른다' = growth recession 개념."},
+{id:"lab6",t:"lab",q:"Natural rate of unemployment(u*)에 대한 설명으로 옳은 것은?",c:["실업률 0%를 뜻한다","Frictional + structural 실업으로, 경기순환과 무관한 부분","Cyclical 실업만을 뜻한다","Fed가 매달 정하는 목표치"],a:1,
+ s:["u* = frictional(탐색) + structural(미스매치)","Cyclical = u − u*","u*는 0이 될 수 없음 (항상 이직·탐색 중인 사람 존재)"],
+ w:"Output gap = 0 ⇔ u = u*. Okun's law가 둘을 연결."},
+{id:"ad1",t:"ad",q:"유가 급등(negative supply shock)의 단기 효과는?",c:["Y↓, P↓","Y↓, P↑","Y↑, P↑","Y↑, P↓"],a:1,
+ s:["생산비용↑ → SRAS 왼쪽 이동","새 균형: 산출 감소, 물가 상승","= <b>Stagflation</b> (1970년대)"],
+ w:"공급충격은 '산출과 물가가 반대 방향' → 통화정책 딜레마."},
+{id:"ad2",t:"ad",q:"Negative demand shock(예: 주택버블 붕괴로 소비·투자 급감)의 단기 효과와 그 결과 inflation의 경기적 성질은?",c:["Y↓, P↓ → inflation은 procyclical","Y↓, P↑ → inflation은 countercyclical","Y↑, P↓ → acyclical","Y 변화 없음"],a:0,
+ s:["AD 왼쪽 이동 → Y↓, P↓","산출과 물가가 같은 방향 → 수요충격이 지배적이면 inflation은 <b>procyclical</b>"],
+ w:"데이터에서 inflation이 대체로 procyclical(약간 lag)이라는 사실은 수요충격이 중요하다는 증거로 쓰인다."},
+{id:"ad3",t:"ad",q:"Automatic stabilizer의 예와 효과로 옳은 것은?",c:["불황 시 의회가 새 인프라 법안을 통과시킴","불황 시 소득세 수입이 줄고 실업수당이 늘어 재정적자가 자동으로 확대","Fed가 금리를 인하함","불황 시 정부가 세율을 올림"],a:1,
+ s:["Automatic = 새로운 입법·결정 없이 자동 작동","소득↓ → 누진 소득세 수입↓, 실업자↑ → 실업수당 지출↑","→ 가처분소득 완충, 재정적자는 countercyclical"],
+ w:"인프라 법안 = discretionary fiscal policy, 금리 인하 = monetary policy: 구분."},
+{id:"ad4",t:"ad",q:"수요 부족으로 인한 침체에서 Fed의 전형적 대응과 전달경로는?",c:["정책금리 인상 → 저축 증가 → Y↑","정책금리 인하 → 차입비용↓ → 투자·내구재 소비↑ → AD 오른쪽 이동","통화량 축소 → 물가 하락 → Y↑","세금 인하 → 소비↑"],a:1,
+ s:["Fed dual mandate: 최대고용 + 물가안정","Fed funds rate↓ → 대출금리↓ → I, 내구재 C, 주택↑","AD → 오른쪽 → Y↑, 실업↓","세금 인하는 fiscal policy (Fed가 아님)"],
+ w:"금리에 가장 민감한 부문 = 가장 변동성이 큰 부문(투자, 내구재, 주택): ④ stylized facts와 연결."},
+{id:"ad5",t:"ad",q:"Real Business Cycle(RBC) 이론의 핵심 주장은?",c:["경기순환은 주로 sticky price 하에서 수요충격 때문","경기순환은 생산성(TFP) 등 실물충격에 대한 경제의 최적 반응이며, 안정화 정책의 필요성은 작다","경기순환은 존재하지 않는다","통화정책이 경기순환의 유일한 원인"],a:1,
+ s:["RBC: 가격 유연, 시장 청산","기술/생산성 충격 → 노동·투자 결정의 최적 변화 → 순환","→ 침체도 '효율적 반응', 정책 개입 필요성 ↓"],
+ w:"Keynesian(수요충격+경직성) vs RBC(실물충격+유연가격) 대비는 개념 문제 단골."},
+{id:"fin1",t:"fin",q:"Yield curve 역전(inversion)이 recession의 leading indicator로 여겨지는 이유로 가장 적절한 것은?",c:["장기채 공급이 갑자기 늘어나기 때문","시장이 미래 경기 둔화와 금리 인하를 예상해 장기금리가 단기금리보다 낮아지기 때문","정부가 법으로 장기금리를 정하기 때문","인플레이션이 높을 때만 역전되기 때문"],a:1,
+ s:["장기금리 ≈ 미래 단기금리 기대의 평균 + term premium","미래 금리 인하 기대(=경기 둔화 기대) → 장기금리↓","단기금리(현재 긴축) > 장기금리 → 역전","추가로: 은행 수익성↓ → 대출 위축"],
+ w:"1960년대 후반 이후 거의 모든 미국 침체에 앞서 역전. 다만 완벽한 신호는 아님 (false positive, 시차가 6~24개월로 가변적)."},
+{id:"fin2",t:"fin",q:"회사채-국채 credit spread의 경기순환 특성은?",c:["Procyclical: 호황에 확대","Countercyclical: 불황에 확대","Acyclical","항상 0"],a:1,
+ s:["불황 → 기업 부도위험↑ → 투자자가 더 높은 보상 요구","→ 스프레드 확대 → countercyclical","자금조달 비용↑ → 투자↓ → 경기 더 악화 (financial accelerator)"],
+ w:"금융시장 지표는 실물 지표보다 빨리 움직여서 leading 성격을 갖는 경우가 많다."},
+{id:"fin3",t:"fin",type:"num",q:"10년 국채 금리 4.1%, 3개월 국채 금리 5.3%. Term spread(10y − 3m, percentage points)는? (음수면 − 붙이기)",ans:-1.2,tol:0.01,unit:"pp",
+ s:["Spread = 10y − 3m = 4.1 − 5.3 = <b>−1.2pp</b>","음수 → yield curve 역전 → 역사적으로 침체 신호"],
+ w:"부호 해석이 핵심: 음수 spread = inversion."}
+];
+
+// ---------------- Generators ----------------
+const r=(a,b)=>Math.round(a+Math.random()*(b-a));
+const rf=(a,b,d)=>+(a+Math.random()*(b-a)).toFixed(d);
+const fx=(x,d)=>(+x).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
+const GEN={
+ deflator:{name:"Deflator & growth",t:"real",f(){const p1=r(2,5),q1=r(80,150),p2=r(3,8),q2=r(40,90);const P1=+(p1*rf(1.02,1.3,2)).toFixed(2),Q1=Math.round(q1*rf(0.95,1.15,2)),P2=+(p2*rf(1.0,1.25,2)).toFixed(2),Q2=Math.round(q2*rf(0.95,1.2,2));const N=P1*Q1+P2*Q2,R=p1*Q1+p2*Q2,R0=p1*q1+p2*q2,D=N/R*100;const ask=r(0,1);
+  if(ask===0)return{q:`Base year 2025: 상품 A $${p1}×${q1}, 상품 B $${p2}×${q2}. 2026: A $${fx(P1,2)}×${Q1}, B $${fx(P2,2)}×${Q2}. 2026년 GDP deflator는? (소수 첫째자리)`,ans:+D.toFixed(1),tol:0.15,unit:"",s:[`Nominal 2026 = ${fx(P1,2)}×${Q1} + ${fx(P2,2)}×${Q2} = ${fx(N,2)}`,`Real 2026 (2025 가격) = ${p1}×${Q1} + ${p2}×${Q2} = ${fx(R,0)}`,`Deflator = ${fx(N,2)} / ${fx(R,0)} × 100 = <b>${fx(D,1)}</b>`]};
+  return{q:`Base year 2025: 상품 A $${p1}×${q1}, 상품 B $${p2}×${q2}. 2026: A $${fx(P1,2)}×${Q1}, B $${fx(P2,2)}×${Q2}. 2025→2026 real GDP 성장률(%)은? (소수 첫째자리)`,ans:+((R/R0-1)*100).toFixed(1),tol:0.15,unit:"%",s:[`Real 2025 = Nominal 2025 = ${p1}×${q1} + ${p2}×${q2} = ${R0}`,`Real 2026 = 2025 가격 × 2026 수량 = ${p1}×${Q1} + ${p2}×${Q2} = ${R}`,`성장률 = ${R}/${R0} − 1 = <b>${fx((R/R0-1)*100,1)}%</b>`,`(가격 변화는 무시! 그게 'real'의 의미)`]};}},
+ annual:{name:"Annualize",t:"real",f(){const Y0=r(180,260)*100;const gq=rf(-1.5,1.6,2);const Y1=Math.round(Y0*(1+gq/100));const g=(Y1/Y0-1);const A=(Math.pow(1+g,4)-1)*100;return{q:`Real GDP가 이전 분기 $${Y0.toLocaleString()}B에서 이번 분기 $${Y1.toLocaleString()}B가 됐다. 연율화 성장률(%)은? (복리, 소수 둘째자리)`,ans:+A.toFixed(2),tol:0.03,unit:"%",s:[`g<sub>q</sub> = ${Y1.toLocaleString()} / ${Y0.toLocaleString()} − 1 = ${fx(g*100,3)}%`,`연율 = (1 + ${fx(g,5)})<sup>4</sup> − 1 = <b>${fx(A,2)}%</b>`,`근사 4 × g<sub>q</sub> = ${fx(4*g*100,2)}%`]};}},
+ okun:{name:"Okun's law",t:"lab",f(){const b=[2,2,2.5,3][r(0,3)];const us=rf(3.8,5,1);const u=rf(us-1,us+4,1);if(r(0,1)){const Ys=rf(20,30,1);const gap=-b*(u-us);return{q:`Okun 계수 β = ${b} (실업률 1pp ↑ → gap ${b}% ↓). u* = ${us}%, 현재 u = ${u}%, potential GDP = $${Ys}T. 실제 GDP($T)는? (소수 둘째자리)`,ans:+(Ys*(1+gap/100)).toFixed(2),tol:0.02,unit:"$T",s:[`u − u* = ${fx(u-us,1)}pp`,`Gap = −${b} × ${fx(u-us,1)} = ${fx(gap,2)}%`,`Y = Y* × (1 + gap) = ${Ys} × ${fx(1+gap/100,4)} = <b>${fx(Ys*(1+gap/100),2)}</b>`]};}
+  const g=rf(1.8,3.2,1),u0=rf(3.5,6,1),u1=rf(u0-1,u0+2,1),du=u1-u0;const Y=g-b*du;return{q:`%ΔY ≈ ${g}% − ${b}×Δu. 실업률이 ${u0}%에서 ${u1}%로 변했다. Real GDP 성장률(%)은? (소수 둘째자리)`,ans:+Y.toFixed(2),tol:0.02,unit:"%",s:[`Δu = ${u1} − ${u0} = ${fx(du,1)}pp`,`%ΔY ≈ ${g} − ${b} × (${fx(du,1)}) = <b>${fx(Y,2)}%</b>`]};}},
+ unemp:{name:"Unemployment",t:"lab",f(){const pop=r(240,280),E=r(145,165),U=rf(5,12,1),d=rf(0.5,2.5,1);const k=r(0,2);const LF=E+U;
+  if(k===0)return{q:`성인 인구 ${pop}M, 취업자 ${E}M, 실업자 ${U}M. 실업률(%)은? (소수 둘째자리)`,ans:+(U/LF*100).toFixed(2),tol:0.02,unit:"%",s:[`LF = ${E} + ${U} = ${fx(LF,1)}M`,`u = ${U} / ${fx(LF,1)} = <b>${fx(U/LF*100,2)}%</b>`]};
+  if(k===1)return{q:`성인 인구 ${pop}M, 취업자 ${E}M, 실업자 ${U}M. LFPR(%)은? (소수 첫째자리)`,ans:+(LF/pop*100).toFixed(1),tol:0.1,unit:"%",s:[`LF = ${E} + ${U} = ${fx(LF,1)}M`,`LFPR = ${fx(LF,1)} / ${pop} = <b>${fx(LF/pop*100,1)}%</b>`]};
+  const u2=(U-d)/(LF-d)*100;return{q:`취업자 ${E}M, 실업자 ${U}M. 실업자 중 ${d}M이 구직을 포기했다. 새 실업률(%)은? (소수 둘째자리)`,ans:+u2.toFixed(2),tol:0.02,unit:"%",s:[`U = ${U} − ${d} = ${fx(U-d,1)}, LF = ${fx(LF,1)} − ${d} = ${fx(LF-d,1)}`,`u = ${fx(U-d,1)} / ${fx(LF-d,1)} = <b>${fx(u2,2)}%</b> (원래 ${fx(U/LF*100,2)}%: 취업 없이도 하락)`]};}},
+ nominal:{name:"Nominal → Real",t:"real",f(){const gn=rf(2,10,1),pi=rf(0.5,7,1);const gr=((1+gn/100)/(1+pi/100)-1)*100;return{q:`Nominal GDP 성장률 ${gn}%, deflator 상승률 ${pi}%. Real GDP 성장률(%)은? (정확식, 소수 둘째자리)`,ans:+gr.toFixed(2),tol:0.02,unit:"%",s:[`(1+g<sub>R</sub>) = (1+g<sub>N</sub>)/(1+π) = ${fx(1+gn/100,3)} / ${fx(1+pi/100,3)}`,`g<sub>R</sub> = <b>${fx(gr,2)}%</b>`,`근사: ${gn} − ${pi} = ${fx(gn-pi,1)}%`]};}},
+ gap:{name:"Output gap",t:"cyc",f(){const Ys=rf(20,30,1),Y=+(Ys*(1+rf(-6,3,1)/100)).toFixed(2);const g=(Y-Ys)/Ys*100;return{q:`Potential GDP $${Ys}T, actual GDP $${Y}T. Output gap(%)은? (소수 둘째자리)`,ans:+g.toFixed(2),tol:0.02,unit:"%",s:[`Gap = (${Y} − ${Ys}) / ${Ys}`,`= <b>${fx(g,2)}%</b> ${g<0?"→ 음의 gap: 침체/유휴자원":"→ 양의 gap: 과열"}`]};}},
+ va:{name:"Value added",t:"gdp",f(){const a=r(1,4)*50,b=a+r(2,8)*50,c=b+r(3,12)*50;return{q:`농장이 밀을 $${a}에 제분소에, 제분소는 밀가루를 $${b}에 빵집에, 빵집은 빵을 소비자에게 $${c}에 판매. GDP 기여액($)은?`,ans:c,tol:0.5,unit:"$",s:[`부가가치: ${a} + (${b}−${a}) + (${c}−${b})`,`= ${a} + ${b-a} + ${c-b} = <b>${c}</b> = 최종재 가격`,`판매액 합(${a+b+c})은 double counting`]};}}
+};
+
+// ---------------- State ----------------
+const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}};
+let S=load();S.ans=S.ans||{};S.gen=S.gen||{};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+window.addEventListener("jw-sync-updated",()=>{S=load();S.ans=S.ans||{};S.gen=S.gen||{};renderQ();renderRec();});
+
+function record(id,ok,choice){const p=S.ans[id]||{n:0,c:0,streak:0};p.n++;if(ok){p.c++;p.streak=(p.streak||0)+1}else p.streak=0;p.last=ok;p.choice=choice;p.ts=Date.now();S.ans[id]=p;save();renderRec();}
+
+// ---------------- Render questions ----------------
+let filt="all";
+document.getElementById("pillQ").textContent=Q.length+"개 연습문제";
+function renderFilters(){const f=document.getElementById("filters");const keys=["all",...Object.keys(TOP),"wrong"];f.innerHTML=keys.map(k=>`<button data-k="${k}" class="${k===filt?'on':''}">${k==="all"?"전체 ("+Q.length+")":k==="wrong"?"🎯 틀린 문제":TOP[k]}</button>`).join("");f.querySelectorAll("button").forEach(b=>b.onclick=()=>{filt=b.dataset.k;renderFilters();renderQ();});}
+function stepsHtml(q){return `<ol class="steps">${q.s.map(x=>`<li>${x}</li>`).join("")}</ol><div class="box why"><b class="lab">왜 중요한가</b>${q.w}</div>`}
+function qCard(q,i,gen){const st=gen?null:S.ans[q.id];const status=st?(st.last?'<span class="st-ok">✓ 맞음</span>':'<span class="st-no">✗ 틀림</span>'):"";
+ const meta=`<div class="meta"><span class="tag">${TOP[q.t]}</span>${gen?"🎲":"Q"+(i+1)} ${status} <a href="${LINK[q.t]}">개념 보기 ↑</a></div>`;
+ let body;if(q.type==="num")body=`<div class="numrow"><input type="number" step="any" inputmode="decimal" placeholder="답 입력"> <span>${q.unit||""}</span><button class="btn pri chk">채점</button><button class="btn show">풀이 보기</button></div>`;
+ else body=q.c.map((c,j)=>`<button class="ch" data-j="${j}">${String.fromCharCode(65+j)}. ${c}</button>`).join("");
+ return `<div class="q" data-id="${q.id||""}">${meta}<div class="stem">${q.q}</div>${body}<div class="sol"><div class="verdict"></div>${stepsHtml(q)}</div></div>`}
+function wire(el,q,gen){const sol=el.querySelector(".sol"),v=el.querySelector(".verdict");
+ const done=(ok,choice,rec)=>{sol.classList.add("show");v.innerHTML=ok?'<span class="st-ok">✓ 정답!</span>':`<span class="st-no">✗ 오답</span> 정답: <b>${q.type==="num"?q.ans+" "+(q.unit||""):String.fromCharCode(65+q.a)}</b>`;if(rec){if(gen){const g=S.gen[q.t]||{n:0,c:0};g.n++;if(ok)g.c++;S.gen[q.t]=g;save();renderRec();}else record(q.id,ok,choice);}};
+ if(q.type==="num"){const inp=el.querySelector("input");const chk=()=>{const x=parseFloat(inp.value);if(isNaN(x))return;done(Math.abs(x-q.ans)<=q.tol+1e-9,x,true)};el.querySelector(".chk").onclick=chk;inp.onkeydown=e=>{if(e.key==="Enter")chk()};el.querySelector(".show").onclick=()=>{sol.classList.add("show");v.innerHTML=`정답: <b>${q.ans} ${q.unit||""}</b>`;};}
+ else el.querySelectorAll(".ch").forEach(b=>b.onclick=()=>{const j=+b.dataset.j;el.querySelectorAll(".ch").forEach((x,k)=>{x.classList.remove("right","wrong");if(k===q.a)x.classList.add("right")});if(j!==q.a)b.classList.add("wrong");done(j===q.a,j,true);});}
+function renderQ(){const list=Q.filter(q=>filt==="all"||q.t===filt||(filt==="wrong"&&S.ans[q.id]&&!S.ans[q.id].last));const el=document.getElementById("qlist");
+ if(!list.length){el.innerHTML='<p class="small">해당하는 문제가 없어요. 🎉</p>';return}
+ el.innerHTML=list.map(q=>qCard(q,Q.indexOf(q))).join("");el.querySelectorAll(".q").forEach(c=>{const q=Q.find(x=>x.id===c.dataset.id);wire(c,q,false)});}
+
+// ---------------- Generators UI ----------------
+function renderGenBtns(){const g=document.getElementById("genbtns");g.innerHTML=Object.entries(GEN).map(([k,v])=>`<button data-k="${k}">🎲 ${v.name}</button>`).join("");g.querySelectorAll("button").forEach(b=>b.onclick=()=>{g.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));newGen(b.dataset.k)});}
+function newGen(k){const G=GEN[k];const q=Object.assign({type:"num",t:G.t,w:"숫자만 바뀌고 구조는 같아요. 단계 순서를 외우기보다 '무엇을 나누고 무엇을 빼는지' 이유를 떠올리며 풀어보세요."},G.f());const a=document.getElementById("genarea");a.innerHTML=qCard(q,0,true)+`<button class="btn pri" id="again">🎲 새 숫자로 한 문제 더</button>`;wire(a.querySelector(".q"),q,true);document.getElementById("again").onclick=()=>newGen(k);}
+
+// ---------------- Records ----------------
+function renderRec(){const ids=Object.keys(S.ans).filter(id=>Q.some(q=>q.id===id));const tried=ids.length,right=ids.filter(id=>S.ans[id].last).length;let gn=0,gc=0;for(const k in S.gen){gn+=S.gen[k].n;gc+=S.gen[k].c}
+ document.getElementById("stats").innerHTML=`<div class="stat"><b>${tried}/${Q.length}</b>풀어본 문제</div><div class="stat"><b>${tried?Math.round(right/tried*100):0}%</b>최근 답 정답률</div><div class="stat"><b>${gc}/${gn}</b>🎲 드릴 정답</div>`+
+  Object.keys(TOP).map(t=>{const qs=Q.filter(q=>q.t===t);const ok=qs.filter(q=>S.ans[q.id]&&S.ans[q.id].last).length;return `<div class="stat"><b>${ok}/${qs.length}</b>${TOP[t]}</div>`}).join("");
+ const wrong=Q.filter(q=>S.ans[q.id]&&!S.ans[q.id].last);
+ document.getElementById("weak").innerHTML=wrong.length?`<div class="box trap"><b class="lab">🎯 Weak Spots (${wrong.length})</b>${wrong.map(q=>`<div>• <a href="${LINK[q.t]}">${TOP[q.t]}</a>: ${q.q.replace(/<[^>]+>/g,"").slice(0,80)}…</div>`).join("")}<div style="margin-top:6px"><button class="btn" id="goWrong">틀린 문제만 다시 풀기</button></div></div>`:'<div class="box ok"><b class="lab">Weak spots 없음</b>틀린 문제가 생기면 여기 모입니다.</div>';
+ const gw=document.getElementById("goWrong");if(gw)gw.onclick=()=>{filt="wrong";renderFilters();renderQ();location.hash="practice";};}
+document.getElementById("resetBtn").onclick=()=>{if(confirm("이 페이지의 기록을 모두 지울까요?")){S={ans:{},gen:{}};save();renderQ();renderRec();}};
+
+renderFilters();renderQ();renderGenBtns();renderRec();
+})();
+</script>
+</body>
+</html>

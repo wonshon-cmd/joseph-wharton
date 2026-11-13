@@ -27,6 +27,9 @@ term-3/
     learn/                      ← "learn from zero" app (index.html + engine.js)
       content/NN-module.js      ← one file per module (lesson, formulas, worked examples, questions, 🎲 generators)
       content/cases.js, hw1.js  ← cases broken down by module; HW1 skill map + practice test
+  fnce-6130/
+    index.html                  ← FNCE 6130 course home
+    business-cycles/            ← Business Cycles lessons, practice (step-by-step), 🎲 drills, quiz walkthrough slot
 ```
 
 ## Adding a new course or term
